@@ -190,6 +190,9 @@ class EventList extends Component {
           <>{this.notSignedIn()}</>
         ) : user.isAdmin ? (
           <>
+            <Row className="p-3 justify-content-center">
+              <h4>Hi {user.user.name}!</h4>
+            </Row>
             {this.renderAdmin()}{" "}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
@@ -197,6 +200,9 @@ class EventList extends Component {
           </>
         ) : (
           <>
+            <Row className="p-3 justify-content-center">
+              <h4>Hi {user.user.name}!</h4>
+            </Row>{" "}
             {this.eventList()}{" "}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
