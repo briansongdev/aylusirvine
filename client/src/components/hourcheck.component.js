@@ -33,8 +33,8 @@ export default function HourCheck() {
           <h5 className="p-3">
             You currently have {userData.user.hours} hours (from website
             activities).
-            <br /> {showMessage()}
           </h5>
+          <Row className="p-3 justify-content-center"> {showMessage()}</Row>
           <ProgressBar animated now={userData.user.hours} />
           <h5 className="p-3">
             Here are the events you have volunteered for so far:
