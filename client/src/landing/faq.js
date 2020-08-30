@@ -102,11 +102,7 @@ export default class FAQ extends Component {
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="3">
-              <Card.Body>
-                It took me A WEEK. Anything is possible when you have the
-                motivation to do so and give back to the community, especially
-                the community of volunteers you're leading.
-              </Card.Body>
+              <Card.Body>1 week.</Card.Body>
             </Accordion.Collapse>
           </Card>
           <Card>
@@ -127,7 +123,8 @@ export default class FAQ extends Component {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="5">
-                I'm interested or have a question/suggestion! What do I do?
+                I'm an interested leader or have a question/suggestion! What do
+                I do?
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="5">

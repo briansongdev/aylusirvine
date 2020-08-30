@@ -17,11 +17,11 @@ export default function HourCheck() {
 
   const showMessage = () => {
     if (userData.user.hours <= 5) {
-      return <Container>You got this! Keep going!</Container>;
+      return <h6>You got this! Keep going!</h6>;
     } else if (userData.user.hours <= 20) {
-      return <Container>Nice job so far! 5+ hours is awesome!</Container>;
+      return <h6>Nice job so far! 5+ hours is awesome!</h6>;
     } else {
-      return <Container>Breezing! So many hours!</Container>;
+      return <h6>Breezing! So many hours!</h6>;
     }
   };
 
