@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Container, Form, Row } from "react-bootstrap";
-import Button from "@material-ui/core/button";
+import { Button } from "@material-ui/core";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 
