@@ -15,6 +15,16 @@ export default function HourCheck() {
     });
   };
 
+  const showMessage = () => {
+    if (userData.user.hours <= 5) {
+      return <Container>You got this! Keep going!</Container>;
+    } else if (userData.user.hours <= 20) {
+      return <Container>Nice job so far! 5+ hours is awesome!</Container>;
+    } else {
+      return <Container>Breezing! So many hours!</Container>;
+    }
+  };
+
   return (
     <>
       {userData.user ? (
@@ -22,7 +32,7 @@ export default function HourCheck() {
           <h3 className="p-1">Welcome {userData.user.name}!</h3>
           <h5 className="p-3">
             You currently have {userData.user.hours} hours (from website
-            activities). Your current goal is 100 hours!
+            activities). {showMessage}
           </h5>
           <ProgressBar animated now={userData.user.hours} />
           <h5 className="p-3">

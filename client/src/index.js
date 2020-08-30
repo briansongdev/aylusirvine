@@ -15,6 +15,6 @@ ReactDOM.render(
 
 serviceWorker.unregister();
 
-// v1.5 also remove formLink from Event object
+// v1.5 add pvsa render based on how many hours they have + supportive messages
 
 // v2: progress bar for hours. directly sign up user from other branches through website and allow admin panel to access. also let user select which branch first (in case other branches want to use this too :)).
