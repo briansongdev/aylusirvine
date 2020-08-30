@@ -32,7 +32,7 @@ export default function HourCheck() {
           <h3 className="p-1">Welcome {userData.user.name}!</h3>
           <h5 className="p-3">
             You currently have {userData.user.hours} hours (from website
-            activities). {showMessage}
+            activities). {showMessage()}
           </h5>
           <ProgressBar animated now={userData.user.hours} />
           <h5 className="p-3">
