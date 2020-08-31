@@ -66,9 +66,19 @@ class EditEvent extends Component {
       duration: this.state.duration,
       date: this.state.date,
     };
+    let adminToken = "";
+    if (this.context.userData.isAdmin) {
+      adminToken = process.env.TOKEN_SECRET;
+    }
+    const headers = {
+      "x-auth-token": this.context.userData.token,
+      "admin-Token": adminToken,
+    };
 
     await axios
-      .post("/api/events/update/" + this.props.match.params.id, event)
+      .post("/api/events/update/" + this.props.match.params.id, event, {
+        headers: headers,
+      })
       .then(() => {
         alert("Event Updated!");
       });

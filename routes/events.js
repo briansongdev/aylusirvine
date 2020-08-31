@@ -78,7 +78,7 @@ router.post("/addUser/:id", auth, async (req, res) => {
     event.save().then(() => res.json("Added person to event!"));
   });
 });
-router.route("/update/:id").post((req, res) => {
+router.post("/update/:id", auth, async (req, res) => {
   Event.findById(req.params.id)
     .then((event) => {
       event.title = req.body.title;

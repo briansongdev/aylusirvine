@@ -14,8 +14,11 @@ const auth = (req, res, next) => {
         .json({ msg: "Token verification failed, access denied." });
     }
 
-    req.user = verified.id;
-    next();
+    const adminToken = req.header("admin-Token");
+    if (adminToken == process.env.TOKEN_SECRET) {
+      req.user = verified.id;
+      next();
+    }
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
