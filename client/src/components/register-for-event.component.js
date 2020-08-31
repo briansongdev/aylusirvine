@@ -13,8 +13,7 @@ class RegisterForEvent extends Component {
     };
   }
   processSignup = async () => {
-    const l =
-      "http://localhost:5000/events/addUser/" + this.props.match.params.id;
+    const l = "/api/events/addUser/" + this.props.match.params.id;
     const request = {
       userName: this.context.userData.user.name,
       email: this.context.userData.user.email,
