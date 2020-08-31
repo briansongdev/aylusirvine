@@ -1,11 +1,11 @@
 const router = require("express").Router();
 let Event = require("../models/events.model");
-let auth = require("../middleware/auth");
+let adminAuth = require("../middleware/adminAuth");
+let userAuth = require("../middleware/userAuth");
 
 router.route("/").get((req, res) => {
   Event.find()
     .then((events) => res.json(events))
-    // above might not work
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -28,7 +28,7 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.get("/joobidajelly/:id", async (req, res) => {
+router.get("/joobidajoyce/:id", async (req, res) => {
   await Event.findById(req.params.id).then((event) => {
     res.json(event.userList);
   });
@@ -53,11 +53,12 @@ router.route("/:id").get((req, res) => {
 });
 
 router.route("/:id").delete((req, res) => {
+  // may be subject to vulnerability attacks
   Event.findByIdAndDelete(req.params.id)
     .then(() => res.json("Event deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-router.post("/addUser/:id", auth, async (req, res) => {
+router.post("/addUser/:id", userAuth, async (req, res) => {
   Event.findById(req.params.id).then((event) => {
     let uniq = true;
     for (const i in event.userList) {
@@ -78,8 +79,8 @@ router.post("/addUser/:id", auth, async (req, res) => {
     event.save().then(() => res.json("Added person to event!"));
   });
 });
-router.post("/update/:id", auth, async (req, res) => {
-  Event.findById(req.params.id)
+router.post("/update/:id", adminAuth, async (req, res) => {
+  await Event.findById(req.params.id)
     .then((event) => {
       event.title = req.body.title;
       event.description = req.body.description;

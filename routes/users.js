@@ -2,7 +2,8 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-let auth = require("../middleware/auth.js");
+let adminAuth = require("../middleware/adminAuth.js");
+let userAuth = require("../middleware/userAuth.js");
 let User = require("../models/users.model");
 
 router.route("/add").post(async (req, res) => {
@@ -74,15 +75,7 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-router.delete("/delete", auth, async (req, res) => {
-  try {
-    const deletedUser = await User.findByIdAndDelete(req.user);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
-router.post("/tokenIsValid", async (req, res) => {
+router.post("/tokenIsValid", userAuth, async (req, res) => {
   try {
     const token = req.header("x-auth-token");
     if (!token) return res.json(false);
@@ -99,12 +92,12 @@ router.post("/tokenIsValid", async (req, res) => {
   }
 });
 
-router.get("/", auth, async (req, res) => {
+router.get("/", userAuth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json(user);
 });
 
-router.get("/extractEmails", async (req, res) => {
+router.get("/extractEmails", adminAuth, async (req, res) => {
   const arr = await User.find();
   let finalEmailArray = [];
   for (i in arr) {

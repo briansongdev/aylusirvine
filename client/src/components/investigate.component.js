@@ -19,7 +19,7 @@ class Investigate extends Component {
       });
     });
     axios
-      .get("/api/events/joobidajelly/" + this.props.match.params.id)
+      .get("/api/events/joobidajoyce/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
           eventNames: response.data,

@@ -25,7 +25,18 @@ export default function CreateEvent() {
     await axios
       .post("/api/events/add", events)
       .then((res) => console.log(res.data));
-    let emailList = await axios.get("api/users/extractEmails/");
+    let adminToken = "";
+    if (userData.isAdmin) {
+      adminToken = "ashdkajsdhaskdhaskdha";
+    }
+    const headers = {
+      "x-auth-token": userData.token,
+      "admin-Token": adminToken,
+    };
+    console.log(process.env.TOKEN_SECRET);
+    let emailList = await axios.get("/api/users/extractEmails/", {
+      headers: headers,
+    });
     for (const i in emailList.data) {
       const templateParams = {
         emailName: emailList.data[i],
@@ -33,23 +44,23 @@ export default function CreateEvent() {
         eventDescription: description,
         eventDuration: duration,
       };
-      await emailjs
-        .send(
-          "gmail",
-          "template_kg8dq4kR",
-          templateParams,
-          "user_7ramHducqnduQpv2RNhBj"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      // await emailjs
+      //   .send(
+      //     "gmail",
+      //     "template_kg8dq4kR",
+      //     templateParams,
+      //     "user_7ramHducqnduQpv2RNhBj"
+      //   )
+      //   .then(
+      //     (result) => {
+      //       console.log(result.text);
+      //     },
+      //     (error) => {
+      //       console.log(error.text);
+      //     }
+      //   );
     }
-    window.location = "/";
+    // window.location = "/";
   };
   return (
     <Container>

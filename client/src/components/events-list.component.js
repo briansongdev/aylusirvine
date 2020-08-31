@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Card, Row, ListGroup } from "react-bootstrap";
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/button";
 import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
@@ -80,9 +80,6 @@ class EventList extends Component {
       .catch((error) => {
         // empty catch
       });
-    axios.get("/api/events/joobidajelly/").then((response) => {
-      this.setState({ people: response.data });
-    });
   }
 
   deleteEvent = (id) => {
@@ -202,7 +199,7 @@ class EventList extends Component {
           <>
             <Row className="p-3 justify-content-center">
               <h4>Hi {user.user.name}!</h4>
-            </Row>{" "}
+            </Row>
             {this.eventList()}{" "}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
