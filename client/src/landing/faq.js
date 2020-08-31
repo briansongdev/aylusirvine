@@ -130,11 +130,11 @@ export default class FAQ extends Component {
           </Card>
           <Card>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="5">
+              <Accordion.Toggle as={Button} variant="link" eventKey="3">
                 Recent changes (v 1.1S)
               </Accordion.Toggle>
             </Card.Header>
-            <Accordion.Collapse eventKey="5">
+            <Accordion.Collapse eventKey="3">
               <Card.Body>
                 Some security patches and UI updates, website is 100%
                 functional.
