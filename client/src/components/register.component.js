@@ -90,6 +90,7 @@ export default function Register() {
               variant="outlined"
               size="large"
               type="submit"
+              href="#"
               onClick={submit}
             >
               Sign Up
