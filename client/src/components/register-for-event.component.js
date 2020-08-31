@@ -23,13 +23,9 @@ class RegisterForEvent extends Component {
     const headers = {
       "x-auth-token": this.context.userData.token,
     };
-    await axios
-      .post(l, request, {
-        headers: headers,
-      })
-      .catch((e) => {
-        alert(e);
-      });
+    await axios.post(l, request, {
+      headers: headers,
+    });
     alert("Success!");
     window.location = "/";
   };
@@ -55,7 +51,6 @@ class RegisterForEvent extends Component {
               <Button
                 variant="outlined"
                 size="large"
-                href="#"
                 onClick={this.processSignup}
               >
                 Yes, sign me up!
