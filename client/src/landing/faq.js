@@ -10,7 +10,7 @@ export default class FAQ extends Component {
   render() {
     return (
       <Container className="p-3 text-center">
-        <h2>FAQ for version 1</h2>
+        <h2>FAQ for version 1.1S</h2>
         <h5>You can locate answers to frequently asked questions here!</h5>
         <Accordion defaultActiveKey="0" className="p-3">
           <Card>
@@ -97,16 +97,6 @@ export default class FAQ extends Component {
           </Card>
           <Card>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                How long did it take you to create this website?
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="3">
-              <Card.Body>1 week.</Card.Body>
-            </Accordion.Collapse>
-          </Card>
-          <Card>
-            <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="4">
                 What are our plans for the future?
               </Accordion.Toggle>
@@ -135,6 +125,19 @@ export default class FAQ extends Component {
                 this website or a suggestion for new functions, please contact
                 me through the aforementioned methods. If you spot an issue, do
                 the same! Thank you!
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="5">
+                Recent changes (v 1.1S)
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="5">
+              <Card.Body>
+                Some security patches and UI updates, website is 100%
+                functional.
               </Card.Body>
             </Accordion.Collapse>
           </Card>
