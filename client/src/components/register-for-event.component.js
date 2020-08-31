@@ -50,6 +50,7 @@ class RegisterForEvent extends Component {
               <Button
                 variant="outlined"
                 size="large"
+                href="#"
                 onClick={this.processSignup}
               >
                 Yes, sign me up!
