@@ -8,9 +8,9 @@ const eventSchema = new Schema(
     description: { type: String, required: true },
     duration: { type: Number, required: true },
     date: { type: Date, required: false },
-    userList: { type: [], default: [] },
-    emailList: { type: [], default: [] },
-    idList: { type: [], default: [] },
+    userList: { type: Array, default: [] },
+    emailList: { type: Array, default: [] },
+    idList: { type: Array, default: [] },
   },
   {
     timestamps: true,
