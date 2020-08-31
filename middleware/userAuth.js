@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const auth = (req, res, next) => {
+const userAuth = (req, res, next) => {
   try {
     const token = req.header("x-auth-token");
     if (!token) {
@@ -13,15 +13,11 @@ const auth = (req, res, next) => {
         .status(401)
         .json({ msg: "Token verification failed, access denied." });
     }
-
-    const adminToken = req.header("admin-Token");
-    if (adminToken == process.env.TOKEN_SECRET) {
-      req.user = verified.id;
-      next();
-    }
+    req.user = verified.id;
+    next();
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 };
 
-module.exports = auth;
+module.exports = userAuth;

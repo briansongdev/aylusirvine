@@ -44,23 +44,23 @@ export default function CreateEvent() {
         eventDescription: description,
         eventDuration: duration,
       };
-      // await emailjs
-      //   .send(
-      //     "gmail",
-      //     "template_kg8dq4kR",
-      //     templateParams,
-      //     "user_7ramHducqnduQpv2RNhBj"
-      //   )
-      //   .then(
-      //     (result) => {
-      //       console.log(result.text);
-      //     },
-      //     (error) => {
-      //       console.log(error.text);
-      //     }
-      //   );
+      await emailjs
+        .send(
+          "gmail",
+          "template_kg8dq4kR",
+          templateParams,
+          "user_7ramHducqnduQpv2RNhBj"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
     }
-    // window.location = "/";
+    window.location = "/";
   };
   return (
     <Container>
