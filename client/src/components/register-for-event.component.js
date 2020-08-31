@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Button, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import { Button } from "@material-ui/core";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 
@@ -12,7 +13,8 @@ class RegisterForEvent extends Component {
     };
   }
   processSignup = async () => {
-    const l = "/api/events/addUser/" + this.props.match.params.id;
+    const l =
+      "http://localhost:5000/events/addUser/" + this.props.match.params.id;
     const request = {
       userName: this.context.userData.user.name,
       email: this.context.userData.user.email,
@@ -21,9 +23,14 @@ class RegisterForEvent extends Component {
     const headers = {
       "x-auth-token": this.context.userData.token,
     };
-    await axios.post(l, request, {
-      headers: headers,
-    });
+    await axios
+      .post(l, request, {
+        headers: headers,
+      })
+      .catch((e) => {
+        alert(e);
+      });
+    alert("Success!");
     window.location = "/";
   };
 
@@ -45,7 +52,12 @@ class RegisterForEvent extends Component {
               {this.state.eventName}?
             </h5>
             <Row className="p-3 justify-content-center">
-              <Button variant="success" onClick={this.processSignup}>
+              <Button
+                variant="outlined"
+                size="large"
+                href="#"
+                onClick={this.processSignup}
+              >
                 Yes, sign me up!
               </Button>
             </Row>

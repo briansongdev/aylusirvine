@@ -28,13 +28,9 @@ class Investigate extends Component {
       .catch((err) => console.log(err));
   }
   getUser = () => {
-    for (const i in this.state.eventNames) {
-      return (
-        <Row className="p-3 justify-content-center">
-          {this.state.eventNames[i]}
-        </Row>
-      );
-    }
+    return this.state.eventNames.map((hi) => {
+      return <Row className="p-3 justify-content-center">{hi}</Row>;
+    });
   };
   render() {
     let user = this.context.userData;
