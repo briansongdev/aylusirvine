@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Card, Row, ListGroup } from "react-bootstrap";
-import Button from "@material-ui/core/button";
+import { Button } from "@material-ui/core";
 import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
