@@ -35,11 +35,13 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenRes = await Axios.post("/api/users/tokenIsValid", null, {
-        headers: { "x-auth-token": token },
-      });
+      const tokenRes = await Axios.post(
+        "http://localhost:5000/users/tokenIsValid",
+        null,
+        { headers: { "x-auth-token": token } }
+      );
       if (tokenRes.data) {
-        const userRes = await Axios.get("/api/users/", {
+        const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
         });
         if (userRes.data.email == "brians3476@gmail.com") {
@@ -61,7 +63,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div style={{ backgroundColor: "#e5fffd", minHeight: "100vh" }}>
       <UserContext.Provider value={{ userData, setUserData }}>
         <Container className="p-3">
           <Navigation />
@@ -82,11 +84,11 @@ function App() {
         </Container>
         <Container className="p-3 text-center">
           <h5>
-            by <span style={{ color: "skyblue" }}>briian#9562</span>
+            by <span style={{ color: "#228B22" }}>briian#9562</span>
           </h5>
         </Container>
       </UserContext.Provider>
-    </>
+    </div>
   );
 }
 

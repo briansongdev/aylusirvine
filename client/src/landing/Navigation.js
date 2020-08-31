@@ -18,7 +18,7 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar bg="primary" variant="dark" expand="md" className="uvs">
+    <Navbar id="imagio" variant="dark" expand="md" className="uvs">
       <Navbar.Brand as={Link} to="/">
         <h1 className="display-4">AYLUS Irvine Volunteers</h1>
       </Navbar.Brand>
