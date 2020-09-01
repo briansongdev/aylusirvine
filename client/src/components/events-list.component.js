@@ -99,7 +99,7 @@ class EventList extends Component {
           alt="..."
         />
         <Row className="p-4 justify-content-center">
-          <h6>Let's get you on board. Make an account or register: </h6>
+          <h6>Let's get you on board. Register or login: </h6>
         </Row>
         <Row className="p-3 justify-content-center">
           <Button
@@ -108,7 +108,7 @@ class EventList extends Component {
             color="primary"
             href="/register"
           >
-            Register: New volunteers or migrating ones
+            Register: New/Migrating Volunteers
           </Button>
         </Row>
         <Row className="p-3 justify-content-center">
@@ -118,7 +118,7 @@ class EventList extends Component {
             color="primary"
             href="/signin"
           >
-            Login: Existing volunteers!
+            Login: Existing Volunteers
           </Button>
         </Row>
       </Container>
