@@ -12,7 +12,7 @@ export default class FAQ extends Component {
       <Container className="p-3 text-center">
         <h2>FAQ for version 1.1S</h2>
         <h5>You can locate answers to frequently asked questions here!</h5>
-        <Accordion defaultActiveKey="0" className="p-3">
+        <Accordion className="p-3">
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
