@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./landing/App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./fonts/DINRoundPro.ttf";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
