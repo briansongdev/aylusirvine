@@ -71,10 +71,9 @@ export default class FAQ extends Component {
                 branch leaders: the option to create new events on the platform,
                 check who has signed up, edit, delete, send followup emails, and
                 "post" an event. Posting an event will automatically delete the
-                event and add hours for the volunteers. However, automatically
-                posting to WP is not supported.
+                event and add hours for the volunteers.
                 <br />
-                <br /> Regardless, it's perfect for both parties!
+                <br /> It's perfect for both parties!
               </Card.Body>
             </Accordion.Collapse>
           </Card>
