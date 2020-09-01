@@ -13,42 +13,31 @@ export default function Register() {
 
   const submit = async (e) => {
     e.preventDefault();
-    const rEmails = [
-      "applebee@applebee1558.com",
-      "jiwonjeong414@gmail.com",
-      "andychen6788@gmail.com",
-    ];
-    const rNames = ["Alex Liu", "Jiwon Jeong", "Andy Chen"];
+
     if (!(!name || !identification || !email)) {
-      if (rNames.includes(name) || rEmails.includes(email)) {
-        alert("Error. Please try again.");
-      } else {
-        const newUser = { name, identification, email };
-        const passed = await axios
-          .post("/api/users/add", newUser)
-          .catch((e) => {
-            if (e == "Error: Request failed with status code 400") {
-              alert(
-                "Either an account with the same name or email already exists. Try again."
-              );
-            } else {
-              alert(
-                "Internal server error. Try again and if the error persists, contact me."
-              );
-            }
-          });
-        if (passed) {
-          const loginResponse = await axios.post("/api/users/login", {
-            email,
-            identification,
-          });
-          setUserData({
-            token: loginResponse.data.token,
-            user: loginResponse.data.user,
-          });
-          localStorage.setItem("auth-token", loginResponse.data.token);
-          window.location = "/";
+      const newUser = { name, identification, email };
+      const passed = await axios.post("/api/users/add", newUser).catch((e) => {
+        if (e == "Error: Request failed with status code 400") {
+          alert(
+            "Either an account with the same name or email already exists. Try again."
+          );
+        } else {
+          alert(
+            "Internal server error. Try again and if the error persists, contact me."
+          );
         }
+      });
+      if (passed) {
+        const loginResponse = await axios.post("/api/users/login", {
+          email,
+          identification,
+        });
+        setUserData({
+          token: loginResponse.data.token,
+          user: loginResponse.data.user,
+        });
+        localStorage.setItem("auth-token", loginResponse.data.token);
+        window.location = "/";
       }
     } else {
       alert("Please fill out all fields.");
