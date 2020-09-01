@@ -97,9 +97,9 @@ export default function Register() {
               Sign Up
             </Button>
             <Form.Text className="p-2 text-muted">
-              Spamming accounts is 100% detectable. Don't do it.
+              Please do not attempt to spam signup requests. Thanks!
             </Form.Text>
-            <Form.Text className="text-muted">
+            <Form.Text className="p-2 text-muted">
               Make sure to verify your information. This is unchangeable.
             </Form.Text>
           </Form>
