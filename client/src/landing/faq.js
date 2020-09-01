@@ -97,21 +97,6 @@ export default class FAQ extends Component {
           </Card>
           <Card>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="4">
-                What are our plans for the future?
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="4">
-              <Card.Body>
-                Our main goal for the future is to touch up on the user
-                interface so it improves the user experience. Currently, this
-                app is mainly oriented towards serving functions over looking
-                pretty, but changing that is one of our goals.
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-          <Card>
-            <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="5">
                 I'm an interested leader or have a question/suggestion! What do
                 I do?
@@ -131,13 +116,26 @@ export default class FAQ extends Component {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                Recent changes (v 1.1S)
+                Recent changes (v1.1S)
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="3">
               <Card.Body>
                 Some security patches and UI updates, website is 100%
                 functional.
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="4">
+                Future changes (v2)
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="4">
+              <Card.Body>
+                UI remake is in the works, as well as more advanced signup
+                methods and removal of the one-strike policy.
               </Card.Body>
             </Accordion.Collapse>
           </Card>
