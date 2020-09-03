@@ -7,14 +7,14 @@ router.route("/").get((req, res) => {
   Event.find()
     .then((events) => {
       const eventData = {
-        title: events.title,
-        description: events.description,
-        duration: events.duration,
-        date: events.date,
-        createdAt: events.createdAt,
-        updatedAt: events.updatedAt,
+        title: events[0].title,
+        description: events[0].description,
+        duration: events[0].duration,
+        date: events[0].date,
+        createdAt: events[0].createdAt,
+        updatedAt: events[0].updatedAt,
       };
-      res.json(eventData);
+      res.json([eventData]);
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
