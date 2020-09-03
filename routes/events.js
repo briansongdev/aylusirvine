@@ -5,7 +5,17 @@ let userAuth = require("../middleware/userAuth");
 
 router.route("/").get((req, res) => {
   Event.find()
-    .then((events) => res.json(events))
+    .then((events) => {
+      const eventData = {
+        title: events.title,
+        description: events.description,
+        duration: events.duration,
+        date: events.date,
+        createdAt: events.createdAt,
+        updatedAt: events.updatedAt,
+      };
+      res.json(eventData);
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
