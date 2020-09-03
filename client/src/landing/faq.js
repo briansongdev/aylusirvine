@@ -10,7 +10,7 @@ export default class FAQ extends Component {
   render() {
     return (
       <Container className="p-3 text-center">
-        <h2>FAQ for version 1.1S</h2>
+        <h2>FAQ for version 1.2</h2>
         <h5>You can locate answers to frequently asked questions here!</h5>
         <Accordion className="p-3">
           <Card>
@@ -115,13 +115,12 @@ export default class FAQ extends Component {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                Recent changes (v1.1S)
+                Recent changes (v1.2)
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="3">
               <Card.Body>
-                Some security patches and UI updates, website is 100%
-                functional.
+                100% functional. Fixed a small security hole.
               </Card.Body>
             </Accordion.Collapse>
           </Card>
