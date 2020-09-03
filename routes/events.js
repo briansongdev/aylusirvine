@@ -6,15 +6,20 @@ let userAuth = require("../middleware/userAuth");
 router.route("/").get((req, res) => {
   Event.find()
     .then((events) => {
-      const eventData = {
-        title: events[0].title,
-        description: events[0].description,
-        duration: events[0].duration,
-        date: events[0].date,
-        createdAt: events[0].createdAt,
-        updatedAt: events[0].updatedAt,
-      };
-      res.json([eventData]);
+      let eventArray = [];
+      for (const i in events) {
+        const eventData = {
+          _id: events[i]._id,
+          title: events[i].title,
+          description: events[i].description,
+          duration: events[i].duration,
+          date: events[i].date,
+          createdAt: events[i].createdAt,
+          updatedAt: events[i].updatedAt,
+        };
+        eventArray.push(eventData);
+      }
+      res.json(eventArray);
     })
     .catch((err) => res.status(400).json("Error: " + err));
 });
