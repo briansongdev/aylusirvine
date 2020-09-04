@@ -189,9 +189,9 @@ class EventList extends Component {
         return (
           <Container>
             <Row className="p-3 justify-content-center">
-              <h4>Hi {user.user.name}!</h4>
+              <h4>Hi Brian!</h4>
             </Row>
-            {this.renderAdmin()}{" "}
+            {this.renderAdmin()}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
             </Row>
@@ -201,12 +201,7 @@ class EventList extends Component {
         <Row className="p-3 justify-content-center">
           <h4>Hi {user.user.name}!</h4>
         </Row>;
-        {
-          this.eventList();
-        }
-        {
-          (" ");
-        }
+        this.eventList();
         <Row className="p-3 justify-content-center">
           You've reached the end of our events!
         </Row>;
