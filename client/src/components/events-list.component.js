@@ -71,8 +71,8 @@ class EventList extends Component {
     super(props);
     this.state = { events: [], people: [], reversed: false };
   }
-  componentDidMount() {
-    axios
+  async componentDidMount() {
+    await axios
       .get("/api/events/")
       .then((response) => {
         this.setState({ events: response.data });
