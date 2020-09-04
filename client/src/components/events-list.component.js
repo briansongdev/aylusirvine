@@ -198,13 +198,18 @@ class EventList extends Component {
           </Container>
         );
       } else {
-        <Row className="p-3 justify-content-center">
-          <h4>Hi {user.user.name}!</h4>
-        </Row>;
-        this.eventList();
-        <Row className="p-3 justify-content-center">
-          You've reached the end of our events!
-        </Row>;
+        return (
+          <Container>
+            <Row className="p-3 justify-content-center">
+              <h4>Hi {user.user.name}!</h4>
+            </Row>
+            this.eventList();
+            <Row className="p-3 justify-content-center">
+              You've reached the end of our events!
+            </Row>
+            ;
+          </Container>
+        );
       }
     }
   }
