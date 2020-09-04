@@ -181,12 +181,13 @@ class EventList extends Component {
 
   render() {
     let user = this.context.userData;
-    return (
-      <Container>
-        {user.token === undefined ? (
-          <>{this.notSignedIn()}</>
-        ) : user.isAdmin ? (
-          <>
+
+    if (user.token === undefined) {
+      return <Container>{this.notSignedIn()}</Container>;
+    } else {
+      if (user.isAdmin) {
+        return (
+          <Container>
             <Row className="p-3 justify-content-center">
               <h4>Hi {user.user.name}!</h4>
             </Row>
@@ -194,20 +195,23 @@ class EventList extends Component {
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
             </Row>
-          </>
-        ) : (
-          <>
-            <Row className="p-3 justify-content-center">
-              <h4>Hi {user.user.name}!</h4>
-            </Row>
-            {this.eventList()}{" "}
-            <Row className="p-3 justify-content-center">
-              You've reached the end of our events!
-            </Row>
-          </>
-        )}
-      </Container>
-    );
+          </Container>
+        );
+      } else {
+        <Row className="p-3 justify-content-center">
+          <h4>Hi {user.user.name}!</h4>
+        </Row>;
+        {
+          this.eventList();
+        }
+        {
+          (" ");
+        }
+        <Row className="p-3 justify-content-center">
+          You've reached the end of our events!
+        </Row>;
+      }
+    }
   }
 }
 
