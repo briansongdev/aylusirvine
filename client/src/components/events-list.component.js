@@ -203,7 +203,7 @@ class EventList extends Component {
             <Row className="p-3 justify-content-center">
               <h4>Hi {user.user.name}!</h4>
             </Row>
-            this.eventList();
+            {this.eventList()};
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
             </Row>
