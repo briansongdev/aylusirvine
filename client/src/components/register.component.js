@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Container, Form, Row } from "react-bootstrap";
-import { Button } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import UserContext from "../context/UserContext";
 import axios from "axios";
+import "../landing/App.css";
 
 export default function Register() {
   const [name, setName] = useState();
@@ -46,17 +47,27 @@ export default function Register() {
 
   return (
     <>
+      <br />
       {!userData.user ? (
-        <Container className="p-3 text-center">
+        <Container
+          style={{
+            backgroundColor: "#e5fffd",
+            width: "650px",
+            borderRadius: "8px 8px 8px 8px",
+          }}
+          className="p-5 text-center"
+        >
           <Row className="justify-content-center">
             <h5>Hi! Welcome to our platform!</h5>
           </Row>
           <Form className="p-3">
             <Form.Group controlId="formBasicnamee">
-              <Form.Label>Name</Form.Label>
               <Form.Control
-                type="name"
+                as={TextField}
+                style={{ width: "500px", height: "56px" }}
+                variant="outlined"
                 placeholder="John Doe"
+                label="Name"
                 onChange={(e) => setName(e.target.value)}
               />
               <Form.Text className="text-muted">
@@ -66,9 +77,11 @@ export default function Register() {
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
               <Form.Control
-                type="email"
+                as={TextField}
+                style={{ width: "500px", height: "56px" }}
+                variant="outlined"
+                label="Email"
                 placeholder="aylusirvine@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -78,9 +91,12 @@ export default function Register() {
             </Form.Group>
 
             <Form.Group controlId="formBasicPass">
-              <Form.Label>ID</Form.Label>
               <Form.Control
-                type="password"
+                as={TextField}
+                style={{ width: "500px", height: "56px" }}
+                variant="outlined"
+                placeholder="*****"
+                label="Password"
                 onChange={(e) => setID(e.target.value)}
               />
               <Form.Text className="text-muted">
@@ -88,13 +104,14 @@ export default function Register() {
               </Form.Text>
             </Form.Group>
             <Button
-              variant="outlined"
+              style={{ backgroundColor: "white" }}
               size="large"
-              type="submit"
+              variant="outlined"
+              color="primary"
               href="#"
               onClick={submit}
             >
-              Sign Up
+              Register
             </Button>
             <Form.Text className="p-2 text-muted">
               Please do not attempt to spam signup requests. Thanks!

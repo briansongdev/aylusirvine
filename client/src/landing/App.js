@@ -61,7 +61,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#e5fffd", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#EFEFEF", minHeight: "100vh" }}>
       <UserContext.Provider value={{ userData, setUserData }}>
         <Container className="p-3">
           <Navigation />

@@ -49,7 +49,7 @@ const EventCard = (
                 Post
               </ListGroup.Item>
               <ListGroup.Item as={Link} to={"/investigate/" + props.event._id}>
-                Investigate participants
+                Participant List
               </ListGroup.Item>
             </ListGroup>
           </>

@@ -75,7 +75,7 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
-router.post("/tokenIsValid", userAuth, async (req, res) => {
+router.post("/tokenIsValid", async (req, res) => {
   try {
     const token = req.header("x-auth-token");
     if (!token) return res.json(false);

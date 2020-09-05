@@ -4,13 +4,10 @@ import { Container, Accordion, Card, Button } from "react-bootstrap";
 import axios from "axios";
 
 export default class FAQ extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Container className="p-3 text-center">
-        <h2>FAQ for version 1.3</h2>
+        <h2>FAQ for version 1.9</h2>
         <h5>You can locate answers to frequently asked questions here!</h5>
         <Accordion className="p-3">
           <Card>
@@ -115,13 +112,14 @@ export default class FAQ extends Component {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                Recent changes (v1.3)
+                Recent changes (v1.9)
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="3">
               <Card.Body>
-                Previous 1.2: 100% functional. Fixed a small security hole.{" "}
-                <br /> 1.3: Fixed async load that may have caused inconvenience.
+                Previous 1.3: Fixed async load that may have caused
+                inconvenience. <br /> 1.9: UI remake. Expect v2 to be released
+                by Sunday.
               </Card.Body>
             </Accordion.Collapse>
           </Card>

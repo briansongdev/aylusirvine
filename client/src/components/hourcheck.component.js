@@ -16,12 +16,20 @@ export default function HourCheck() {
   };
 
   const showMessage = () => {
-    if (userData.user.hours <= 5) {
-      return <h6>You got this! Keep going!</h6>;
-    } else if (userData.user.hours <= 20) {
-      return <h6>Nice job so far! 5+ hours is awesome!</h6>;
+    if (userData.user.hours <= 15) {
+      return (
+        <h6 style={{ color: "#406ddd" }}>
+          You got this! You're at the beginning of an epic journey!
+        </h6>
+      );
+    } else if (userData.user.hours <= 30) {
+      return (
+        <h6 style={{ color: "#406ddd" }}>
+          Nice job so far! 5+ hours is awesome!
+        </h6>
+      );
     } else {
-      return <h6>Breezing! So many hours!</h6>;
+      return <h6 style={{ color: "#406ddd" }}>Breezing! Excellent job!</h6>;
     }
   };
 
@@ -31,11 +39,12 @@ export default function HourCheck() {
         <Container className="p-3 text-center">
           <h3 className="p-1">Welcome {userData.user.name}!</h3>
           <h5 className="p-3">
-            You currently have {userData.user.hours} hours (from website
-            activities).
+            You currently have{" "}
+            <span style={{ color: "#406ddd" }}>{userData.user.hours}</span>{" "}
+            hours (from website activities). Goal: 50+ hours!
           </h5>
           <Row className="p-3 justify-content-center"> {showMessage()}</Row>
-          <ProgressBar animated now={userData.user.hours} />
+          <ProgressBar animated now={userData.user.hours * 2} />
           <h5 className="p-3">
             Here are the events you have volunteered for so far:
           </h5>

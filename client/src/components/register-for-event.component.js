@@ -43,8 +43,11 @@ class RegisterForEvent extends Component {
         {user.user ? (
           <Container className="p-3 text-center">
             <h5>
-              Are you sure you would like to sign up for this event:{" "}
-              {this.state.eventName}?
+              Are you sure you would like to sign up for{" "}
+              <span style={{ fontWeight: "bold", color: "#406ddd" }}>
+                {this.state.eventName}
+              </span>
+              ?
             </h5>
             <Row className="p-3 justify-content-center">
               <Button

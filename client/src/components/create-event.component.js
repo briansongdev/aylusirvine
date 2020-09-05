@@ -1,5 +1,5 @@
-import React, { Component, useContext, useState, useEffect } from "react";
-import { Container, Form, Button, Card } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Container, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
