@@ -22,7 +22,7 @@ export default function Register() {
         setIsErr(true);
         if (e == "Error: Request failed with status code 400") {
           setErrMessage(
-            "Either an account with the same name or email already exists. Try again."
+            "Account with same name or email already exists. Try again."
           );
         } else {
           setErrMessage("Internal server error. Contact me.");
