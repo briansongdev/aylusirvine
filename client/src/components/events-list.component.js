@@ -16,7 +16,9 @@ const EventCard = (
       <Card.Body>
         <Card.Title>{props.event.title}</Card.Title>
         <Card.Text>{props.event.description}</Card.Text>
-        <Card.Text>{props.event.duration} hours given to volunteers.</Card.Text>
+        <Card.Text>
+          {props.event.duration} PVSA-certified hours given to volunteers.
+        </Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
         <Button
           variant="outlined"
