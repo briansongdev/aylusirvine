@@ -255,7 +255,22 @@ export default function Navigation() {
             <Divider />
           </>
         )}
-        <List>
+        {userData.isAdmin ? (
+          <List>
+            <Link
+              to="/create"
+              style={{ textDecoration: "none" }}
+              className={classes.link}
+            >
+              <ListItem button>
+                <ListItemText primary="Create" />
+              </ListItem>
+            </Link>
+          </List>
+        ) : (
+          <></>
+        )}
+        <Link>
           <ListItem>
             <ListItemText secondary={"made with ❤️ by Brian."} />
           </ListItem>
