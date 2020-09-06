@@ -10,6 +10,7 @@ class Investigate extends Component {
     this.state = {
       eventName: "",
       eventNames: [],
+      eventIds: [],
     };
   }
   componentDidMount() {
@@ -22,14 +23,43 @@ class Investigate extends Component {
       .get("/api/events/joobidajoyce/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
-          eventNames: response.data,
+          eventNames: response.data.userList,
+          eventIds: response.data.idList,
         });
       })
       .catch((err) => console.log(err));
   }
+  deleteUser = (id) => {
+    axios
+      .post(
+        "/api/events/removeUserFromEvent/" +
+          this.props.match.params.id +
+          "/" +
+          id
+      )
+      .then((res) => {
+        console.log(res.data);
+        window.location = "/investigate/" + this.props.match.params.id;
+      });
+  };
   getUser = () => {
+    let counter = -1;
     return this.state.eventNames.map((hi) => {
-      return <Row className="p-3 justify-content-center">{hi}</Row>;
+      counter += 1;
+      return (
+        <>
+          <Row className="p-2 justify-content-center">{hi}</Row>
+          <Row className="p-1 justify-content-center">
+            {console.log(this.state.eventIds[counter])}
+            <Button
+              value={this.state.eventIds[counter]}
+              onClick={(e) => this.deleteUser(e.target.value)}
+            >
+              Remove
+            </Button>
+          </Row>
+        </>
+      );
     });
   };
   render() {

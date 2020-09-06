@@ -45,7 +45,11 @@ router.route("/add").post((req, res) => {
 
 router.get("/joobidajoyce/:id", async (req, res) => {
   await Event.findById(req.params.id).then((event) => {
-    res.json(event.userList);
+    const eventData = {
+      userList: event.userList,
+      idList: event.idList,
+    };
+    res.json(eventData);
   });
 });
 
@@ -61,17 +65,60 @@ router.get("/idenjelly/:id", async (req, res) => {
   });
 });
 
+// GET request to see if user is in the event
+
+router.get("/isUserSignedUp/:eventId/:userId", async (req, res) => {
+  await Event.findById(req.params.eventId).then((event) => {
+    const signedUpList = event.idList;
+    let check = false;
+    for (const i in signedUpList) {
+      if (signedUpList[i] == req.params.userId) {
+        check = true;
+      }
+    }
+    if (check) {
+      res.json("User is registered.");
+    } else {
+      res.json("User is not registered.");
+    }
+  });
+});
+
 router.route("/:id").get((req, res) => {
   Event.findById(req.params.id)
-    .then((events) => res.json(events))
+    .then((events) => {
+      const eventData = {
+        title: events.title,
+        description: events.description,
+        duration: events.duration,
+        date: new Date(events.date),
+      };
+      res.json(eventData);
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
 router.route("/:id").delete((req, res) => {
-  // may be subject to vulnerability attacks
   Event.findByIdAndDelete(req.params.id)
     .then(() => res.json("Event deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
+});
+router.post("/removeUserFromEvent/:id/:userId", async (req, res) => {
+  await Event.findById(req.params.id).then((response) => {
+    for (const i in response.idList) {
+      if (response.idList[i] == req.params.userId) {
+        response.idList.splice(i, 1);
+        response.emailList.splice(i, 1);
+        response.userList.splice(i, 1);
+      }
+    }
+    response
+      .save()
+      .then(() => {
+        res.json("User successfully deleted");
+      })
+      .catch((e) => console.log(e));
+  });
 });
 router.post("/addUser/:id", userAuth, async (req, res) => {
   Event.findById(req.params.id).then((event) => {
@@ -91,7 +138,10 @@ router.post("/addUser/:id", userAuth, async (req, res) => {
       event.emailList.push(req.body.email);
       event.idList.push(req.body.userId);
     }
-    event.save().then(() => res.json("Added person to event!"));
+    event
+      .save()
+      .then(() => res.json("Added person to event!"))
+      .catch((e) => console.log(e));
   });
 });
 router.post("/update/:id", adminAuth, async (req, res) => {

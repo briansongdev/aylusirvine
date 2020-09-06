@@ -6,6 +6,7 @@ import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
 import "../landing/App.css";
+import { isMobile } from "react-device-detect";
 
 const EventCard = (
   props // event, not events
@@ -14,20 +15,27 @@ const EventCard = (
     <Card>
       <Card.Body>
         <Card.Title>{props.event.title}</Card.Title>
-        <Card.Text>
-          {props.event.description} {props.event.duration} hours given to
-          volunteers.
-        </Card.Text>
+        <Card.Text>{props.event.description}</Card.Text>
+        <Card.Text>{props.event.duration} hours given to volunteers.</Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
         <Button
           variant="outlined"
           color="primary"
           disableElevation
           component={Link}
-          to={"/processSignup/" + props.event._id}
+          to={"/processSignup/" + props.event._id + "/" + props.id}
         >
           Sign up here
         </Button>
+        <Card.Text>
+          <br />
+          <p className="text-muted">
+            You can also check whether you have already signed up or not.
+          </p>
+        </Card.Text>
+        <Card.Text>
+          Posted on {dateFormat(props.event.date, "dddd, mmmm dS yyyy")}
+        </Card.Text>
         {props.isAdministrator ? (
           <>
             <ListGroup variant="flush">
@@ -57,11 +65,6 @@ const EventCard = (
           <></>
         )}
       </Card.Body>
-      <Card.Body>
-        <Card.Text>
-          Published on {dateFormat(props.event.date, "dddd, mmmm dS yyyy")}
-        </Card.Text>
-      </Card.Body>
     </Card>
   </Container>
 );
@@ -69,7 +72,9 @@ const EventCard = (
 class EventList extends Component {
   constructor(props) {
     super(props);
-    this.state = { events: [], people: [], reversed: false };
+    this.state = {
+      events: [],
+    };
   }
   async componentDidMount() {
     await axios
@@ -99,28 +104,17 @@ class EventList extends Component {
           alt="..."
         />
         <Row className="p-4 justify-content-center">
-          <h6>Let's get you on board. Register or login: </h6>
+          <h6>We're so glad you're here! Make an account or login. </h6>
         </Row>
-        <Row className="p-3 justify-content-center">
-          <Button
-            variant="outlined"
-            size="large"
-            color="primary"
-            href="/register"
-          >
-            Register: New/Migrating Volunteers
-          </Button>
-        </Row>
-        <Row className="p-3 justify-content-center">
-          <Button
-            variant="outlined"
-            size="large"
-            color="primary"
-            href="/signin"
-          >
-            Login: Existing Volunteers
-          </Button>
-        </Row>
+        {isMobile ? (
+          <>
+            <Row className="justify-content-center">
+              <h6 style={{ color: "red" }}>Best viewed in horizontal.</h6>
+            </Row>
+          </>
+        ) : (
+          <></>
+        )}
       </Container>
     );
   }
@@ -151,7 +145,9 @@ class EventList extends Component {
     }
   }
   eventList() {
-    let user1 = this.context.userData;
+    const userid = {
+      _id: this.context.userData.user._id,
+    };
     if (!this.state.reversed) {
       this.setState({ reversed: !this.state.reversed });
       return this.state.events.reverse().map((currentEvent) => {
@@ -161,7 +157,7 @@ class EventList extends Component {
             deleteEvent={this.deleteEvent}
             key={currentEvent._id}
             isAdministrator={false}
-            userName={user1.user.name}
+            id={userid._id}
           />
         );
       });
@@ -173,24 +169,20 @@ class EventList extends Component {
             deleteEvent={this.deleteEvent}
             key={currentEvent._id}
             isAdministrator={false}
+            id={userid._id}
           />
         );
       });
     }
   }
-
   render() {
     let user = this.context.userData;
-
     if (user.token === undefined) {
       return <Container>{this.notSignedIn()}</Container>;
     } else {
       if (user.isAdmin) {
         return (
           <Container>
-            <Row className="p-3 justify-content-center">
-              <h4>Hi Brian!</h4>
-            </Row>
             {this.renderAdmin()}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
@@ -200,14 +192,10 @@ class EventList extends Component {
       } else {
         return (
           <Container>
-            <Row className="p-3 justify-content-center">
-              <h4>Hi {user.user.name}!</h4>
-            </Row>
-            {this.eventList()};
+            {this.eventList()}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
             </Row>
-            ;
           </Container>
         );
       }

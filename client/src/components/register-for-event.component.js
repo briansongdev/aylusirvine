@@ -10,6 +10,7 @@ class RegisterForEvent extends Component {
     super(props);
     this.state = {
       eventName: "",
+      isSignedUp: "",
     };
   }
   processSignup = async () => {
@@ -36,14 +37,44 @@ class RegisterForEvent extends Component {
       });
     });
   }
+
+  executeSignup() {
+    const eventIdForSignup = this.props.match.params.id;
+    const idForSignup = this.props.match.params.userId;
+    axios
+      .get("/api/events/isUserSignedUp/" + eventIdForSignup + "/" + idForSignup)
+      .then((response) => {
+        if (response.data == "User is registered.") {
+          this.setState({
+            isSignedUp: "You have already registered for this event.",
+          });
+        } else {
+          this.setState({
+            isSignedUp: "You have not yet registered for this event.",
+          });
+        }
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  }
+
   render() {
     let user = this.context.userData;
     return (
       <>
+        <br />
         {user.user ? (
-          <Container className="p-3 text-center">
+          <Container
+            className="p-5 text-center"
+            style={{
+              width: "500px",
+              backgroundColor: "white",
+              borderRadius: "8px 8px 8px 8px",
+            }}
+          >
             <h5>
-              Are you sure you would like to sign up for{" "}
+              Confirm registration for{" "}
               <span style={{ fontWeight: "bold", color: "#406ddd" }}>
                 {this.state.eventName}
               </span>
@@ -52,6 +83,7 @@ class RegisterForEvent extends Component {
             <Row className="p-3 justify-content-center">
               <Button
                 variant="outlined"
+                color="primary"
                 size="large"
                 href="#"
                 onClick={this.processSignup}
@@ -59,11 +91,8 @@ class RegisterForEvent extends Component {
                 Yes, sign me up!
               </Button>
             </Row>
-            <span className="text-muted">
-              Read our <Link to="/faq">one strike policy</Link> before
-              registering. You will sent back to the home screen. If you have
-              already signed up, this won't do anything.
-            </span>
+            {this.executeSignup()}
+            <span>{this.state.isSignedUp}</span>
           </Container>
         ) : (
           <Container className="p-3 text-center">

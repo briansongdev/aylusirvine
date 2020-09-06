@@ -9,23 +9,23 @@ export default function Register() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [identification, setID] = useState();
-
+  const [isErr, setIsErr] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
   const { userData, setUserData } = useContext(UserContext);
 
   const submit = async (e) => {
     e.preventDefault();
-
+    setIsErr(false);
     if (!(!name || !identification || !email)) {
       const newUser = { name, identification, email };
       const passed = await axios.post("/api/users/add", newUser).catch((e) => {
+        setIsErr(true);
         if (e == "Error: Request failed with status code 400") {
-          alert(
+          setErrMessage(
             "Either an account with the same name or email already exists. Try again."
           );
         } else {
-          alert(
-            "Internal server error. Try again and if the error persists, contact me."
-          );
+          setErrMessage("Internal server error. Contact me.");
         }
       });
       if (passed) {
@@ -41,7 +41,8 @@ export default function Register() {
         window.location = "/";
       }
     } else {
-      alert("Please fill out all fields.");
+      setIsErr(true);
+      setErrMessage("Please fill out all fields.");
     }
   };
 
@@ -51,8 +52,8 @@ export default function Register() {
       {!userData.user ? (
         <Container
           style={{
-            backgroundColor: "#e5fffd",
-            width: "650px",
+            backgroundColor: "white",
+            width: "550px",
             borderRadius: "8px 8px 8px 8px",
           }}
           className="p-5 text-center"
@@ -64,13 +65,16 @@ export default function Register() {
             <Form.Group controlId="formBasicnamee">
               <Form.Control
                 as={TextField}
-                style={{ width: "500px", height: "56px" }}
+                error={isErr}
+                helperText={errMessage}
+                style={{ width: "400px", height: "56px" }}
                 variant="outlined"
                 placeholder="John Doe"
                 label="Name"
                 onChange={(e) => setName(e.target.value)}
               />
               <Form.Text className="text-muted">
+                <br />
                 Enter your real name, separated by a space - "First Last" or
                 hours for events may not be counted correctly.
               </Form.Text>
@@ -79,27 +83,34 @@ export default function Register() {
             <Form.Group controlId="formBasicEmail">
               <Form.Control
                 as={TextField}
-                style={{ width: "500px", height: "56px" }}
+                style={{ width: "400px", height: "56px" }}
                 variant="outlined"
                 label="Email"
+                error={isErr}
+                helperText={errMessage}
                 placeholder="aylusirvine@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
               />
               <Form.Text className="text-muted">
-                Event emails will be sent to this address.
+                <br />
+                Event emails will be sent to this address. Case sensitive.
               </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPass">
               <Form.Control
                 as={TextField}
-                style={{ width: "500px", height: "56px" }}
+                style={{ width: "400px", height: "56px" }}
                 variant="outlined"
-                placeholder="*****"
+                error={isErr}
+                helperText={errMessage}
+                placeholder="**********"
+                type="password"
                 label="Password"
                 onChange={(e) => setID(e.target.value)}
               />
               <Form.Text className="text-muted">
+                <br />
                 Enter an ID, or a password, that you can remember.
               </Form.Text>
             </Form.Group>
@@ -113,16 +124,15 @@ export default function Register() {
             >
               Register
             </Button>
-            <Form.Text className="p-2 text-muted">
-              Please do not attempt to spam signup requests. Thanks!
-            </Form.Text>
-            <Form.Text className="p-2 text-muted">
+            <Form.Text className="p-1 text-muted">
               Make sure to verify your information. This is unchangeable.
             </Form.Text>
           </Form>
         </Container>
       ) : (
-        <Container className="p-3">You are already signed in!</Container>
+        <Container className="p-3 text-center">
+          You are already signed in!
+        </Container>
       )}
     </>
   );

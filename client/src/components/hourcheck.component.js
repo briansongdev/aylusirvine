@@ -25,7 +25,7 @@ export default function HourCheck() {
     } else if (userData.user.hours <= 30) {
       return (
         <h6 style={{ color: "#406ddd" }}>
-          Nice job so far! 5+ hours is awesome!
+          Nice job so far! 15+ hours is awesome!
         </h6>
       );
     } else {
@@ -44,7 +44,13 @@ export default function HourCheck() {
             hours (from website activities). Goal: 50+ hours!
           </h5>
           <Row className="p-3 justify-content-center"> {showMessage()}</Row>
-          <ProgressBar animated now={userData.user.hours * 2} />
+          <Row className="justify-content-center">
+            <ProgressBar
+              style={{ width: "400px" }}
+              animated
+              now={userData.user.hours * 2}
+            />
+          </Row>
           <h5 className="p-3">
             Here are the events you have volunteered for so far:
           </h5>

@@ -61,9 +61,11 @@ function App() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#EFEFEF", minHeight: "100vh" }}>
+    <div
+      style={{ backgroundColor: "#EFEFEF", minHeight: "100vh", width: "100vw" }}
+    >
       <UserContext.Provider value={{ userData, setUserData }}>
-        <Container className="p-3">
+        <Container>
           <Navigation />
           <Switch>
             <Route path="/" exact component={EventsList} />
@@ -73,17 +75,15 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/signin" component={SignIn} />
             <Route path="/hours" component={HourCheck} />
-            <Route path="/processSignup/:id" component={RegisterForEvent} />
+            <Route
+              path="/processSignup/:id/:userId"
+              component={RegisterForEvent}
+            />
             <Route path="/investigate/:id" component={Investigate} />
             <Route path="/post/:id" component={PostEvent} />
             <Route path="/faq" component={FAQ} />
             <Route component={ErrorPage} />
           </Switch>
-        </Container>
-        <Container className="p-3 text-center">
-          <h5>
-            by <span style={{ color: "#228B22" }}>briian#9562</span>
-          </h5>
         </Container>
       </UserContext.Provider>
     </div>

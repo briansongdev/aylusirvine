@@ -7,7 +7,7 @@ export default class FAQ extends Component {
   render() {
     return (
       <Container className="p-3 text-center">
-        <h2>FAQ for version 1.9</h2>
+        <h1>v2 is here!</h1>
         <h5>You can locate answers to frequently asked questions here!</h5>
         <Accordion className="p-3">
           <Card>
@@ -76,23 +76,6 @@ export default class FAQ extends Component {
           </Card>
           <Card>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="6">
-                What is this one-strike policy I've been hearing?
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="6">
-              <Card.Body>
-                Maintaining server side is quite difficult if there are many
-                people who sign up through our website and then not show up for
-                the events. Our one-strike policy says that volunteers may have
-                at most one no-show for an event they signed up for. We will be
-                removing the one-strike policy once v1.5 or v2 releases, when
-                the functionality to manage users better is implemented.
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-          <Card>
-            <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="5">
                 I'm an interested leader or have a question/suggestion! What do
                 I do?
@@ -101,38 +84,24 @@ export default class FAQ extends Component {
             <Accordion.Collapse eventKey="5">
               <Card.Body>
                 If you are interested in acquiring a facsimile for your branch,
-                please contact my personal email (brians3476@gmail.com) or reach
-                me by Discord (down below)! If you have a question regarding
-                this website or a suggestion for new functions, please contact
-                me through the aforementioned methods. If you spot an issue, do
-                the same! Thank you!
+                please contact my personal email (brians3476@gmail.com)! If you
+                have a question regarding this website or a suggestion for new
+                functions, please contact me through the aforementioned method
+                and same if you spot an issue! Thank you - we value your
+                support!
               </Card.Body>
             </Accordion.Collapse>
           </Card>
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                Recent changes (v1.9)
+                Recent changes (v2.0)
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="3">
               <Card.Body>
-                Previous 1.3: Fixed async load that may have caused
-                inconvenience. <br /> 1.9: UI remake. Expect v2 to be released
-                by Sunday.
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-          <Card>
-            <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="4">
-                Future changes (v2)
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="4">
-              <Card.Body>
-                UI remake is in the works, as well as more advanced signup
-                methods and removal of the one-strike policy.
+                Previous 1.9: UI remake. Expect v2 to be released by Sunday.
+                <br /> 2.0 Update dropped 9/5/2020!
               </Card.Body>
             </Accordion.Collapse>
           </Card>

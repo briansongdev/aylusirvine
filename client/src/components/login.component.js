@@ -6,25 +6,40 @@ import axios from "axios";
 
 export default function SignIn() {
   const [email, setEmail] = useState();
-  const [identification, setPassword] = useState();
-
-  const { setUserData } = useContext(UserContext);
+  const [identification, setPassword] = useState("");
+  const [isErr, setIsErr] = useState(false);
+  const [isPassErr, setIsPassErr] = useState(false);
+  const [passHelperText, setPassHelperText] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState("");
+  const { userData, setUserData } = useContext(UserContext);
 
   const submit = async (e) => {
     e.preventDefault();
+    setIsErr(false);
+    setIsPassErr(false);
+    setPassHelperText("");
+    setEmailHelperText("");
     if (!(!email || !identification)) {
       const loginUser = { email, identification };
       const loginResponse = await axios
         .post("/api/users/login", loginUser)
         .catch((e) => {
+          setIsErr(true);
           if (e == "Error: Request failed with status code 400") {
-            alert(
+            setIsErr(true);
+            setEmailHelperText(
               "Email format is invalid or there is no one registered with this email."
             );
           } else if (e == "Error: Request failed with status code 401") {
-            alert("Invalid credentials, please try again.");
+            setIsPassErr(true);
+            setIsErr(true);
+            setEmailHelperText("Invalid credentials, try again.");
+            setPassHelperText("Invalid credentials, try again.");
           } else {
-            alert("Error. Please try again.");
+            setIsPassErr(true);
+            setIsErr(true);
+            setEmailHelperText("Server error.");
+            setPassHelperText("Server error.");
           }
         });
       if (loginResponse) {
@@ -36,59 +51,72 @@ export default function SignIn() {
         window.location = "/";
       }
     } else {
-      alert("Please fill out all fields.");
+      setIsErr(true);
+      setIsPassErr(true);
+      setEmailHelperText("Please fill out all fields.");
+      setPassHelperText("Please fill out all fields.");
     }
   };
 
   return (
     <>
       <br />
-      <Container
-        style={{
-          backgroundColor: "#e5fffd",
-          width: "650px",
-          borderRadius: "8px 8px 8px 8px",
-        }}
-        className="p-5 text-center"
-      >
-        <Row className="justify-content-center">
-          <h5>We're glad you're back!</h5>
-        </Row>
-        <Form className="p-3">
-          <Form.Group controlId="formBasicEmaill">
-            <Form.Control
-              as={TextField}
-              style={{ width: "500px", height: "56px" }}
+      {!userData.user ? (
+        <Container
+          style={{
+            backgroundColor: "white",
+            width: "550px",
+            borderRadius: "8px 8px 8px 8px",
+          }}
+          className="p-5 text-center"
+        >
+          <Row className="justify-content-center">
+            <h5>We're glad you're back!</h5>
+          </Row>
+          <Form className="p-3">
+            <Form.Group controlId="formBasicEmaill">
+              <Form.Control
+                error={isErr}
+                as={TextField}
+                style={{ width: "400px", height: "56px" }}
+                variant="outlined"
+                placeholder="aylusirvine@gmail.com"
+                label="Email"
+                helperText={emailHelperText}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <br />
+            <Form.Group controlId="formBasicPass">
+              <Form.Control
+                error={isPassErr}
+                as={TextField}
+                style={{ width: "400px", height: "56px" }}
+                variant="outlined"
+                placeholder="**********"
+                label="Password"
+                type="password"
+                helperText={passHelperText}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Button
+              style={{ backgroundColor: "white" }}
+              size="large"
               variant="outlined"
-              placeholder="aylusirvine@gmail.com"
-              label="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <br />
-          <Form.Group controlId="formBasicPass">
-            <Form.Control
-              as={TextField}
-              style={{ width: "500px", height: "56px" }}
-              variant="outlined"
-              placeholder="*****"
-              label="Password"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-          <Button
-            style={{ backgroundColor: "white" }}
-            size="large"
-            variant="outlined"
-            color="primary"
-            href="#"
-            onClick={submit}
-          >
-            Log In
-          </Button>
-        </Form>
-      </Container>
+              color="primary"
+              href="#"
+              onClick={submit}
+            >
+              Log In
+            </Button>
+          </Form>
+        </Container>
+      ) : (
+        <Container className="p-3 text-center">
+          You are already signed in!
+        </Container>
+      )}
     </>
   );
 }
