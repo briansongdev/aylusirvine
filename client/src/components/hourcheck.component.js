@@ -41,7 +41,7 @@ export default function HourCheck() {
           <h5 className="p-3">
             You currently have{" "}
             <span style={{ color: "#406ddd" }}>{userData.user.hours}</span>{" "}
-            hours (from website activities). Goal: 50+ hours!
+            hours. Goal: 50+ hours!
           </h5>
           <Row className="p-3 justify-content-center"> {showMessage()}</Row>
           <Row className="justify-content-center">
