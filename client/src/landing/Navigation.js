@@ -270,7 +270,7 @@ export default function Navigation() {
         ) : (
           <></>
         )}
-        <Link>
+        <List>
           <ListItem>
             <ListItemText secondary={"made with ❤️ by Brian."} />
           </ListItem>
