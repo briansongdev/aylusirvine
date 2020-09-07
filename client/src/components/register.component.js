@@ -111,7 +111,8 @@ export default function Register() {
               />
               <Form.Text className="text-muted">
                 <br />
-                Enter an ID, or a password, that you can remember.
+                Your offline hours will not be migrated (we honored registrants
+                who signed up before v2's release).
               </Form.Text>
             </Form.Group>
             <Button
