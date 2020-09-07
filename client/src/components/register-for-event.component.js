@@ -23,10 +23,12 @@ class RegisterForEvent extends Component {
     const headers = {
       "x-auth-token": this.context.userData.token,
     };
-    await axios.post(l, request, {
-      headers: headers,
-    });
-    alert("Success!");
+    await axios
+      .post(l, request, {
+        headers: headers,
+      })
+      .catch((e) => alert(e));
+    alert("Success! Thank you for registering!");
     window.location = "/";
   };
 
