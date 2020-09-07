@@ -47,7 +47,7 @@ export default function Register() {
   };
 
   return (
-    <>
+    <Container>
       <br />
       {!userData.user ? (
         <Container
@@ -135,6 +135,6 @@ export default function Register() {
           You are already signed in!
         </Container>
       )}
-    </>
+    </Container>
   );
 }

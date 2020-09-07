@@ -279,12 +279,16 @@ export default function Navigation() {
           </ListItem>
         </List>
       </Drawer>
-
       <Navbar
+        expand="lg"
         id="imagio"
         variant="dark"
         expand="md"
         className="justify-content-center"
+        style={{
+          margin: "auto",
+          borderRadius: "5px 5px 5px 5px",
+        }}
       >
         <Navbar.Brand>
           <h1 className="display-5" style={{ cursor: "default" }}>
