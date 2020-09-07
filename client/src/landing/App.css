@@ -1,3 +1,13 @@
 #imagio {
   background-image: url(../images/sunset1.jpg);
 }
+html::-webkit-scrollbar {
+  display: none;
+}
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+#preserveLine {
+  white-space: pre-line;
+}

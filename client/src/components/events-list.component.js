@@ -7,6 +7,7 @@ import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
 import "../landing/App.css";
 import { isMobile } from "react-device-detect";
+import Linkify from "react-linkify";
 
 const EventCard = (
   props // event, not events
@@ -15,7 +16,18 @@ const EventCard = (
     <Card>
       <Card.Body>
         <Card.Title>{props.event.title}</Card.Title>
-        <Card.Text>{props.event.description}</Card.Text>
+        <Card.Text>
+          <Linkify>
+            {props.event.description.split("\n").map(function (item) {
+              return (
+                <span>
+                  {item}
+                  <br />
+                </span>
+              );
+            })}
+          </Linkify>
+        </Card.Text>
         <Card.Text>
           {props.event.duration} PVSA-certified hours given to volunteers.
         </Card.Text>

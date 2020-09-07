@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import emailjs from "emailjs-com";
 import UserContext from "../context/UserContext";
+import "../landing/App.css";
 
 export default function CreateEvent() {
   const { userData, setUserData } = useContext(UserContext);
@@ -44,21 +45,21 @@ export default function CreateEvent() {
         eventDescription: description,
         eventDuration: duration,
       };
-      await emailjs
-        .send(
-          "gmail",
-          "template_kg8dq4kR",
-          templateParams,
-          "user_7ramHducqnduQpv2RNhBj"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
+      // await emailjs
+      //   .send(
+      //     "gmail",
+      //     "template_kg8dq4kR",
+      //     templateParams,
+      //     "user_7ramHducqnduQpv2RNhBj"
+      //   )
+      //   .then(
+      //     (result) => {
+      //       console.log(result.text);
+      //     },
+      //     (error) => {
+      //       console.log(error.text);
+      //     }
+      //   );
     }
     window.location = "/";
   };
@@ -82,6 +83,7 @@ export default function CreateEvent() {
                 <Form.Control
                   as="textarea"
                   rows="4"
+                  id="preserveLine"
                   placeholder="Lorem ipsum dolor sit amet, vis malorum repudiare argumentum an, qui ex lucilius argumentum. Mea ad ullum scripta consulatu, ei diam salutandi sea. Et falli accumsan signiferumque vel. Euismod feugiat usu ex. Vix purto populo persecuti cu, ea nec esse nominavi appareat. Submit by 10 o' clock tonight."
                   onChange={(e) => onChangeDescription(e.target.value)}
                 />
