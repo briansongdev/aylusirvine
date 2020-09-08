@@ -49,7 +49,7 @@ const EventCard = (
           </p>
         </Card.Text>
         <Card.Text>
-          📬 {dateFormat(props.event.date, "dddd, mmmm dS yyyy")}
+          📬 {dateFormat(props.event.date, "dddd, mmmm dS, yyyy")}
         </Card.Text>
         {props.isAdministrator ? (
           <>
