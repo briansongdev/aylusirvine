@@ -60,8 +60,8 @@ class FollowUp extends Component {
             console.log(error.text);
           }
         );
-      window.location = "/";
     }
+    window.location = "/";
   };
   render() {
     let user = this.context.userData;
