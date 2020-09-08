@@ -44,6 +44,7 @@ const EventCard = (
         >
           Sign up! {/* Priority: add the isDisabled prop here later */}
         </Button>
+        <br />
         <Card.Text>
           📬 {dateFormat(props.event.date, "dddd, mmmm dS, yyyy")}
         </Card.Text>
