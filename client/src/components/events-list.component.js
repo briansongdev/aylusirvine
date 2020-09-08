@@ -29,7 +29,8 @@ const EventCard = (
           </Linkify>
         </Card.Text>
         <Card.Text>
-          {props.event.duration} PVSA-certified hours given to volunteers.
+          {props.event.duration} PVSA-certified hours given to volunteers. SIGN
+          UP BEFORE 9 PM THE DAY AFTER THE PUBLISHED DATE.
         </Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
         <Button
@@ -39,7 +40,7 @@ const EventCard = (
           component={Link}
           to={"/processSignup/" + props.event._id + "/" + props.id}
         >
-          Sign up here
+          Sign up here {/* Priority: add the isDisabled prop here later */}
         </Button>
         <Card.Text>
           <br />
