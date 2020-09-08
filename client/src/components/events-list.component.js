@@ -15,7 +15,9 @@ const EventCard = (
   <Container className="p-3">
     <Card>
       <Card.Body>
-        <Card.Title>{props.event.title}</Card.Title>
+        <Card.Title style={{ fontWeight: "bold" }}>
+          {props.event.title}
+        </Card.Title>
         <Card.Text>
           <Linkify>
             {props.event.description.split("\n").map(function (item) {
@@ -29,8 +31,8 @@ const EventCard = (
           </Linkify>
         </Card.Text>
         <Card.Text style={{ fontWeight: "bold" }}>
-          {props.event.duration} PVSA-certified hours given to volunteers. SIGN
-          UP BEFORE 9 PM THE DAY AFTER THE PUBLISHED DATE.
+          {props.event.duration} PVSA-certified hour(s) given to volunteers.
+          SIGN UP BEFORE 9 PM THE DAY AFTER THE PUBLISHED DATE.
         </Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
         <Button
