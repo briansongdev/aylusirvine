@@ -28,7 +28,7 @@ const EventCard = (
             })}
           </Linkify>
         </Card.Text>
-        <Card.Text>
+        <Card.Text style={{ fontWeight: "bold" }}>
           {props.event.duration} PVSA-certified hours given to volunteers. SIGN
           UP BEFORE 9 PM THE DAY AFTER THE PUBLISHED DATE.
         </Card.Text>
@@ -49,7 +49,7 @@ const EventCard = (
           </p>
         </Card.Text>
         <Card.Text>
-          Posted on {dateFormat(props.event.date, "dddd, mmmm dS yyyy")}
+          📬 {dateFormat(props.event.date, "dddd, mmmm dS yyyy")}
         </Card.Text>
         {props.isAdministrator ? (
           <>
