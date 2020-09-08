@@ -44,8 +44,8 @@ const EventCard = (
         >
           Sign up! {/* Priority: add the isDisabled prop here later */}
         </Button>
-        <br />
         <Card.Text>
+          <br />
           📬 {dateFormat(props.event.date, "dddd, mmmm dS, yyyy")}
         </Card.Text>
         {props.isAdministrator ? (
