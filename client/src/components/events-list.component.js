@@ -42,14 +42,8 @@ const EventCard = (
           component={Link}
           to={"/processSignup/" + props.event._id + "/" + props.id}
         >
-          Sign up here {/* Priority: add the isDisabled prop here later */}
+          Sign up! {/* Priority: add the isDisabled prop here later */}
         </Button>
-        <Card.Text>
-          <br />
-          <p className="text-muted">
-            You can also check whether you have already signed up or not.
-          </p>
-        </Card.Text>
         <Card.Text>
           📬 {dateFormat(props.event.date, "dddd, mmmm dS, yyyy")}
         </Card.Text>
