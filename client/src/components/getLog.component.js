@@ -32,7 +32,8 @@ class GetLog extends Component {
   renderNames() {
     return this.state.actions.map((actionDesc) => {
       return (
-        <Container className="p-2">
+        <Container className="p-1">
+          <br />
           {actionDesc.actionType} - {actionDesc.name} -{" "}
           {dateFormat(actionDesc.time, "default")}
         </Container>

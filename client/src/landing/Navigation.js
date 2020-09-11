@@ -19,6 +19,7 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 
+import axios from "axios";
 import { isMobile } from "react-device-detect";
 
 import UserContext from "../context/UserContext";
@@ -46,6 +47,13 @@ export default function Navigation() {
       isAdmin: false,
     });
     await localStorage.setItem("auth-token", "");
+    const name = userData.user.name;
+    const logRequest = {
+      actionType: "Log Out",
+      name: name,
+      time: new Date().toString(),
+    };
+    axios.post("/api/log/post", logRequest);
     window.location = "/";
     // logs out user by clearing the JWT
   };

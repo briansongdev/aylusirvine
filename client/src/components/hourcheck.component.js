@@ -1,11 +1,19 @@
 import React, { useState, useContext } from "react";
 import { Container, ProgressBar, Row } from "react-bootstrap";
 import UserContext from "../context/UserContext";
+import axios from "axios";
 
 export default function HourCheck() {
   const { userData } = useContext(UserContext);
 
   const userEventList = () => {
+    const name = userData.user.name;
+    const logRequest = {
+      actionType: "Check Hours",
+      name: name,
+      time: new Date().toString(),
+    };
+    axios.post("/api/log/post", logRequest);
     return userData.user.events.map((currentEvent) => {
       return (
         <Container className="p-2">

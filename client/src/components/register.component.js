@@ -7,13 +7,13 @@ import axios from "axios";
 import "../landing/App.css";
 
 export default function Register() {
+  const recaptcha = React.createRef();
   const [name, setName] = useState();
   let [email, setEmail] = useState();
   let [identification, setID] = useState();
   const [isErr, setIsErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const { userData, setUserData } = useContext(UserContext);
-
   const submit = async (e) => {
     e.preventDefault();
     setIsErr(false);
@@ -28,7 +28,7 @@ export default function Register() {
             "Account with same name or email already exists. Login?"
           );
         } else {
-          setErrMessage("Internal server error. Contact me.");
+          setErrMessage("Internal server error.");
         }
       });
       if (passed) {
@@ -131,6 +131,7 @@ export default function Register() {
                       registrants who signed up before v2's release).
                     </Form.Text>
                   </Form.Group>
+
                   <Button
                     style={{ backgroundColor: "white" }}
                     size="large"
