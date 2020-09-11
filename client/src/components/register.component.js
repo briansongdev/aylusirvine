@@ -9,7 +9,7 @@ import "../landing/App.css";
 export default function Register() {
   const [name, setName] = useState();
   let [email, setEmail] = useState();
-  const [identification, setID] = useState();
+  let [identification, setID] = useState();
   const [isErr, setIsErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const { userData, setUserData } = useContext(UserContext);
@@ -17,10 +17,11 @@ export default function Register() {
   const submit = async (e) => {
     e.preventDefault();
     setIsErr(false);
-    email = email.toLowerCase();
     if (!(!name || !identification || !email)) {
+      email = email.toLowerCase();
       const newUser = { name, identification, email };
       const passed = await axios.post("/api/users/add", newUser).catch((e) => {
+        setID("");
         setIsErr(true);
         if (e == "Error: Request failed with status code 400") {
           setErrMessage(
@@ -43,6 +44,7 @@ export default function Register() {
         window.location = "/";
       }
     } else {
+      setID("");
       setIsErr(true);
       setErrMessage("Please fill out all fields.");
     }
@@ -112,6 +114,7 @@ export default function Register() {
                       placeholder="**********"
                       type="password"
                       label="Password"
+                      value={identification}
                       onChange={(e) => setID(e.target.value)}
                     />
                     <Form.Text className="text-muted">

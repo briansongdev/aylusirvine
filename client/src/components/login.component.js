@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function SignIn() {
   let [email, setEmail] = useState();
-  const [identification, setPassword] = useState("");
+  let [identification, setPassword] = useState("");
   const [isErr, setIsErr] = useState(false);
   const [isPassErr, setIsPassErr] = useState(false);
   const [passHelperText, setPassHelperText] = useState("");
@@ -20,14 +20,14 @@ export default function SignIn() {
     setIsPassErr(false);
     setPassHelperText("");
     setEmailHelperText("");
-    email = email.toLowerCase();
-    console.log(email);
     if (!(!email || !identification)) {
+      email = email.toLowerCase();
       const loginUser = { email, identification };
       const loginResponse = await axios
         .post("/api/users/login", loginUser)
         .catch((e) => {
           setIsErr(true);
+          setPassword("");
           if (e == "Error: Request failed with status code 400") {
             setIsErr(true);
             setEmailHelperText(
@@ -54,6 +54,7 @@ export default function SignIn() {
         window.location = "/";
       }
     } else {
+      setPassword("");
       setIsErr(true);
       setIsPassErr(true);
       setEmailHelperText("Please fill out all fields.");
@@ -87,6 +88,7 @@ export default function SignIn() {
                     variant="outlined"
                     placeholder="aylusirvine@gmail.com"
                     label="Email"
+                    value={email}
                     helperText={emailHelperText}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -101,10 +103,14 @@ export default function SignIn() {
                     placeholder="**********"
                     label="Password"
                     type="password"
+                    value={identification}
                     helperText={passHelperText}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Group>
+                <Form.Text>
+                  <br />
+                </Form.Text>
                 <Button
                   style={{ backgroundColor: "white" }}
                   size="large"
