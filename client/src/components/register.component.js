@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Container, Form, Row } from "react-bootstrap";
 import { Button, TextField } from "@material-ui/core";
+import { isMobile } from "react-device-detect";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import "../landing/App.css";
 
 export default function Register() {
   const [name, setName] = useState();
-  const [email, setEmail] = useState();
+  let [email, setEmail] = useState();
   const [identification, setID] = useState();
   const [isErr, setIsErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
@@ -16,6 +17,7 @@ export default function Register() {
   const submit = async (e) => {
     e.preventDefault();
     setIsErr(false);
+    email = email.toLowerCase();
     if (!(!name || !identification || !email)) {
       const newUser = { name, identification, email };
       const passed = await axios.post("/api/users/add", newUser).catch((e) => {
@@ -47,94 +49,190 @@ export default function Register() {
   };
 
   return (
-    <Container>
+    <Container style={{ width: "100%" }}>
       <br />
-      {!userData.user ? (
-        <Container
-          style={{
-            backgroundColor: "white",
-            width: "550px",
-            borderRadius: "8px 8px 8px 8px",
-          }}
-          className="p-5 text-center"
-        >
-          <Row className="justify-content-center">
-            <h5>Hi! Welcome to our platform!</h5>
-          </Row>
-          <Form className="p-3">
-            <Form.Group controlId="formBasicnamee">
-              <Form.Control
-                as={TextField}
-                error={isErr}
-                helperText={errMessage}
-                style={{ width: "400px", height: "56px" }}
-                variant="outlined"
-                placeholder="John Doe"
-                label="Name"
-                onChange={(e) => setName(e.target.value)}
-              />
-              <Form.Text className="text-muted">
-                <br />
-                Enter your real name, separated by a space - "First Last" or
-                hours for events may not be counted correctly.
-              </Form.Text>
-            </Form.Group>
+      <>
+        {!userData.user ? (
+          <>
+            {!isMobile ? (
+              <Container
+                style={{
+                  backgroundColor: "white",
+                  width: "550px",
+                  borderRadius: "8px 8px 8px 8px",
+                }}
+                className="p-5 text-center"
+              >
+                <Row className="justify-content-center">
+                  <h5>Hi! Welcome to our platform!</h5>
+                </Row>
+                <Form className="p-3">
+                  <Form.Group controlId="formBasicnamee">
+                    <Form.Control
+                      as={TextField}
+                      error={isErr}
+                      helperText={errMessage}
+                      style={{ width: "400px", height: "56px" }}
+                      variant="outlined"
+                      placeholder="John Doe"
+                      label="Name"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                    <Form.Text className="text-muted">
+                      <br />
+                      Enter your real name, separated by a space - "First Last"
+                      or hours for events may not be counted correctly.
+                    </Form.Text>
+                  </Form.Group>
 
-            <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                as={TextField}
-                style={{ width: "400px", height: "56px" }}
-                variant="outlined"
-                label="Email"
-                error={isErr}
-                helperText={errMessage}
-                placeholder="aylusirvine@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Form.Text className="text-muted">
-                <br />
-                Event emails will be sent to this address. Case sensitive.
-              </Form.Text>
-            </Form.Group>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Control
+                      as={TextField}
+                      style={{ width: "400px", height: "56px" }}
+                      variant="outlined"
+                      label="Email"
+                      error={isErr}
+                      helperText={errMessage}
+                      placeholder="aylusirvine@gmail.com"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <Form.Text className="text-muted">
+                      <br />
+                      Event emails will be sent to this address. Case sensitive.
+                    </Form.Text>
+                  </Form.Group>
 
-            <Form.Group controlId="formBasicPass">
-              <Form.Control
-                as={TextField}
-                style={{ width: "400px", height: "56px" }}
-                variant="outlined"
-                error={isErr}
-                helperText={errMessage}
-                placeholder="**********"
-                type="password"
-                label="Password"
-                onChange={(e) => setID(e.target.value)}
-              />
-              <Form.Text className="text-muted">
-                <br />
-                Your offline hours will not be migrated (we honored registrants
-                who signed up before v2's release).
-              </Form.Text>
-            </Form.Group>
-            <Button
-              style={{ backgroundColor: "white" }}
-              size="large"
-              variant="outlined"
-              color="primary"
-              href="#"
-              onClick={submit}
-            >
-              Register
-            </Button>
-            <Form.Text className="p-1 text-muted">
-              Make sure to verify your information. This is unchangeable.
-            </Form.Text>
-          </Form>
-        </Container>
-      ) : (
-        <Container className="p-3 text-center">
-          You are already signed in!
-        </Container>
-      )}
+                  <Form.Group controlId="formBasicPass">
+                    <Form.Control
+                      as={TextField}
+                      style={{ width: "400px", height: "56px" }}
+                      variant="outlined"
+                      error={isErr}
+                      helperText={errMessage}
+                      placeholder="**********"
+                      type="password"
+                      label="Password"
+                      onChange={(e) => setID(e.target.value)}
+                    />
+                    <Form.Text className="text-muted">
+                      <br />
+                      Your offline hours will not be migrated (we honored
+                      registrants who signed up before v2's release).
+                    </Form.Text>
+                  </Form.Group>
+                  <Button
+                    style={{ backgroundColor: "white" }}
+                    size="large"
+                    variant="outlined"
+                    color="primary"
+                    href="#"
+                    onClick={submit}
+                  >
+                    Register
+                  </Button>
+                  <Form.Text className="p-1 text-muted">
+                    Make sure to verify your information. This is unchangeable.
+                  </Form.Text>
+                </Form>
+              </Container>
+            ) : (
+              <>
+                <Container
+                  style={{
+                    backgroundColor: "white",
+                    width: "280px",
+                    borderRadius: "8px 8px 8px 8px",
+                  }}
+                  className="p-5 text-center"
+                >
+                  <Row className="justify-content-center">
+                    <h5>Hi! Register here</h5>
+                  </Row>
+                  <Form className="p-3">
+                    <Form.Group controlId="formBasicnamee">
+                      <Form.Control
+                        as={TextField}
+                        error={isErr}
+                        helperText={errMessage}
+                        style={{
+                          left: "-20px",
+                          width: "200px",
+                          height: "56px",
+                        }}
+                        variant="outlined"
+                        placeholder="John Doe"
+                        label="Name"
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                      <Form.Text className="text-muted">
+                        <br />
+                        Enter your real name, separated by a space - "First
+                        Last" - like this.
+                      </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicEmail">
+                      <Form.Control
+                        as={TextField}
+                        style={{
+                          left: "-20px",
+                          width: "200px",
+                          height: "56px",
+                        }}
+                        variant="outlined"
+                        label="Email"
+                        error={isErr}
+                        helperText={errMessage}
+                        placeholder="aylusirvine@gmail.com"
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <Form.Text className="text-muted">
+                        <br />
+                        Event emails will be sent to this, case sensitive.
+                      </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPass">
+                      <Form.Control
+                        as={TextField}
+                        style={{
+                          left: "-20px",
+                          width: "200px",
+                          height: "56px",
+                        }}
+                        variant="outlined"
+                        error={isErr}
+                        helperText={errMessage}
+                        placeholder="**********"
+                        type="password"
+                        label="Password"
+                        onChange={(e) => setID(e.target.value)}
+                      />
+                    </Form.Group>
+                    <Button
+                      style={{ backgroundColor: "white" }}
+                      size="large"
+                      variant="outlined"
+                      color="primary"
+                      href="#"
+                      onClick={submit}
+                    >
+                      Register
+                    </Button>
+                    <Form.Text className="p-1 text-muted">
+                      Make sure to verify your information.
+                    </Form.Text>
+                  </Form>
+                </Container>
+              </>
+            )}
+          </>
+        ) : (
+          <Container className="p-3 text-center">
+            You are already signed in!
+          </Container>
+        )}
+      </>
     </Container>
   );
 }

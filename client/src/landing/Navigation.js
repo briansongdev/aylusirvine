@@ -284,16 +284,28 @@ export default function Navigation() {
         id="imagio"
         variant="dark"
         expand="md"
-        className="justify-content-center"
+        className="justify-content-center text-center"
         style={{
-          margin: "auto",
           borderRadius: "5px 5px 5px 5px",
         }}
       >
         <Navbar.Brand>
-          <h1 className="display-5" style={{ cursor: "default" }}>
-            AYLUS Irvine Volunteers
-          </h1>
+          {!isMobile ? (
+            <>
+              <h1 className="display-5" style={{ cursor: "default" }}>
+                AYLUS Irvine Volunteers
+              </h1>
+            </>
+          ) : (
+            <>
+              <h1
+                className="display-5 text-center"
+                style={{ fontSize: "17px" }}
+              >
+                AYLUS Irvine Volunteers
+              </h1>
+            </>
+          )}
         </Navbar.Brand>
       </Navbar>
     </Container>

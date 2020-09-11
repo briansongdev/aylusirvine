@@ -195,6 +195,15 @@ class EventList extends Component {
       if (user.isAdmin) {
         return (
           <Container>
+            {isMobile ? (
+              <>
+                <Row className="p-2 justify-content-center">
+                  <h6 style={{ color: "red" }}>Best viewed in horizontal.</h6>
+                </Row>
+              </>
+            ) : (
+              <></>
+            )}
             {this.renderAdmin()}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!
@@ -204,6 +213,15 @@ class EventList extends Component {
       } else {
         return (
           <Container>
+            {isMobile ? (
+              <>
+                <Row className="p-2 justify-content-center">
+                  <h6 style={{ color: "red" }}>Best viewed in horizontal.</h6>
+                </Row>
+              </>
+            ) : (
+              <></>
+            )}
             {this.eventList()}
             <Row className="p-3 justify-content-center">
               You've reached the end of our events!

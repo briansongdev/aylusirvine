@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Container, Form, Row } from "react-bootstrap";
 import { Button, TextField } from "@material-ui/core";
+import { isMobile } from "react-device-detect";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 
 export default function SignIn() {
-  const [email, setEmail] = useState();
+  let [email, setEmail] = useState();
   const [identification, setPassword] = useState("");
   const [isErr, setIsErr] = useState(false);
   const [isPassErr, setIsPassErr] = useState(false);
@@ -19,6 +20,8 @@ export default function SignIn() {
     setIsPassErr(false);
     setPassHelperText("");
     setEmailHelperText("");
+    email = email.toLowerCase();
+    console.log(email);
     if (!(!email || !identification)) {
       const loginUser = { email, identification };
       const loginResponse = await axios
@@ -28,7 +31,7 @@ export default function SignIn() {
           if (e == "Error: Request failed with status code 400") {
             setIsErr(true);
             setEmailHelperText(
-              "Email format is invalid or there is no one registered with this email."
+              "Email format is invalid or there is no one registered."
             );
           } else if (e == "Error: Request failed with status code 401") {
             setIsPassErr(true);
@@ -62,56 +65,111 @@ export default function SignIn() {
     <>
       <br />
       {!userData.user ? (
-        <Container
-          style={{
-            backgroundColor: "white",
-            width: "550px",
-            borderRadius: "8px 8px 8px 8px",
-          }}
-          className="p-5 text-center"
-        >
-          <Row className="justify-content-center">
-            <h5>We're glad you're back!</h5>
-          </Row>
-          <Form className="p-3">
-            <Form.Group controlId="formBasicEmaill">
-              <Form.Control
-                error={isErr}
-                as={TextField}
-                style={{ width: "400px", height: "56px" }}
-                variant="outlined"
-                placeholder="aylusirvine@gmail.com"
-                label="Email"
-                helperText={emailHelperText}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <br />
-            <Form.Group controlId="formBasicPass">
-              <Form.Control
-                error={isPassErr}
-                as={TextField}
-                style={{ width: "400px", height: "56px" }}
-                variant="outlined"
-                placeholder="**********"
-                label="Password"
-                type="password"
-                helperText={passHelperText}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Button
-              style={{ backgroundColor: "white" }}
-              size="large"
-              variant="outlined"
-              color="primary"
-              href="#"
-              onClick={submit}
+        <>
+          {!isMobile ? (
+            <Container
+              style={{
+                backgroundColor: "white",
+                width: "550px",
+                borderRadius: "8px 8px 8px 8px",
+              }}
+              className="p-5 text-center"
             >
-              Log In
-            </Button>
-          </Form>
-        </Container>
+              <Row className="justify-content-center">
+                <h5>We're glad you're back!</h5>
+              </Row>
+              <Form className="p-3">
+                <Form.Group controlId="formBasicEmaill">
+                  <Form.Control
+                    error={isErr}
+                    as={TextField}
+                    style={{ width: "400px", height: "56px" }}
+                    variant="outlined"
+                    placeholder="aylusirvine@gmail.com"
+                    label="Email"
+                    helperText={emailHelperText}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+                <br />
+                <Form.Group controlId="formBasicPass">
+                  <Form.Control
+                    error={isPassErr}
+                    as={TextField}
+                    style={{ width: "400px", height: "56px" }}
+                    variant="outlined"
+                    placeholder="**********"
+                    label="Password"
+                    type="password"
+                    helperText={passHelperText}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
+                <Button
+                  style={{ backgroundColor: "white" }}
+                  size="large"
+                  variant="outlined"
+                  color="primary"
+                  href="#"
+                  onClick={submit}
+                >
+                  Log In
+                </Button>
+              </Form>
+            </Container>
+          ) : (
+            <Container
+              style={{
+                backgroundColor: "white",
+                width: "280px",
+                borderRadius: "8px 8px 8px 8px",
+              }}
+              className="p-5 text-center"
+            >
+              <Row className="justify-content-center">
+                <h5>Login!</h5>
+              </Row>
+              <Form className="p-3">
+                <Form.Group controlId="formBasicEmaill">
+                  <Form.Control
+                    error={isErr}
+                    as={TextField}
+                    style={{ left: "-20px", width: "200px", height: "56px" }}
+                    variant="outlined"
+                    placeholder="aylusirvine@gmail.com"
+                    label="Email"
+                    helperText={emailHelperText}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+                <br />
+                <Form.Group controlId="formBasicPass">
+                  <Form.Control
+                    error={isPassErr}
+                    as={TextField}
+                    style={{ left: "-20px", width: "200px", height: "56px" }}
+                    variant="outlined"
+                    placeholder="**********"
+                    label="Password"
+                    type="password"
+                    helperText={passHelperText}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
+                <Button
+                  style={{ backgroundColor: "white" }}
+                  size="large"
+                  variant="outlined"
+                  color="primary"
+                  href="#"
+                  onClick={submit}
+                >
+                  Log In
+                </Button>
+              </Form>
+            </Container>
+          )}
+        </>
       ) : (
         <Container className="p-3 text-center">
           You are already signed in!
