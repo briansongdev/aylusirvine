@@ -267,6 +267,15 @@ export default function Navigation() {
                   <ListItemText primary="Create" />
                 </ListItem>
               </Link>
+              <Link
+                to="/eventListenerList"
+                style={{ textDecoration: "none" }}
+                className={classes.link}
+              >
+                <ListItem button>
+                  <ListItemText primary="Log" />
+                </ListItem>
+              </Link>
             </List>
             <Divider />
           </>

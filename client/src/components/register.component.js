@@ -25,7 +25,7 @@ export default function Register() {
         setIsErr(true);
         if (e == "Error: Request failed with status code 400") {
           setErrMessage(
-            "Account with same name or email already exists. Try again."
+            "Account with same name or email already exists. Login?"
           );
         } else {
           setErrMessage("Internal server error. Contact me.");
@@ -41,7 +41,15 @@ export default function Register() {
           user: loginResponse.data.user,
         });
         localStorage.setItem("auth-token", loginResponse.data.token);
-        window.location = "/";
+        const name = loginResponse.data.user.name;
+        const logRequest = {
+          actionType: "Register and Logged In",
+          name: name,
+          time: new Date().toString(),
+        };
+        await axios.post("/api/log/post", logRequest).then(() => {
+          window.location = "/";
+        });
       }
     } else {
       setID("");

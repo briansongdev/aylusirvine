@@ -28,6 +28,17 @@ class RegisterForEvent extends Component {
         headers: headers,
       })
       .catch((e) => alert(e));
+    const name = this.context.userData.user.name;
+    const actionType = "Signed up for event " + this.state.eventName;
+    const logRequest = {
+      actionType: actionType,
+      name: name,
+      time: new Date().toString(),
+    };
+    if (!this.state.hasLoggedListen) {
+      axios.post("/api/log/post", logRequest);
+      this.setState({ hasLoggedListen: "true" });
+    }
     alert("Success! Thank you for registering!");
     window.location = "/";
   };

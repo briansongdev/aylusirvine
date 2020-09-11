@@ -51,7 +51,15 @@ export default function SignIn() {
           user: loginResponse.data.user,
         });
         localStorage.setItem("auth-token", loginResponse.data.token);
-        window.location = "/";
+        const name = loginResponse.data.user.name;
+        const logRequest = {
+          actionType: "Login",
+          name: name,
+          time: new Date().toString(),
+        };
+        await axios.post("/api/log/post", logRequest).then(() => {
+          window.location = "/";
+        });
       }
     } else {
       setPassword("");

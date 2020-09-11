@@ -18,6 +18,7 @@ import ErrorPage from "./Error";
 import Investigate from "../components/investigate.component";
 import PostEvent from "../components/post-event.component";
 import FAQ from "./faq";
+import GetLog from "../components/getLog.component";
 
 import "./App.css";
 
@@ -82,6 +83,7 @@ function App() {
             <Route path="/investigate/:id" component={Investigate} />
             <Route path="/post/:id" component={PostEvent} />
             <Route path="/faq" component={FAQ} />
+            <Route path="/eventListenerList" component={GetLog} />
             <Route component={ErrorPage} />
           </Switch>
         </Container>

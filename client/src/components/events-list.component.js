@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { Container, Card, Row, ListGroup } from "react-bootstrap";
 import { Button } from "@material-ui/core";
@@ -81,11 +81,12 @@ const EventCard = (
   </Container>
 );
 
-class EventList extends Component {
+class EventList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
+      hasLoggedListen: false,
     };
   }
   async componentDidMount() {
@@ -157,6 +158,16 @@ class EventList extends Component {
     }
   }
   eventList() {
+    const name = this.context.userData.user.name;
+    const logRequest = {
+      actionType: "Viewed events page",
+      name: name,
+      time: new Date().toString(),
+    };
+    if (!this.state.hasLoggedListen) {
+      axios.post("/api/log/post", logRequest);
+      this.setState({ hasLoggedListen: "true" });
+    }
     const userid = {
       _id: this.context.userData.user._id,
     };
