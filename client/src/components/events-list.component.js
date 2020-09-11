@@ -8,6 +8,15 @@ import UserContext from "../context/UserContext";
 import "../landing/App.css";
 import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
+import moment from "moment";
+
+const func = (datee) => {
+  let previousDate = moment(datee)._d;
+  let currentDate = new Date();
+  let diff = (currentDate - previousDate) / (1000 * 60 * 60 * 24);
+  if (diff >= 2) return true;
+  return false;
+};
 
 const EventCard = (
   props // event, not events
@@ -32,13 +41,13 @@ const EventCard = (
         </Card.Text>
         <Card.Text style={{ fontWeight: "bold" }}>
           {props.event.duration} PVSA-certified hour(s) given to volunteers.
-          SIGN UP BEFORE 9 PM THE DAY AFTER THE PUBLISHED DATE.
         </Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
         <Button
           variant="outlined"
           color="primary"
           disableElevation
+          disabled={func(props.event.date)}
           component={Link}
           to={"/processSignup/" + props.event._id + "/" + props.id}
         >
@@ -46,7 +55,11 @@ const EventCard = (
         </Button>
         <Card.Text>
           <br />
-          📬 {dateFormat(props.event.date, "dddd, mmmm dS, yyyy")}
+          📬 {dateFormat(props.event.date, "h TT dddd, mmmm d, yyyy")}
+          <span className="text-muted">
+            {" "}
+            (event will lock exactly 2 days after)
+          </span>
         </Card.Text>
         {props.isAdministrator ? (
           <>
