@@ -19,7 +19,7 @@ export default function HourCheck() {
   const [hasAlreadyChecked, setChecked] = useState(false);
   const [desc, setDesc] = useState("");
   const [hours, setHours] = useState(0);
-  const [firstTime, setFirstTime] = useState();
+  const [hasLogged, setLoggedStatus] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -63,7 +63,10 @@ export default function HourCheck() {
       time: new Date().toString(),
       deviceType: deviceType,
     };
-    axios.post("/api/log/post", logRequest);
+    if (!hasLogged) {
+      axios.post("/api/log/post", logRequest);
+      setLoggedStatus(true);
+    }
     return userData.user.events.map((currentEvent) => {
       return (
         <Container className="p-2">
