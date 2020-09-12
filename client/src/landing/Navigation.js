@@ -146,8 +146,8 @@ export default function Navigation() {
                 {!isMobile ? (
                   <>
                     <ListItemText
-                      style={{ cursor: "default" }}
-                      primary={"Welcome " + userData.user.name + "!"}
+                      style={{ cursor: "default", userSelect: "none" }}
+                      primary={"Welcome " + userData.user.name + "! 👑"}
                     />
                   </>
                 ) : (

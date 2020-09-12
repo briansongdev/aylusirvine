@@ -8,6 +8,7 @@ import UserContext from "../context/UserContext";
 import "../landing/App.css";
 import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
+import SendIcon from "@material-ui/icons/Send";
 import moment from "moment";
 
 const func = (datee) => {
@@ -55,7 +56,8 @@ const EventCard = (
         </Button>
         <Card.Text>
           <br />
-          📬 {dateFormat(props.event.date, "h TT dddd, mmmm d, yyyy")}
+          <SendIcon /> Posted{" "}
+          {dateFormat(props.event.date, "h TT dddd, mmmm d, yyyy")}
           <span className="text-muted">
             {" "}
             (event will lock exactly 2 days after)
@@ -103,6 +105,9 @@ class EventList extends PureComponent {
     };
   }
   async componentDidMount() {
+    navigator.clipboard.writeText(
+      "Thank you for visiting AYLUS Irvine Volunteers!"
+    );
     await axios
       .get("/api/events/")
       .then((response) => {
