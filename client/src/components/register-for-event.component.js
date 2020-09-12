@@ -11,6 +11,7 @@ class RegisterForEvent extends Component {
     this.state = {
       eventName: "",
       isSignedUp: "",
+      hasLoggedListen: false,
     };
   }
   processSignup = async () => {
@@ -52,24 +53,28 @@ class RegisterForEvent extends Component {
   }
 
   executeSignup() {
-    const eventIdForSignup = this.props.match.params.id;
-    const idForSignup = this.props.match.params.userId;
-    axios
-      .get("/api/events/isUserSignedUp/" + eventIdForSignup + "/" + idForSignup)
-      .then((response) => {
-        if (response.data == "User is registered.") {
-          this.setState({
-            isSignedUp: "You have already registered for this event.",
-          });
-        } else {
-          this.setState({
-            isSignedUp: "You have not yet registered for this event.",
-          });
-        }
-      })
-      .catch((e) => {
-        alert(e);
-      });
+    if (this.state.isSignedUp == "") {
+      const eventIdForSignup = this.props.match.params.id;
+      const idForSignup = this.props.match.params.userId;
+      axios
+        .get(
+          "/api/events/isUserSignedUp/" + eventIdForSignup + "/" + idForSignup
+        )
+        .then((response) => {
+          if (response.data == "User is registered.") {
+            this.setState({
+              isSignedUp: "You have already registered for this event.",
+            });
+          } else {
+            this.setState({
+              isSignedUp: "You have not yet registered for this event.",
+            });
+          }
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    }
   }
 
   render() {
