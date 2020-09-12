@@ -50,6 +50,9 @@ export default function HourCheck() {
             You currently have{" "}
             <span style={{ color: "#406ddd" }}>{userData.user.hours}</span>{" "}
             hours. Goal: 50+ hours!
+            {navigator.clipboard.writeText(
+              "You currently have " + userData.user.hours + " hours!"
+            )}
           </h5>
           <Row className="p-3 justify-content-center"> {showMessage()}</Row>
           <Row className="justify-content-center">

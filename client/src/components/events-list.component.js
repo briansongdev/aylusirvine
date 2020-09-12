@@ -105,9 +105,6 @@ class EventList extends PureComponent {
     };
   }
   async componentDidMount() {
-    navigator.clipboard.writeText(
-      "Thank you for visiting AYLUS Irvine Volunteers!"
-    );
     await axios
       .get("/api/events/")
       .then((response) => {
