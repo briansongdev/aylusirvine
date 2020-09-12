@@ -15,6 +15,10 @@ const logSchema = new Schema({
     type: String,
     required: true,
   },
+  deviceType: {
+    type: String,
+    required: true,
+  },
 });
 
 const Log = mongoose.model("Log", logSchema);

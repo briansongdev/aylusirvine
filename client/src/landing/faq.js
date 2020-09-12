@@ -8,7 +8,7 @@ export default class FAQ extends Component {
     return (
       <Container className="p-3 text-center">
         <h1>v2 is here!</h1>
-        <h5>You can locate answers to frequently asked questions here!</h5>
+        <h5>If you spot an error or glitch, please email me right away!</h5>
         <Accordion className="p-3">
           <Card>
             <Card.Header>

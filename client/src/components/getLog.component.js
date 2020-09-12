@@ -35,7 +35,7 @@ class GetLog extends Component {
         <Container className="p-1">
           <br />
           {actionDesc.actionType} - {actionDesc.name} -{" "}
-          {dateFormat(actionDesc.time, "default")}
+          {dateFormat(actionDesc.time, "default")} - {actionDesc.deviceType}
         </Container>
       );
     });

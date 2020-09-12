@@ -4,12 +4,13 @@ let Log = require("../models/log.model");
 let adminAuth = require("../middleware/adminAuth.js");
 
 router.route("/post").post(async (req, res) => {
-  const { actionType, name, time } = req.body;
+  const { actionType, name, time, deviceType } = req.body;
   try {
     const newLog = new Log({
       actionType,
       name,
       time,
+      deviceType,
     });
     const successfulLog = await newLog.save();
     res.json(successfulLog);
@@ -26,6 +27,7 @@ router.get("/encryptedLogs", adminAuth, async (req, res) => {
           actionType: userAction[i].actionType,
           name: userAction[i].name,
           time: userAction[i].time,
+          deviceType: userAction[i].deviceType,
         };
         userArray.push(actionData);
       }

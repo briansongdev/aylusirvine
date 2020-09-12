@@ -6,6 +6,15 @@ let adminAuth = require("../middleware/adminAuth.js");
 let userAuth = require("../middleware/userAuth.js");
 let User = require("../models/users.model");
 
+router.get("/obtainUpdatedAt/:id", async (req, res) => {
+  try {
+    const existingUserId = await User.findById(req.params.id);
+    res.json(existingUserId.updatedAt);
+  } catch (e) {
+    res.status(500).json("Error obtaining updated at date.");
+  }
+});
+
 router.route("/add").post(async (req, res) => {
   try {
     const { name, identification, email, hours, events } = req.body;

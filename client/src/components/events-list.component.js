@@ -174,10 +174,17 @@ class EventList extends PureComponent {
   }
   eventList() {
     const name = this.context.userData.user.name;
+    let deviceType;
+    if (isMobile) {
+      deviceType = "Mobile";
+    } else {
+      deviceType = "Computer";
+    }
     const logRequest = {
       actionType: "Viewed events page",
       name: name,
       time: new Date().toString(),
+      deviceType: deviceType,
     };
     if (!this.state.hasLoggedListen) {
       axios.post("/api/log/post", logRequest);

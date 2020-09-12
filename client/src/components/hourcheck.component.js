@@ -1,17 +1,67 @@
 import React, { useState, useContext } from "react";
 import { Container, ProgressBar, Row } from "react-bootstrap";
+import {
+  Dialog,
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
 import UserContext from "../context/UserContext";
+import { isMobile } from "react-device-detect";
 import axios from "axios";
+import moment from "moment";
 
 export default function HourCheck() {
   const { userData } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+  const [hasAlreadyChecked, setChecked] = useState(false);
+  const [desc, setDesc] = useState("");
+  const [hours, setHours] = useState(0);
+  const [firstTime, setFirstTime] = useState();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const calcHours = () => {
+    if (userData.user.events.length != 0) {
+      const link = "/api/users/obtainUpdatedAt/" + userData.user._id;
+      axios
+        .get(link)
+        .then((res) => {
+          let events = userData.user.events;
+          let date1 = moment(res.data)._d;
+          let date2 = new Date();
+          let diff = (date2 - date1) / (1000 * 60 * 60 * 24);
+          if (diff <= 2) {
+            setOpen(true);
+            setDesc(events[events.length - 1].eventName);
+            setHours(events[events.length - 1].hours);
+          } else {
+            setOpen(false);
+          }
+
+          setChecked(true);
+        })
+        .catch((e) => alert(e));
+    }
+  };
+  const emptyFunc = () => {};
 
   const userEventList = () => {
     const name = userData.user.name;
+    let deviceType;
+    if (isMobile) {
+      deviceType = "Mobile";
+    } else {
+      deviceType = "Computer";
+    }
     const logRequest = {
-      actionType: "Check Hours",
+      actionType: "Checked hours",
       name: name,
       time: new Date().toString(),
+      deviceType: deviceType,
     };
     axios.post("/api/log/post", logRequest);
     return userData.user.events.map((currentEvent) => {
@@ -50,9 +100,6 @@ export default function HourCheck() {
             You currently have{" "}
             <span style={{ color: "#406ddd" }}>{userData.user.hours}</span>{" "}
             hours. Goal: 50+ hours!
-            {navigator.clipboard.writeText(
-              "You currently have " + userData.user.hours + " hours!"
-            )}
           </h5>
           <Row className="p-3 justify-content-center"> {showMessage()}</Row>
           <Row className="justify-content-center">
@@ -66,6 +113,28 @@ export default function HourCheck() {
             Here are the events you have volunteered for so far:
           </h5>
           <Container>{userEventList()}</Container>
+          {!hasAlreadyChecked ? calcHours() : emptyFunc()}
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">{"Great news!"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                An event you have signed up,{" "}
+                <span style={{ fontWeight: "bold" }}>{desc}</span> for has been
+                recently posted and you have earned{" "}
+                <span style={{ fontWeight: "bold" }}>{hours}</span> hours!
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Nice!
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Container>
       ) : (
         <Container className="p-3 text-center">

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import { Button } from "@material-ui/core";
+import { isMobile } from "react-device-detect";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 
@@ -30,11 +31,19 @@ class RegisterForEvent extends Component {
       })
       .catch((e) => alert(e));
     const name = this.context.userData.user.name;
-    const actionType = "Signed up for event " + this.state.eventName;
+    let deviceType;
+    if (isMobile) {
+      deviceType = "Mobile";
+    } else {
+      deviceType = "Computer";
+    }
+    const actionType = "Signed up for event: " + this.state.eventName;
+
     const logRequest = {
       actionType: actionType,
       name: name,
       time: new Date().toString(),
+      deviceType: deviceType,
     };
     if (!this.state.hasLoggedListen) {
       axios.post("/api/log/post", logRequest);

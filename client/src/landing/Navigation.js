@@ -48,10 +48,17 @@ export default function Navigation() {
     });
     await localStorage.setItem("auth-token", "");
     const name = userData.user.name;
+    let deviceType;
+    if (isMobile) {
+      deviceType = "Mobile";
+    } else {
+      deviceType = "Computer";
+    }
     const logRequest = {
       actionType: "Log Out",
       name: name,
       time: new Date().toString(),
+      deviceType: deviceType,
     };
     axios.post("/api/log/post", logRequest);
     window.location = "/";
