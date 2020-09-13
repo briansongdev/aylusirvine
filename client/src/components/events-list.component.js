@@ -48,7 +48,7 @@ const EventCard = (
           variant="outlined"
           color="primary"
           disableElevation
-          // disabled={func(props.event.date)}
+          disabled={func(props.event.date)}
           component={Link}
           to={"/processSignup/" + props.event._id + "/" + props.id}
         >
