@@ -299,7 +299,7 @@ export default function Navigation() {
         )}
         <List>
           <ListItem>
-            <ListItemText secondary={"made with ❤️ from AYLUS Irvine."} />
+            <ListItemText secondary={"❤️ from AYLUS Irvine."} />
           </ListItem>
         </List>
       </Drawer>
