@@ -118,6 +118,7 @@ export default function HourCheck() {
           <Container>{userEventList()}</Container>
           {!hasAlreadyChecked ? calcHours() : emptyFunc()}
           <Dialog
+            disableBackdropClick={true}
             open={open}
             onClose={handleClose}
             aria-labelledby="alert-dialog-title"
