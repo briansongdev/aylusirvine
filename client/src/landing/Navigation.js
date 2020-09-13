@@ -116,26 +116,11 @@ export default function Navigation() {
             </ListItem>
           </Link>
         </List>
+        <Divider />
         <List>
-          <a
-            href="https://www.aylus.org/irvine-ca"
-            target="_blank"
-            style={{ textDecoration: "none" }}
-            className={classes.link}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <LanguageIcon />
-              </ListItemIcon>
-              {!isMobile ? (
-                <>
-                  <ListItemText primary="Our branch" />
-                </>
-              ) : (
-                <></>
-              )}
-            </ListItem>
-          </a>
+          <ListItem>
+            <ListItemText secondary={"❤️ from AYLUS Irvine."} />
+          </ListItem>
         </List>
       </Drawer>
 
@@ -297,11 +282,6 @@ export default function Navigation() {
         ) : (
           <></>
         )}
-        <List>
-          <ListItem>
-            <ListItemText secondary={"❤️ from AYLUS Irvine."} />
-          </ListItem>
-        </List>
       </Drawer>
       <Navbar
         expand="lg"

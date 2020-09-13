@@ -38,29 +38,29 @@ export default function CreateEvent() {
     let emailList = await axios.get("/api/users/extractEmails/", {
       headers: headers,
     });
-    for (const i in emailList.data) {
-      const templateParams = {
-        emailName: emailList.data[i],
-        eventName: title,
-        eventDescription: description,
-        eventDuration: duration,
-      };
-      await emailjs
-        .send(
-          "gmail",
-          "template_kg8dq4kR",
-          templateParams,
-          "user_7ramHducqnduQpv2RNhBj"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
-    }
+    const templateParams = {
+      emailName: emailList.data.join(),
+      eventName: title,
+      eventDescription: description,
+      eventDuration: duration,
+    };
+    console.log(templateParams.emailName);
+    await emailjs
+      .send(
+        "gmail",
+        "template_kg8dq4kR",
+        templateParams,
+        "user_7ramHducqnduQpv2RNhBj"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+
     window.location = "/";
   };
   return (

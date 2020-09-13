@@ -68,24 +68,26 @@ function App() {
       <UserContext.Provider value={{ userData, setUserData }}>
         <Container>
           <Navigation />
-          <Switch>
-            <Route path="/" exact component={EventsList} />
-            <Route path="/edit/:id" component={EditEvent} />
-            <Route path="/flup/:id" component={FollowUp} />
-            <Route path="/create" component={CreateEvent} />
-            <Route path="/register" component={Register} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/hours" component={HourCheck} />
-            <Route
-              path="/processSignup/:id/:userId"
-              component={RegisterForEvent}
-            />
-            <Route path="/investigate/:id" component={Investigate} />
-            <Route path="/post/:id" component={PostEvent} />
-            <Route path="/faq" component={FAQ} />
-            <Route path="/eventListenerList" component={GetLog} />
-            <Route component={ErrorPage} />
-          </Switch>
+          <Container style={{ maxWidth: "70vw" }}>
+            <Switch>
+              <Route path="/" exact component={EventsList} />
+              <Route path="/edit/:id" component={EditEvent} />
+              <Route path="/flup/:id" component={FollowUp} />
+              <Route path="/create" component={CreateEvent} />
+              <Route path="/register" component={Register} />
+              <Route path="/signin" component={SignIn} />
+              <Route path="/hours" component={HourCheck} />
+              <Route
+                path="/processSignup/:id/:userId"
+                component={RegisterForEvent}
+              />
+              <Route path="/investigate/:id" component={Investigate} />
+              <Route path="/post/:id" component={PostEvent} />
+              <Route path="/faq" component={FAQ} />
+              <Route path="/eventListenerList" component={GetLog} />
+              <Route component={ErrorPage} />
+            </Switch>
+          </Container>
         </Container>
       </UserContext.Provider>
     </div>
