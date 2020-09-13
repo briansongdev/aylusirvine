@@ -1,6 +1,12 @@
 #imagio {
   background-image: url(../images/sunset1.jpg);
 }
+.center-cropped {
+  width: auto;
+  height: 82px;
+  background-position: center -600px;
+  background-repeat: no-repeat;
+}
 html::-webkit-scrollbar {
   display: none;
 }

@@ -308,7 +308,7 @@ export default function Navigation() {
         id="imagio"
         variant="dark"
         expand="md"
-        className="justify-content-center text-center"
+        className="justify-content-center text-center center-cropped"
         style={{
           borderRadius: "5px 5px 5px 5px",
         }}
