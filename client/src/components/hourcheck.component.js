@@ -126,10 +126,10 @@ export default function HourCheck() {
             <DialogTitle id="alert-dialog-title">{"Great news!"}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                An event you have signed up,{" "}
-                <span style={{ fontWeight: "bold" }}>{desc}</span> for has been
+                An event you have signed up for,{" "}
+                <span style={{ fontWeight: "bold" }}>{desc}</span>, has been
                 recently posted and you have earned{" "}
-                <span style={{ fontWeight: "bold" }}>{hours}</span> hours!
+                <span style={{ fontWeight: "bold" }}>{hours}</span> hour(s)!
               </DialogContentText>
             </DialogContent>
             <DialogActions>
