@@ -15,7 +15,7 @@ const func = (datee) => {
   let previousDate = moment(datee)._d;
   let currentDate = new Date();
   let diff = (currentDate - previousDate) / (1000 * 60 * 60 * 24);
-  if (diff >= 2) return true;
+  if (diff >= 1) return true;
   return false;
 };
 
@@ -60,7 +60,7 @@ const EventCard = (
           {dateFormat(props.event.date, "h TT dddd, mmmm d, yyyy")}
           <span className="text-muted">
             {" "}
-            (event will lock exactly 2 days after)
+            (event will lock exactly 1 day after)
           </span>
         </Card.Text>
         {props.isAdministrator ? (
