@@ -147,9 +147,10 @@ class EventList extends PureComponent {
     );
   }
   renderAdmin() {
-    if (!this.state.reversed) {
-      this.setState({ reversed: !this.state.reversed });
-      return this.state.events.reverse().map((currentEvent) => {
+    return this.state.events
+      .slice()
+      .reverse()
+      .map((currentEvent) => {
         return (
           <EventCard
             event={currentEvent}
@@ -159,18 +160,6 @@ class EventList extends PureComponent {
           />
         );
       });
-    } else {
-      return this.state.events.map((currentEvent) => {
-        return (
-          <EventCard
-            event={currentEvent}
-            deleteEvent={this.deleteEvent}
-            key={currentEvent._id}
-            isAdministrator={true}
-          />
-        );
-      });
-    }
   }
   eventList() {
     const name = this.context.userData.user.name;
@@ -193,9 +182,10 @@ class EventList extends PureComponent {
     const userid = {
       _id: this.context.userData.user._id,
     };
-    if (!this.state.reversed) {
-      this.setState({ reversed: !this.state.reversed });
-      return this.state.events.reverse().map((currentEvent) => {
+    return this.state.events
+      .slice()
+      .reverse()
+      .map((currentEvent) => {
         return (
           <EventCard
             event={currentEvent}
@@ -206,19 +196,6 @@ class EventList extends PureComponent {
           />
         );
       });
-    } else {
-      return this.state.events.map((currentEvent) => {
-        return (
-          <EventCard
-            event={currentEvent}
-            deleteEvent={this.deleteEvent}
-            key={currentEvent._id}
-            isAdministrator={false}
-            id={userid._id}
-          />
-        );
-      });
-    }
   }
   render() {
     let user = this.context.userData;
