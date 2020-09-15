@@ -5,6 +5,15 @@ import { Button } from "@material-ui/core";
 import { isMobile } from "react-device-detect";
 import axios from "axios";
 import UserContext from "../context/UserContext";
+import moment from "moment";
+
+const func = (datee) => {
+  let previousDate = moment(datee)._d;
+  let currentDate = new Date();
+  let diff = (currentDate - previousDate) / (1000 * 60 * 60 * 24);
+  if (diff >= 1) return true;
+  return false;
+};
 
 class RegisterForEvent extends Component {
   constructor(props) {

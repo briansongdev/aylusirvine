@@ -44,16 +44,27 @@ const EventCard = (
           {props.event.duration} PVSA-certified hour(s) given to volunteers.
         </Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
-        <Button
-          variant="outlined"
-          color="primary"
-          disableElevation
-          disabled={func(props.event.date)}
-          component={Link}
-          to={"/processSignup/" + props.event._id + "/" + props.id}
-        >
-          Register/Check Status
-        </Button>
+        {!func(props.event.date) ? (
+          <Button
+            variant="outlined"
+            color="primary"
+            disableElevation
+            disabled={false}
+            component={Link}
+            to={"/processSignup/" + props.event._id + "/" + props.id}
+          >
+            Register/Check Status
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            color="primary"
+            disableElevation
+            disabled={true}
+          >
+            Deadline has passed
+          </Button>
+        )}
         <Card.Text>
           <br />
           <SendIcon /> Posted{" "}
