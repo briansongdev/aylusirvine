@@ -76,7 +76,8 @@ class RegisterForEvent extends Component {
             });
           } else {
             this.setState({
-              isSignedUp: "You have not yet registered for this event.",
+              isSignedUp:
+                "You have not yet registered for this event. Registering is irreversible and no-shows will not be taken lightly.",
             });
           }
         })
