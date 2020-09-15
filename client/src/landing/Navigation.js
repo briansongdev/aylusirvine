@@ -304,7 +304,11 @@ export default function Navigation() {
             <>
               <h1
                 className="display-5 text-center"
-                style={{ fontSize: "17px", fontWeight: "bold" }}
+                style={{
+                  fontSize: "17px",
+                  fontWeight: "bold",
+                  userSelect: "none",
+                }}
               >
                 AYLUS Irvine Volunteers
               </h1>
