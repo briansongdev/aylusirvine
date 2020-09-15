@@ -14,6 +14,9 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
 }
+body {
+  user-select: none;
+}
 #preserveLine {
   white-space: pre-line;
 }

@@ -138,7 +138,7 @@ export default function Navigation() {
                 {!isMobile ? (
                   <>
                     <ListItemText
-                      style={{ cursor: "default", userSelect: "none" }}
+                      style={{ cursor: "default" }}
                       primary={"Welcome " + userData.user.name + "! 👑"}
                     />
                   </>
@@ -307,7 +307,6 @@ export default function Navigation() {
                 style={{
                   fontSize: "17px",
                   fontWeight: "bold",
-                  userSelect: "none",
                 }}
               >
                 AYLUS Irvine Volunteers
