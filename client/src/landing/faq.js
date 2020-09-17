@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Accordion, Card, Button } from "react-bootstrap";
-import MailTo from "react-mailto";
 
 export default class FAQ extends Component {
   render() {
@@ -12,7 +11,6 @@ export default class FAQ extends Component {
           <a
             href="mailto:brians3476@gmail.com?subject=Question About AYLUS Irvine Volunteers"
             target="_blank"
-            rel="noopener noreferrer"
           >
             email
           </a>{" "}
