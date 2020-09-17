@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 import Axios from "axios";
 
 import Navigation from "./Navigation";

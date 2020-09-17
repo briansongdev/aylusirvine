@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Container, Accordion, Card, Button } from "react-bootstrap";
-import axios from "axios";
+import MailTo from "react-mailto";
 
 export default class FAQ extends Component {
   render() {
     return (
       <Container className="p-3 text-center">
-        <h1>v2.1</h1>
-        <h5>If you spot an error or glitch, please email me right away!</h5>
+        <h1>v2.1 FAQ</h1>
+        <h5>
+          If you spot an error or glitch, do everyone a favor and{" "}
+          <a
+            href="mailto:brians3476@gmail.com?subject=Question About AYLUS Irvine Volunteers"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            email
+          </a>{" "}
+          me right away!
+        </h5>
         <Accordion className="p-3">
           <Card>
             <Card.Header>
@@ -86,9 +95,8 @@ export default class FAQ extends Component {
                 If you are interested in acquiring a facsimile for your branch,
                 please contact my personal email (brians3476@gmail.com)! If you
                 have a question regarding this website or a suggestion for new
-                functions, please contact me through the aforementioned method
-                and same if you spot an issue! Thank you - we value your
-                support!
+                functions, or spot an issue, please do the same! Thank you - we
+                value your support!
               </Card.Body>
             </Accordion.Collapse>
           </Card>
@@ -103,6 +111,22 @@ export default class FAQ extends Component {
                 Previous 2.0: Update dropped 9/5/2020!
                 <br /> 2.1: New changes. The system allows decimal values for
                 hours, which is 👍, and is more informative.
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card>
+            <Card.Header>
+              <Accordion.Toggle as={Button} variant="link" eventKey="6">
+                I'm having layout issues. What do I do?
+              </Accordion.Toggle>
+            </Card.Header>
+            <Accordion.Collapse eventKey="6">
+              <Card.Body>
+                If you are on mobile, put your device in a horizontal
+                orientation. Things get squished up fast due to the limited
+                screen width. If you are on a computer, please maximize the
+                window and if necessary, press F11 or fn + F11 on your keyboard
+                to fullscreen it.
               </Card.Body>
             </Accordion.Collapse>
           </Card>

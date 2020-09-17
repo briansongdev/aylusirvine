@@ -80,6 +80,15 @@ export default function SignIn() {
   return (
     <>
       <br />
+      {isMobile ? (
+        <>
+          <Row className="justify-content-center">
+            <h6 style={{ color: "red" }}>Best in horizontal.</h6>
+          </Row>
+        </>
+      ) : (
+        <></>
+      )}
       {!userData.user ? (
         <>
           {!isMobile ? (
@@ -155,7 +164,7 @@ export default function SignIn() {
                   <Form.Control
                     error={isErr}
                     as={TextField}
-                    style={{ left: "-20px", width: "200px", height: "56px" }}
+                    style={{ left: "-30px", width: "200px", height: "56px" }}
                     variant="outlined"
                     placeholder="aylusirvine@gmail.com"
                     label="Email"
@@ -168,7 +177,7 @@ export default function SignIn() {
                   <Form.Control
                     error={isPassErr}
                     as={TextField}
-                    style={{ left: "-20px", width: "200px", height: "56px" }}
+                    style={{ left: "-30px", width: "200px", height: "56px" }}
                     variant="outlined"
                     placeholder="**********"
                     label="Password"

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import React, { useContext, useState, useEffect } from "react";
+import { Container, Navbar } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {
   List,
@@ -18,6 +18,8 @@ import LanguageIcon from "@material-ui/icons/Language";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 import axios from "axios";
 import { isMobile } from "react-device-detect";
@@ -35,10 +37,58 @@ const useStyles = makeStyles((theme) => ({
     },
     color: theme.palette.text.primary,
   },
+  bottomPush: {
+    position: "fixed",
+    bottom: 0,
+    width: "15vw",
+  },
 }));
 
 export default function Navigation() {
   const { userData, setUserData } = useContext(UserContext);
+  const [it, setIt] = useState(false);
+  const [leftWidth, changeWidth] = useState("80px");
+  const [rightWidth, changeWidth1] = useState("80px");
+
+  useEffect(() => {
+    if (!it) {
+      if (!isMobile) {
+        changeWidth("15vw");
+        changeWidth1("15vw");
+      }
+      setIt(true);
+    }
+  });
+  const handleClickLeft = () => {
+    if (leftWidth == "15vw") {
+      changeWidth("80px");
+    } else {
+      changeWidth("15vw");
+    }
+  };
+
+  const handleClickRight = () => {
+    if (rightWidth == "15vw") {
+      changeWidth1("80px");
+    } else {
+      changeWidth1("15vw");
+    }
+  };
+
+  const checkWidth = () => {
+    if (leftWidth == "15vw") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const checkWidth1 = () => {
+    if (rightWidth == "15vw") {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const logout = async () => {
     setUserData({
@@ -69,7 +119,7 @@ export default function Navigation() {
   return (
     <Container>
       <Drawer
-        style={{ width: "15vw" }}
+        style={{ width: leftWidth }}
         variant="persistent"
         anchor="left"
         open={true}
@@ -85,7 +135,8 @@ export default function Navigation() {
               <ListItemIcon>
                 <HomeIcon />
               </ListItemIcon>
-              {!isMobile ? (
+
+              {checkWidth() ? (
                 <>
                   <ListItemText primary="Home" />
                 </>
@@ -106,7 +157,7 @@ export default function Navigation() {
               <ListItemIcon>
                 <LiveHelpIcon />
               </ListItemIcon>
-              {!isMobile ? (
+              {checkWidth() ? (
                 <>
                   <ListItemText primary="FAQ" />
                 </>
@@ -118,14 +169,34 @@ export default function Navigation() {
         </List>
         <Divider />
         <List>
-          <ListItem>
-            <ListItemText secondary={"❤️ from AYLUS Irvine."} />
+          {checkWidth() ? (
+            <ListItem>
+              <ListItemText secondary={"❤️ from AYLUS Irvine."} />
+            </ListItem>
+          ) : (
+            <></>
+          )}
+        </List>
+        <List className={classes.bottomPush}>
+          <ListItem
+            style={{ width: leftWidth }}
+            button
+            className="justify-content-center"
+            onClick={handleClickLeft}
+          >
+            {!isMobile ? (
+              <>
+                {checkWidth() ? <ArrowBackIosIcon /> : <ArrowForwardIosIcon />}
+              </>
+            ) : (
+              <></>
+            )}
           </ListItem>
         </List>
       </Drawer>
 
       <Drawer
-        style={{ width: "15vw" }}
+        style={{ width: rightWidth }}
         variant="persistent"
         anchor="right"
         open={true}
@@ -135,7 +206,7 @@ export default function Navigation() {
           <>
             <List>
               <ListItem>
-                {!isMobile ? (
+                {checkWidth1() ? (
                   <>
                     <ListItemText
                       style={{ cursor: "default" }}
@@ -146,7 +217,7 @@ export default function Navigation() {
                   <>
                     <ListItemText
                       style={{ cursor: "default" }}
-                      primary={"Hi " + userData.user.name + "!"}
+                      primary={"Hello!"}
                     />
                   </>
                 )}
@@ -163,7 +234,7 @@ export default function Navigation() {
                   <ListItemIcon>
                     <AccessAlarmIcon />
                   </ListItemIcon>
-                  {!isMobile ? (
+                  {checkWidth1() ? (
                     <>
                       <ListItemText primary="Your hours" />
                     </>
@@ -183,7 +254,7 @@ export default function Navigation() {
                   <ListItemIcon>
                     <ExitToAppIcon />
                   </ListItemIcon>
-                  {!isMobile ? (
+                  {checkWidth1() ? (
                     <>
                       <ListItemText primary="Log out" />
                     </>
@@ -198,16 +269,13 @@ export default function Navigation() {
           <>
             <List>
               <ListItem>
-                {!isMobile ? (
+                {checkWidth1() ? (
                   <>
                     <ListItemText primary={"Sign in or register."} />
                   </>
                 ) : (
                   <>
-                    <ListItemText
-                      style={{ cursor: "default" }}
-                      primary={"Hi!"}
-                    />
+                    <ListItemText primary={"Hi!"} />
                   </>
                 )}
               </ListItem>
@@ -222,7 +290,7 @@ export default function Navigation() {
                   <ListItemIcon>
                     <LockOpenIcon />
                   </ListItemIcon>
-                  {!isMobile ? (
+                  {checkWidth1() ? (
                     <>
                       <ListItemText primary="Register" />
                     </>
@@ -242,7 +310,7 @@ export default function Navigation() {
                   <ListItemIcon>
                     <VpnKeyIcon />
                   </ListItemIcon>
-                  {!isMobile ? (
+                  {checkWidth1() ? (
                     <>
                       <ListItemText primary="Login" />
                     </>
@@ -282,6 +350,22 @@ export default function Navigation() {
         ) : (
           <></>
         )}
+        <List className={classes.bottomPush}>
+          <ListItem
+            style={{ width: rightWidth }}
+            button
+            className="justify-content-center"
+            onClick={handleClickRight}
+          >
+            {!isMobile ? (
+              <>
+                {checkWidth1() ? <ArrowForwardIosIcon /> : <ArrowBackIosIcon />}
+              </>
+            ) : (
+              <></>
+            )}
+          </ListItem>
+        </List>
       </Drawer>
       <Navbar
         expand="lg"

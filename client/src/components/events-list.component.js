@@ -136,6 +136,17 @@ class EventList extends PureComponent {
   notSignedIn() {
     return (
       <Container className="p-3 text-center">
+        {isMobile ? (
+          <>
+            <Row className="justify-content-center">
+              <h6 style={{ color: " red" }}>
+                Best viewed in horizontal or on a computer.
+              </h6>
+            </Row>
+          </>
+        ) : (
+          <></>
+        )}
         <h3>Welcome!</h3>
         <img
           src={require("../images/aylus-logo.png")}
@@ -147,7 +158,14 @@ class EventList extends PureComponent {
             <span style={{ fontWeight: "bold" }}>AYLUS Irvine</span> has an
             initiative of giving back to the community through service in
             multifaceted events for the betterment of society. We strive to
-            cultivate a love for volunteering. <br />
+            cultivate a love for volunteering.
+            <br />
+            <br />
+            <span style={{ fontWeight: "bold" }}>
+              This is where you can access our current events (and sign up for
+              them, check your hours, etc.).
+            </span>
+            <br />
             <br />
             The projects we do include{" "}
             <span style={{ color: "#ff0000" }}>h</span>
@@ -265,15 +283,6 @@ class EventList extends PureComponent {
             For more info, consult our <Link to="/faq">FAQ.</Link>
           </h6>
         </Row>
-        {isMobile ? (
-          <>
-            <Row className="justify-content-center">
-              <h6 style={{ color: " red" }}>Best viewed in horizontal.</h6>
-            </Row>
-          </>
-        ) : (
-          <></>
-        )}
       </Container>
     );
   }

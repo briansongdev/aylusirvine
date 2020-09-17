@@ -58,8 +58,7 @@ class RegisterForEvent extends Component {
       axios.post("/api/log/post", logRequest);
       this.setState({ hasLoggedListen: "true" });
     }
-    alert("Success! Thank you for registering!");
-    window.location = "/";
+    alert("Success, thank you! You may now go back to the home page.");
   };
 
   componentDidMount() {

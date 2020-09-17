@@ -1,20 +1,23 @@
 import React, { useState, useContext } from "react";
 import { Container, Form, Row } from "react-bootstrap";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Checkbox } from "@material-ui/core";
 import { isMobile } from "react-device-detect";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import "../landing/App.css";
 
 export default function Register() {
-  const recaptcha = React.createRef();
   const [name, setName] = useState();
   let [email, setEmail] = useState();
+  let [isChecked, setChecked] = useState(false);
   let [identification, setID] = useState();
   const [isErr, setIsErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const { userData, setUserData } = useContext(UserContext);
   const submit = async (e) => {
+    if (!isChecked) {
+      alert("Please confirm you have previously filled out the Google Form.");
+    }
     e.preventDefault();
     setIsErr(false);
     if (!(!name || !identification || !email)) {
@@ -23,6 +26,7 @@ export default function Register() {
       const passed = await axios.post("/api/users/add", newUser).catch((e) => {
         setID("");
         setIsErr(true);
+        setChecked(false);
         if (e == "Error: Request failed with status code 400") {
           setErrMessage(
             "Account with same name or email already exists. Login?"
@@ -61,13 +65,27 @@ export default function Register() {
     } else {
       setID("");
       setIsErr(true);
+      setChecked(false);
       setErrMessage("Please fill out all fields.");
     }
+  };
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
   };
 
   return (
     <Container style={{ width: "100%" }}>
       <br />
+      {isMobile ? (
+        <>
+          <Row className="justify-content-center">
+            <h6 style={{ color: "red" }}>Best in horizontal.</h6>
+          </Row>
+        </>
+      ) : (
+        <></>
+      )}
       <>
         {!userData.user ? (
           <>
@@ -132,13 +150,25 @@ export default function Register() {
                       value={identification}
                       onChange={(e) => setID(e.target.value)}
                     />
-                    <Form.Text className="text-muted">
-                      <br />
-                      Your offline hours will not be migrated (we honored
-                      registrants who signed up before v2's release).
-                    </Form.Text>
                   </Form.Group>
-
+                  <Row className="p-1 justify-content-center">
+                    <Checkbox
+                      color="primary"
+                      checked={isChecked}
+                      onChange={handleChange}
+                    />
+                    <Form.Text style={{ margin: "auto 0 auto 0" }}>
+                      I have already filled out{" "}
+                      <a
+                        href="https://forms.gle/oZgMUmX5fiitANvMA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        this form.
+                      </a>{" "}
+                      If not, DO SO ASAP!
+                    </Form.Text>
+                  </Row>
                   <Button
                     style={{ backgroundColor: "white" }}
                     size="large"
@@ -174,7 +204,7 @@ export default function Register() {
                         error={isErr}
                         helperText={errMessage}
                         style={{
-                          left: "-20px",
+                          left: "-30px",
                           width: "200px",
                           height: "56px",
                         }}
@@ -194,7 +224,7 @@ export default function Register() {
                       <Form.Control
                         as={TextField}
                         style={{
-                          left: "-20px",
+                          left: "-30px",
                           width: "200px",
                           height: "56px",
                         }}
@@ -215,7 +245,7 @@ export default function Register() {
                       <Form.Control
                         as={TextField}
                         style={{
-                          left: "-20px",
+                          left: "-30px",
                           width: "200px",
                           height: "56px",
                         }}
@@ -228,6 +258,24 @@ export default function Register() {
                         onChange={(e) => setID(e.target.value)}
                       />
                     </Form.Group>
+                    <Row className="p-1 justify-content-center">
+                      <Checkbox
+                        color="primary"
+                        checked={isChecked}
+                        onChange={handleChange}
+                      />
+                      <Form.Text style={{ margin: "auto 0 auto 0" }}>
+                        I have already filled out{" "}
+                        <a
+                          href="https://forms.gle/oZgMUmX5fiitANvMA"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          this form.
+                        </a>{" "}
+                        If not, DO SO ASAP!
+                      </Form.Text>
+                    </Row>
                     <Button
                       style={{ backgroundColor: "white" }}
                       size="large"
