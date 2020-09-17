@@ -30,8 +30,8 @@ const userSchema = new Schema(
       trim: true,
     },
     hours: {
-      type: Number,
-      default: "0",
+      type: mongoose.Types.Decimal128,
+      default: 0,
     },
     events: {
       type: [eventLoadingSchema],

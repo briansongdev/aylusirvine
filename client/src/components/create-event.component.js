@@ -34,7 +34,6 @@ export default function CreateEvent() {
       "x-auth-token": userData.token,
       "admin-Token": adminToken,
     };
-    console.log(process.env.TOKEN_SECRET);
     let emailList = await axios.get("/api/users/extractEmails/", {
       headers: headers,
     });

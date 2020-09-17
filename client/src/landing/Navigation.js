@@ -146,7 +146,7 @@ export default function Navigation() {
                   <>
                     <ListItemText
                       style={{ cursor: "default" }}
-                      primary={"Hi!"}
+                      primary={"Hi " + userData.user.name + "!"}
                     />
                   </>
                 )}

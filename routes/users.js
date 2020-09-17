@@ -18,7 +18,6 @@ router.get("/obtainUpdatedAt/:id", async (req, res) => {
 router.route("/add").post(async (req, res) => {
   try {
     const { name, identification, email, hours, events } = req.body;
-
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
       return res
@@ -120,9 +119,8 @@ router.post("/update/:id", async (req, res) => {
   const { newHour, eventName } = req.body;
   await User.findById(req.params.id)
     .then((user) => {
-      user.hours = parseInt(user.hours) + parseInt(newHour);
+      user.hours = parseFloat(user.hours) + parseFloat(newHour);
       user.events.push({ eventName: eventName, hours: newHour });
-      console.log(user.events);
       // make sure to use add function , not initialize function
       user
         .save()

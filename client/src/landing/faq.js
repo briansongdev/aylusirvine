@@ -7,7 +7,7 @@ export default class FAQ extends Component {
   render() {
     return (
       <Container className="p-3 text-center">
-        <h1>v2 is here!</h1>
+        <h1>v2.1</h1>
         <h5>If you spot an error or glitch, please email me right away!</h5>
         <Accordion className="p-3">
           <Card>
@@ -100,8 +100,9 @@ export default class FAQ extends Component {
             </Card.Header>
             <Accordion.Collapse eventKey="3">
               <Card.Body>
-                Previous 1.9: UI remake. Expect v2 to be released by Sunday.
-                <br /> 2.0 Update dropped 9/5/2020!
+                Previous 2.0: Update dropped 9/5/2020!
+                <br /> 2.1: New changes. The system allows decimal values for
+                hours, which is 👍, and is more informative.
               </Card.Body>
             </Accordion.Collapse>
           </Card>

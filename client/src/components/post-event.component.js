@@ -62,7 +62,7 @@ class PostEvent extends Component {
         {user.isAdmin ? (
           <Container className="p-3 text-center">
             <Button variant="success" onClick={this.postUser}>
-              Post event
+              Post {this.state.eventName} event
             </Button>
           </Container>
         ) : (
