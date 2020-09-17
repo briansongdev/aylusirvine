@@ -95,7 +95,7 @@ export default class FAQ extends Component {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="3">
-                Recent changes (v2.0)
+                Recent changes (v2.1)
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="3">
