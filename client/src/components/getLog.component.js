@@ -30,15 +30,18 @@ class GetLog extends Component {
       });
   };
   renderNames() {
-    return this.state.actions.map((actionDesc) => {
-      return (
-        <Container className="p-1">
-          <br />
-          {actionDesc.actionType} - {actionDesc.name} -{" "}
-          {dateFormat(actionDesc.time, "default")} - {actionDesc.deviceType}
-        </Container>
-      );
-    });
+    return this.state.actions
+      .slice()
+      .reverse()
+      .map((actionDesc) => {
+        return (
+          <Container className="p-1">
+            <br />
+            {actionDesc.actionType} - {actionDesc.name} -{" "}
+            {dateFormat(actionDesc.time, "default")} - {actionDesc.deviceType}
+          </Container>
+        );
+      });
   }
 
   render() {
