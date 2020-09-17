@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-cleanup": "cd client && gzip build/static/js/*.js && gzip build/static/css/*.css"
   },
   "keywords": [],
   "author": "",
