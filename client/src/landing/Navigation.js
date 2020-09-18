@@ -119,7 +119,11 @@ export default function Navigation() {
   return (
     <Container>
       <Drawer
-        style={{ width: leftWidth }}
+        style={{
+          width: leftWidth,
+          transition: "width 0.4s",
+          transitionTimingFunction: "ease-out",
+        }}
         variant="persistent"
         anchor="left"
         open={true}
@@ -196,7 +200,11 @@ export default function Navigation() {
       </Drawer>
 
       <Drawer
-        style={{ width: rightWidth }}
+        style={{
+          width: rightWidth,
+          transition: "width 0.4s",
+          transitionTimingFunction: "ease-out",
+        }}
         variant="persistent"
         anchor="right"
         open={true}
