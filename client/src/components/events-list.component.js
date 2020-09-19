@@ -359,7 +359,7 @@ class EventList extends PureComponent {
               <></>
             )}
             <Row className="p-3 justify-content-center">
-              <h4>Active Events</h4>
+              <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
             </Row>
 
             {this.renderAdmin()}
@@ -381,7 +381,7 @@ class EventList extends PureComponent {
               <></>
             )}
             <Row className="p-3 justify-content-center">
-              <h4>Active Events</h4>
+              <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
             </Row>
 
             {this.eventList()}
