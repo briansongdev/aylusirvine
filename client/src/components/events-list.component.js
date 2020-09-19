@@ -49,20 +49,18 @@ const EventCard = (
             variant="outlined"
             color="primary"
             disableElevation
-            disabled={false}
-            component={Link}
-            to={"/processSignup/" + props.event._id + "/" + props.id}
+            href={"/processSignup/" + props.event._id + "/" + props.id}
           >
-            Register/Check Status
+            Register or Check Status
           </Button>
         ) : (
           <Button
             variant="outlined"
             color="primary"
             disableElevation
-            disabled={true}
+            href={"/processSignup/" + props.event._id + "/" + props.id}
           >
-            Deadline has passed
+            Check Status (past deadline)
           </Button>
         )}
         <Card.Text>

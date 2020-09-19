@@ -11,8 +11,11 @@ const func = (datee) => {
   let previousDate = moment(datee)._d;
   let currentDate = new Date();
   let diff = (currentDate - previousDate) / (1000 * 60 * 60 * 24);
-  if (diff >= 1) return true;
-  return false;
+  if (diff >= 1) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 class RegisterForEvent extends Component {
@@ -122,23 +125,33 @@ class RegisterForEvent extends Component {
             }}
           >
             <h5>
-              Confirm registration for{" "}
+              Confirm signup for{" "}
               <span style={{ fontWeight: "bold", color: "#406ddd" }}>
                 {this.state.eventName}
               </span>
               ?
             </h5>
             <Row className="p-3 justify-content-center">
-              <Button
-                variant="outlined"
-                color="primary"
-                size="large"
-                href="#"
-                disabled={func(this.state.date)}
-                onClick={this.processSignup}
-              >
-                Yes, sign me up!
-              </Button>
+              {!func(this.state.date) ? (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  href="#"
+                  onClick={this.processSignup}
+                >
+                  Yes, sign me up!
+                </Button>
+              ) : (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  disabled
+                >
+                  Deadline passed
+                </Button>
+              )}
             </Row>
             {this.executeSignup()}
             <span>{this.state.isSignedUp}</span>
