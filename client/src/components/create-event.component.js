@@ -59,7 +59,6 @@ export default function CreateEvent() {
           console.log(error.text);
         }
       );
-
     window.location = "/";
   };
   return (

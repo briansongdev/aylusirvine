@@ -22,6 +22,8 @@ class RegisterForEvent extends Component {
       eventName: "",
       isSignedUp: "",
       hasLoggedListen: false,
+      message: "",
+      date: new Date(),
     };
   }
   processSignup = async () => {
@@ -58,13 +60,23 @@ class RegisterForEvent extends Component {
       axios.post("/api/log/post", logRequest);
       this.setState({ hasLoggedListen: "true" });
     }
-    alert("Success, thank you! You may now go back to the home page.");
+    this.setState({
+      message: "Success, thank you! You may now go back to the home page.",
+    });
+    var options = {
+      body: "Thanks for signing up!",
+      icon:
+        "https://aylfus.org/wp-content/uploads/2015/08/AYLUS_Logo_LightBulbRed_124x124.png",
+      dir: "ltr",
+    };
+    new Notification("Signup Success", options);
   };
 
   componentDidMount() {
     axios.get("/api/events/" + this.props.match.params.id).then((response) => {
       this.setState({
         eventName: response.data.title,
+        date: response.data.date,
       });
     });
   }
@@ -122,6 +134,7 @@ class RegisterForEvent extends Component {
                 color="primary"
                 size="large"
                 href="#"
+                disabled={func(this.state.date)}
                 onClick={this.processSignup}
               >
                 Yes, sign me up!
@@ -129,6 +142,9 @@ class RegisterForEvent extends Component {
             </Row>
             {this.executeSignup()}
             <span>{this.state.isSignedUp}</span>
+            <Row className="p-2 justify-content-center">
+              <span className="text-success">{this.state.message}</span>
+            </Row>
           </Container>
         ) : (
           <Container className="p-3 text-center">

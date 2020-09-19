@@ -116,6 +116,10 @@ class EventList extends PureComponent {
     };
   }
   async componentDidMount() {
+    if ("Notification" in window) {
+      Notification.requestPermission();
+    }
+    if (Notification.permission !== "granted") Notification.requestPermission();
     await axios
       .get("/api/events/")
       .then((response) => {
