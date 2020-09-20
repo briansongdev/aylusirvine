@@ -49,7 +49,8 @@ const EventCard = (
             variant="outlined"
             color="primary"
             disableElevation
-            href={"/processSignup/" + props.event._id + "/" + props.id}
+            component={Link}
+            to={"/processSignup/" + props.event._id + "/" + props.id}
           >
             Register or Check Status
           </Button>
@@ -58,7 +59,8 @@ const EventCard = (
             variant="outlined"
             color="primary"
             disableElevation
-            href={"/processSignup/" + props.event._id + "/" + props.id}
+            component={Link}
+            to={"/processSignup/" + props.event._id + "/" + props.id}
           >
             Check Status (past deadline)
           </Button>
