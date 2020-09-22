@@ -64,7 +64,9 @@ class RegisterForEvent extends Component {
       this.setState({ hasLoggedListen: "true" });
     }
     this.setState({
-      message: "Success, thank you! You may now go back to the home page.",
+      isSignedUp: "",
+      message:
+        "Success, thank you! You may now go back to the home page. More instructions thru a follow-up email.",
     });
     var options = {
       body: "Thanks for signing up!",
