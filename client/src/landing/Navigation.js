@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottomPush: {
     position: "fixed",
-    bottom: 0,
+    bottom: "5px",
     width: "15vw",
   },
 }));
@@ -183,7 +183,11 @@ export default function Navigation() {
         </List>
         <List className={classes.bottomPush}>
           <ListItem
-            style={{ width: leftWidth }}
+            style={{
+              width: leftWidth,
+              transition: "width 0.4s",
+              transitionTimingFunction: "ease-out",
+            }}
             button
             className="justify-content-center"
             onClick={handleClickLeft}
@@ -360,7 +364,11 @@ export default function Navigation() {
         )}
         <List className={classes.bottomPush}>
           <ListItem
-            style={{ width: rightWidth }}
+            style={{
+              width: rightWidth,
+              transition: "width 0.4s",
+              transitionTimingFunction: "ease-out",
+            }}
             button
             className="justify-content-center"
             onClick={handleClickRight}
