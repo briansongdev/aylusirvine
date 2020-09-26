@@ -10,6 +10,7 @@ import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
 import SendIcon from "@material-ui/icons/Send";
 import moment from "moment";
+import FadeIn from "react-fade-in";
 
 const func = (datee) => {
   let previousDate = moment(datee)._d;
@@ -296,12 +297,14 @@ class EventList extends PureComponent {
       .reverse()
       .map((currentEvent) => {
         return (
-          <EventCard
-            event={currentEvent}
-            deleteEvent={this.deleteEvent}
-            key={currentEvent._id}
-            isAdministrator={true}
-          />
+          <FadeIn>
+            <EventCard
+              event={currentEvent}
+              deleteEvent={this.deleteEvent}
+              key={currentEvent._id}
+              isAdministrator={true}
+            />
+          </FadeIn>
         );
       });
   }
@@ -331,13 +334,15 @@ class EventList extends PureComponent {
       .reverse()
       .map((currentEvent) => {
         return (
-          <EventCard
-            event={currentEvent}
-            deleteEvent={this.deleteEvent}
-            key={currentEvent._id}
-            isAdministrator={false}
-            id={userid._id}
-          />
+          <FadeIn>
+            <EventCard
+              event={currentEvent}
+              deleteEvent={this.deleteEvent}
+              key={currentEvent._id}
+              isAdministrator={false}
+              id={userid._id}
+            />
+          </FadeIn>
         );
       });
   }
