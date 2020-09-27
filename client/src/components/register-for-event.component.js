@@ -68,13 +68,6 @@ class RegisterForEvent extends Component {
       message:
         "Success, thank you! You may now go back to the home page. More instructions thru a follow-up email.",
     });
-    var options = {
-      body: "Thanks for signing up!",
-      icon:
-        "https://aylfus.org/wp-content/uploads/2015/08/AYLUS_Logo_LightBulbRed_124x124.png",
-      dir: "ltr",
-    };
-    new Notification("Signup Success", options);
   };
 
   componentDidMount() {
