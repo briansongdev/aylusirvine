@@ -1,7 +1,7 @@
 import React, { Component, PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { Container, Card, Row, ListGroup } from "react-bootstrap";
-import { Button } from "@material-ui/core";
+import { CircularProgress, Button } from "@material-ui/core";
 import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
@@ -114,13 +114,14 @@ class EventList extends PureComponent {
     this.state = {
       events: [],
       hasLoggedListen: false,
+      grabEvents: true,
     };
   }
   async componentDidMount() {
     await axios
       .get("/api/events/")
       .then((response) => {
-        this.setState({ events: response.data });
+        this.setState({ events: response.data, grabEvents: false });
       })
       .catch((error) => {
         // empty catch
@@ -346,53 +347,63 @@ class EventList extends PureComponent {
   }
   render() {
     let user = this.context.userData;
-    if (user.token === undefined) {
-      return <Container>{this.notSignedIn()}</Container>;
+    if (this.state.grabEvents) {
+      return (
+        <Row className="p-2 justify-content-center">
+          <CircularProgress />
+        </Row>
+      );
     } else {
-      if (user.isAdmin) {
-        return (
-          <Container>
-            {isMobile ? (
-              <>
-                <Row className="p-2 justify-content-center">
-                  <h6 style={{ color: "red" }}>Best viewed in horizontal.</h6>
-                </Row>
-              </>
-            ) : (
-              <></>
-            )}
-            <Row className="p-3 justify-content-center">
-              <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-            </Row>
-
-            {this.renderAdmin()}
-            <Row className="p-3 justify-content-center">
-              You've reached the end of our events!
-            </Row>
-          </Container>
-        );
+      if (user.token === undefined) {
+        return <Container>{this.notSignedIn()}</Container>;
       } else {
-        return (
-          <Container>
-            {isMobile ? (
-              <>
-                <Row className="p-2 justify-content-center">
-                  <h6 style={{ color: " red" }}>Best viewed in horizontal.</h6>
-                </Row>
-              </>
-            ) : (
-              <></>
-            )}
-            <Row className="p-3 justify-content-center">
-              <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-            </Row>
+        if (user.isAdmin) {
+          return (
+            <Container>
+              {isMobile ? (
+                <>
+                  <Row className="p-2 justify-content-center">
+                    <h6 style={{ color: "red" }}>Best viewed in horizontal.</h6>
+                  </Row>
+                </>
+              ) : (
+                <></>
+              )}
+              <Row className="p-3 justify-content-center">
+                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+              </Row>
 
-            {this.eventList()}
-            <Row className="p-3 justify-content-center">
-              You've reached the end of our events!
-            </Row>
-          </Container>
-        );
+              {this.renderAdmin()}
+              <Row className="p-3 justify-content-center">
+                You've reached the end of our events!
+              </Row>
+            </Container>
+          );
+        } else {
+          return (
+            <Container>
+              {isMobile ? (
+                <>
+                  <Row className="p-2 justify-content-center">
+                    <h6 style={{ color: " red" }}>
+                      Best viewed in horizontal.
+                    </h6>
+                  </Row>
+                </>
+              ) : (
+                <></>
+              )}
+              <Row className="p-3 justify-content-center">
+                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+              </Row>
+
+              {this.eventList()}
+              <Row className="p-3 justify-content-center">
+                You've reached the end of our events!
+              </Row>
+            </Container>
+          );
+        }
       }
     }
   }
