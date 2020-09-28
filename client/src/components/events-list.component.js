@@ -114,14 +114,15 @@ class EventList extends PureComponent {
     this.state = {
       events: [],
       hasLoggedListen: false,
-      grabEvents: true,
+      isReady: false,
     };
   }
   async componentDidMount() {
     await axios
       .get("/api/events/")
       .then((response) => {
-        this.setState({ events: response.data, grabEvents: false });
+        setTimeout(() => this.setState({ isReady: true }), 250);
+        this.setState({ events: response.data });
       })
       .catch((error) => {
         // empty catch
@@ -347,13 +348,7 @@ class EventList extends PureComponent {
   }
   render() {
     let user = this.context.userData;
-    if (this.state.grabEvents) {
-      return (
-        <Row className="p-2 justify-content-center">
-          <CircularProgress />
-        </Row>
-      );
-    } else {
+    if (this.state.isReady) {
       if (user.token === undefined) {
         return <Container>{this.notSignedIn()}</Container>;
       } else {
@@ -405,6 +400,12 @@ class EventList extends PureComponent {
           );
         }
       }
+    } else {
+      return (
+        <Row className="p-4 justify-content-center">
+          <CircularProgress />
+        </Row>
+      );
     }
   }
 }
