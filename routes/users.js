@@ -114,6 +114,8 @@ router.get("/extractEmails", adminAuth, async (req, res) => {
   res.json(finalEmailArray);
 });
 
+// POSSIBLY ADD AUTH HANDLE?
+
 router.post("/update/:id", async (req, res) => {
   // req will contain newHours, eventName.
   const { newHour, eventName } = req.body;
