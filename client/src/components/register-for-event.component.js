@@ -28,6 +28,7 @@ class RegisterForEvent extends Component {
       hasLoggedListen: false,
       message: "",
       date: new Date(),
+      description: "",
       isReady: false,
     };
   }
@@ -78,6 +79,7 @@ class RegisterForEvent extends Component {
       this.setState({
         eventName: response.data.title,
         date: response.data.date,
+        description: response.data.description,
       });
     });
   }
@@ -119,7 +121,7 @@ class RegisterForEvent extends Component {
               <Container
                 className="p-5 text-center"
                 style={{
-                  width: "500px",
+                  width: "550px",
                   backgroundColor: "white",
                   borderRadius: "8px 8px 8px 8px",
                 }}
@@ -132,6 +134,9 @@ class RegisterForEvent extends Component {
                   ?
                 </h5>
                 <Row className="p-3 justify-content-center">
+                  <p>{this.state.description}</p>
+                </Row>
+                <Row className="p-1 justify-content-center">
                   {!func(this.state.date) ? (
                     <Button
                       variant="outlined"
@@ -154,7 +159,11 @@ class RegisterForEvent extends Component {
                   )}
                 </Row>
                 {this.executeSignup()}
-                <span>{this.state.isSignedUp}</span>
+                <Row className="p-2">
+                  <span style={{ fontWeight: "bold" }}>
+                    {this.state.isSignedUp}
+                  </span>
+                </Row>
                 <Row className="p-2 justify-content-center">
                   <span className="text-success">{this.state.message}</span>
                 </Row>
