@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import { isMobile } from "react-device-detect";
+import FadeIn from "react-fade-in";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 import moment from "moment";
@@ -27,6 +28,7 @@ class RegisterForEvent extends Component {
       hasLoggedListen: false,
       message: "",
       date: new Date(),
+      isReady: false,
     };
   }
   processSignup = async () => {
@@ -72,6 +74,7 @@ class RegisterForEvent extends Component {
 
   componentDidMount() {
     axios.get("/api/events/" + this.props.match.params.id).then((response) => {
+      setTimeout(() => this.setState({ isReady: true }), 350);
       this.setState({
         eventName: response.data.title,
         date: response.data.date,
@@ -107,61 +110,71 @@ class RegisterForEvent extends Component {
 
   render() {
     let user = this.context.userData;
-    return (
-      <>
-        <br />
-        {user.user ? (
-          <Container
-            className="p-5 text-center"
-            style={{
-              width: "500px",
-              backgroundColor: "white",
-              borderRadius: "8px 8px 8px 8px",
-            }}
-          >
-            <h5>
-              Confirm signup for{" "}
-              <span style={{ fontWeight: "bold", color: "#406ddd" }}>
-                {this.state.eventName}
-              </span>
-              ?
-            </h5>
-            <Row className="p-3 justify-content-center">
-              {!func(this.state.date) ? (
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  href="#"
-                  onClick={this.processSignup}
-                >
-                  Yes, sign me up!
-                </Button>
-              ) : (
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  size="large"
-                  disabled
-                >
-                  Deadline passed
-                </Button>
-              )}
-            </Row>
-            {this.executeSignup()}
-            <span>{this.state.isSignedUp}</span>
-            <Row className="p-2 justify-content-center">
-              <span className="text-success">{this.state.message}</span>
-            </Row>
-          </Container>
-        ) : (
-          <Container className="p-3 text-center">
-            Hi! You've reached this page in error. Click one of the above links
-            to go back home!
-          </Container>
-        )}
-      </>
-    );
+    if (this.state.isReady) {
+      return (
+        <>
+          <br />
+          {user.user ? (
+            <FadeIn>
+              <Container
+                className="p-5 text-center"
+                style={{
+                  width: "500px",
+                  backgroundColor: "white",
+                  borderRadius: "8px 8px 8px 8px",
+                }}
+              >
+                <h5>
+                  Confirm signup for{" "}
+                  <span style={{ fontWeight: "bold", color: "#406ddd" }}>
+                    {this.state.eventName}
+                  </span>
+                  ?
+                </h5>
+                <Row className="p-3 justify-content-center">
+                  {!func(this.state.date) ? (
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="large"
+                      href="#"
+                      onClick={this.processSignup}
+                    >
+                      Yes, sign me up!
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="large"
+                      disabled
+                    >
+                      Deadline passed
+                    </Button>
+                  )}
+                </Row>
+                {this.executeSignup()}
+                <span>{this.state.isSignedUp}</span>
+                <Row className="p-2 justify-content-center">
+                  <span className="text-success">{this.state.message}</span>
+                </Row>
+              </Container>
+            </FadeIn>
+          ) : (
+            <Container className="p-3 text-center">
+              Hi! You've reached this page in error. Click one of the above
+              links to go back home!
+            </Container>
+          )}
+        </>
+      );
+    } else {
+      return (
+        <Row className="p-4 justify-content-center">
+          <CircularProgress />
+        </Row>
+      );
+    }
   }
 }
 
