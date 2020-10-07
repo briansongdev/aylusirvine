@@ -121,7 +121,7 @@ class RegisterForEvent extends Component {
               <Container
                 className="p-5 text-center"
                 style={{
-                  width: "550px",
+                  width: "500px",
                   backgroundColor: "white",
                   borderRadius: "8px 8px 8px 8px",
                 }}
