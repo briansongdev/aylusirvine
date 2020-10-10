@@ -12,6 +12,7 @@ import UserContext from "../context/UserContext";
 import { isMobile } from "react-device-detect";
 import axios from "axios";
 import moment from "moment";
+import FadeIn from "react-fade-in";
 
 export default function HourCheck() {
   const { userData } = useContext(UserContext);
@@ -98,50 +99,52 @@ export default function HourCheck() {
     <>
       {userData.user ? (
         <Container className="p-3 text-center">
-          <h3 className="p-1">Welcome {userData.user.name}!</h3>
-          <h5 className="p-3">
-            You currently have{" "}
-            <span style={{ color: "#406ddd" }}>
-              {console.log(userData.user.hours.$numberDecimal)}
-              {userData.user.hours.$numberDecimal}
-            </span>{" "}
-            hours. Goal: 50+ hours!
-          </h5>
-          <Row className="p-3 justify-content-center"> {showMessage()}</Row>
-          <Row className="justify-content-center">
-            <ProgressBar
-              style={{ width: "400px" }}
-              animated
-              now={userData.user.hours.$numberDecimal * 2}
-            />
-          </Row>
-          <h5 className="p-3">
-            Here are the events you have volunteered for so far:
-          </h5>
-          <Container>{userEventList()}</Container>
-          {!hasAlreadyChecked ? calcHours() : emptyFunc()}
-          <Dialog
-            disableBackdropClick={true}
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">{"Great news!"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                An event you have signed up for,{" "}
-                <span style={{ fontWeight: "bold" }}>{desc}</span>, has been
-                recently posted and you have earned{" "}
-                <span style={{ fontWeight: "bold" }}>{hours}</span> hour(s)!
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Nice!
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <FadeIn>
+            <h3 className="p-1">Welcome {userData.user.name}!</h3>
+            <h5 className="p-3">
+              You currently have{" "}
+              <span style={{ color: "#406ddd" }}>
+                {console.log(userData.user.hours.$numberDecimal)}
+                {userData.user.hours.$numberDecimal}
+              </span>{" "}
+              hours. Goal: 50+ hours!
+            </h5>
+            <Row className="p-3 justify-content-center"> {showMessage()}</Row>
+            <Row className="justify-content-center">
+              <ProgressBar
+                style={{ width: "400px" }}
+                animated
+                now={userData.user.hours.$numberDecimal * 2}
+              />
+            </Row>
+            <h5 className="p-3">
+              Here are the events you have volunteered for so far:
+            </h5>
+            <Container>{userEventList()}</Container>
+            {!hasAlreadyChecked ? calcHours() : emptyFunc()}
+            <Dialog
+              disableBackdropClick={true}
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Great news!"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  An event you have signed up for,{" "}
+                  <span style={{ fontWeight: "bold" }}>{desc}</span>, has been
+                  recently posted and you have earned{" "}
+                  <span style={{ fontWeight: "bold" }}>{hours}</span> hour(s)!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Nice!
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </FadeIn>
         </Container>
       ) : (
         <Container className="p-3 text-center">

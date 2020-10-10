@@ -38,27 +38,34 @@ class FollowUp extends Component {
         this.setState({ emails: response.data });
       })
       .catch((err) => console.log(err));
+    // function to add flup text
+    const flup = {
+      flupmsg: this.state.description,
+    };
+    await axios
+      .post("/api/events/createflup/" + this.props.match.params.id, flup)
+      .then((res) => console.log(res.data));
     // emailJs function. Send ONLY to EMAILS SIGNED UP FOR THE EVENT
     const templateParams = {
       emailName: this.state.emails.join(),
       eventName: this.state.title,
       eventDescription: this.state.description,
     };
-    await emailjs
-      .send(
-        "gmail",
-        "send_followup_email",
-        templateParams,
-        "user_7ramHducqnduQpv2RNhBj"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    // await emailjs
+    //   .send(
+    //     "gmail",
+    //     "send_followup_email",
+    //     templateParams,
+    //     "user_7ramHducqnduQpv2RNhBj"
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
     window.location = "/";
   };
   render() {

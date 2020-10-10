@@ -91,27 +91,29 @@ export default function Navigation() {
   };
 
   const logout = async () => {
-    setUserData({
-      token: undefined,
-      user: undefined,
-      isAdmin: false,
-    });
-    await localStorage.setItem("auth-token", "");
-    const name = userData.user.name;
-    let deviceType;
-    if (isMobile) {
-      deviceType = "Mobile";
-    } else {
-      deviceType = "Computer";
+    if (window.confirm("Are you sure you want to logout?")) {
+      setUserData({
+        token: undefined,
+        user: undefined,
+        isAdmin: false,
+      });
+      await localStorage.setItem("auth-token", "");
+      const name = userData.user.name;
+      let deviceType;
+      if (isMobile) {
+        deviceType = "Mobile";
+      } else {
+        deviceType = "Computer";
+      }
+      const logRequest = {
+        actionType: "Log Out",
+        name: name,
+        time: new Date().toString(),
+        deviceType: deviceType,
+      };
+      axios.post("/api/log/post", logRequest);
+      window.location = "/";
     }
-    const logRequest = {
-      actionType: "Log Out",
-      name: name,
-      time: new Date().toString(),
-      deviceType: deviceType,
-    };
-    axios.post("/api/log/post", logRequest);
-    window.location = "/";
     // logs out user by clearing the JWT
   };
   const classes = useStyles();
@@ -175,7 +177,7 @@ export default function Navigation() {
         <List>
           {checkWidth() ? (
             <ListItem>
-              <ListItemText secondary={"❤️ from AYLUS Irvine."} />
+              <ListItemText secondary={"❤️ AYLUS Irvine. v3"} />
             </ListItem>
           ) : (
             <></>
@@ -384,14 +386,9 @@ export default function Navigation() {
         </List>
       </Drawer>
       <Navbar
-        expand="lg"
         id="imagio"
         variant="dark"
-        expand="md"
         className="justify-content-center text-center center-cropped"
-        style={{
-          borderRadius: "5px 5px 5px 5px",
-        }}
       >
         <Navbar.Brand>
           {!isMobile ? (

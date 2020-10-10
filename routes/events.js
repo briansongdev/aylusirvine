@@ -65,7 +65,23 @@ router.get("/idenjelly/:id", async (req, res) => {
   });
 });
 
-// GET request to see if user is in the event
+router.get("/followup/:id", async (req, res) => {
+  await Event.findById(req.params.id).then((event) => {
+    res.json(event.followupList);
+  });
+});
+
+router.post("/createflup/:id", async (req, res) => {
+  await Event.findById(req.params.id).then((event) => {
+    event.followupList.push(req.body.flupmsg);
+    event
+      .save()
+      .then(() => {
+        res.json("FLUP successfully posted.");
+      })
+      .catch((e) => console.log(e));
+  });
+});
 
 router.get("/isUserSignedUp/:eventId/:userId", async (req, res) => {
   await Event.findById(req.params.eventId).then((event) => {

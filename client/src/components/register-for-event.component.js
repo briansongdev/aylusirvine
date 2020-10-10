@@ -79,7 +79,7 @@ class RegisterForEvent extends Component {
       this.setState({
         eventName: response.data.title,
         date: response.data.date,
-        description: response.data.description,
+        duration: response.data.duration,
       });
     });
   }
@@ -126,15 +126,25 @@ class RegisterForEvent extends Component {
                   borderRadius: "8px 8px 8px 8px",
                 }}
               >
-                <h5>
-                  Confirm signup for{" "}
-                  <span style={{ fontWeight: "bold", color: "#406ddd" }}>
-                    {this.state.eventName}
-                  </span>
-                  ?
-                </h5>
+                {!func(this.state.date) ? (
+                  <h5>
+                    Confirm signup for{" "}
+                    <span style={{ fontWeight: "bold", color: "#406ddd" }}>
+                      {this.state.eventName}
+                    </span>
+                    ?
+                  </h5>
+                ) : (
+                  <h5>
+                    Deadline for{" "}
+                    <span style={{ fontWeight: "bold", color: "#406ddd" }}>
+                      {this.state.eventName}
+                    </span>{" "}
+                    has passed.
+                  </h5>
+                )}
                 <Row className="p-3 justify-content-center">
-                  <p>{this.state.description}</p>
+                  <p>{this.state.duration} PVSA-credited hours</p>
                 </Row>
                 <Row className="p-1 justify-content-center">
                   {!func(this.state.date) ? (
@@ -148,19 +158,12 @@ class RegisterForEvent extends Component {
                       Yes, sign me up!
                     </Button>
                   ) : (
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      size="large"
-                      disabled
-                    >
-                      Deadline passed
-                    </Button>
+                    <></>
                   )}
                 </Row>
                 {this.executeSignup()}
-                <Row className="p-2">
-                  <span style={{ fontWeight: "bold" }}>
+                <Row className="p-1 justify-content-center">
+                  <span style={{ color: "#00ccff" }}>
                     {this.state.isSignedUp}
                   </span>
                 </Row>

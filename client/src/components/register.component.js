@@ -17,56 +17,59 @@ export default function Register() {
   const submit = async (e) => {
     if (!isChecked) {
       alert("Please confirm you have previously filled out the Google Form.");
-    }
-    e.preventDefault();
-    setIsErr(false);
-    if (!(!name || !identification || !email)) {
-      email = email.toLowerCase();
-      const newUser = { name, identification, email };
-      const passed = await axios.post("/api/users/add", newUser).catch((e) => {
+    } else {
+      e.preventDefault();
+      setIsErr(false);
+      if (!(!name || !identification || !email)) {
+        email = email.toLowerCase();
+        const newUser = { name, identification, email };
+        const passed = await axios
+          .post("/api/users/add", newUser)
+          .catch((e) => {
+            setID("");
+            setIsErr(true);
+            setChecked(false);
+            if (e == "Error: Request failed with status code 400") {
+              setErrMessage(
+                "Account with same name or email already exists. Login?"
+              );
+            } else {
+              setErrMessage("Internal server error.");
+            }
+          });
+        if (passed) {
+          const loginResponse = await axios.post("/api/users/login", {
+            email,
+            identification,
+          });
+          setUserData({
+            token: loginResponse.data.token,
+            user: loginResponse.data.user,
+          });
+          localStorage.setItem("auth-token", loginResponse.data.token);
+          const name = loginResponse.data.user.name;
+          let deviceType;
+          if (isMobile) {
+            deviceType = "Mobile";
+          } else {
+            deviceType = "Computer";
+          }
+          const logRequest = {
+            actionType: "Register and Logged In",
+            name: name,
+            time: new Date().toString(),
+            deviceType: deviceType,
+          };
+          await axios.post("/api/log/post", logRequest).then(() => {
+            window.location = "/";
+          });
+        }
+      } else {
         setID("");
         setIsErr(true);
         setChecked(false);
-        if (e == "Error: Request failed with status code 400") {
-          setErrMessage(
-            "Account with same name or email already exists. Login?"
-          );
-        } else {
-          setErrMessage("Internal server error.");
-        }
-      });
-      if (passed) {
-        const loginResponse = await axios.post("/api/users/login", {
-          email,
-          identification,
-        });
-        setUserData({
-          token: loginResponse.data.token,
-          user: loginResponse.data.user,
-        });
-        localStorage.setItem("auth-token", loginResponse.data.token);
-        const name = loginResponse.data.user.name;
-        let deviceType;
-        if (isMobile) {
-          deviceType = "Mobile";
-        } else {
-          deviceType = "Computer";
-        }
-        const logRequest = {
-          actionType: "Register and Logged In",
-          name: name,
-          time: new Date().toString(),
-          deviceType: deviceType,
-        };
-        await axios.post("/api/log/post", logRequest).then(() => {
-          window.location = "/";
-        });
+        setErrMessage("Please fill out all fields.");
       }
-    } else {
-      setID("");
-      setIsErr(true);
-      setChecked(false);
-      setErrMessage("Please fill out all fields.");
     }
   };
 

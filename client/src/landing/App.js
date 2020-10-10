@@ -20,6 +20,8 @@ import Investigate from "../components/investigate.component";
 import PostEvent from "../components/post-event.component";
 import FAQ from "./faq";
 import GetLog from "../components/getLog.component";
+import NewChanges from "./NewChanges";
+import ViewFollowups from "../components/view-followups.component";
 
 import "./App.css";
 
@@ -82,10 +84,12 @@ function App() {
                 path="/processSignup/:id/:userId"
                 component={RegisterForEvent}
               />
+              <Route path="/followups/:id/:userId" component={ViewFollowups} />
               <Route path="/investigate/:id" component={Investigate} />
               <Route path="/post/:id" component={PostEvent} />
               <Route path="/faq" component={FAQ} />
               <Route path="/eventListenerList" component={GetLog} />
+              <Route path="/updates" component={NewChanges} />
               <Route component={ErrorPage} />
             </Switch>
           </Container>

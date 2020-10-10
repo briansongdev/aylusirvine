@@ -202,7 +202,7 @@ export default function SignIn() {
         </>
       ) : (
         <Container className="p-3 text-center">
-          You are already signed in!
+          Congrats, you are signed in!
         </Container>
       )}
     </>

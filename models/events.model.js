@@ -11,6 +11,7 @@ const eventSchema = new Schema(
     userList: { type: Array, default: [] },
     emailList: { type: Array, default: [] },
     idList: { type: Array, default: [] },
+    followupList: { type: Array, default: [] },
   },
   {
     timestamps: true,

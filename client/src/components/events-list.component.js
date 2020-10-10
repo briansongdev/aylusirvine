@@ -1,6 +1,6 @@
 import React, { Component, PureComponent } from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, Row, ListGroup } from "react-bootstrap";
+import { Container, Card, Row, ListGroup, Alert } from "react-bootstrap";
 import { CircularProgress, Button } from "@material-ui/core";
 import axios from "axios";
 import dateFormat from "dateformat";
@@ -8,9 +8,10 @@ import UserContext from "../context/UserContext";
 import "../landing/App.css";
 import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
-import SendIcon from "@material-ui/icons/Send";
 import moment from "moment";
 import FadeIn from "react-fade-in";
+import LockIcon from "@material-ui/icons/Lock";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 const func = (datee) => {
   let previousDate = moment(datee)._d;
@@ -41,9 +42,6 @@ const EventCard = (
             })}
           </Linkify>
         </Card.Text>
-        <Card.Text style={{ fontWeight: "bold" }}>
-          {props.event.duration} PVSA-certified hour(s) given to volunteers.
-        </Card.Text>
         {/* Check if user has already been registred here and conditionally render*/}
         {!func(props.event.date) ? (
           <Button
@@ -53,7 +51,7 @@ const EventCard = (
             component={Link}
             to={"/processSignup/" + props.event._id + "/" + props.id}
           >
-            Register or Check Status
+            Register
           </Button>
         ) : (
           <Button
@@ -61,19 +59,27 @@ const EventCard = (
             color="primary"
             disableElevation
             component={Link}
-            to={"/processSignup/" + props.event._id + "/" + props.id}
+            to={"/followups/" + props.event._id + "/" + props.id}
           >
-            Check Status (past deadline)
+            Check followups
           </Button>
         )}
         <Card.Text>
           <br />
-          <SendIcon /> Posted{" "}
-          {dateFormat(props.event.date, "h TT dddd, mmmm d, yyyy")}
-          <span className="text-muted">
-            {" "}
-            (event will lock exactly 1 day after)
-          </span>
+          <Row
+            className="justify-content-center"
+            style={{ fontWeight: "bold" }}
+          >
+            <AccessTimeIcon /> <pre> </pre>
+            {props.event.duration} PVSA hrs.<pre> </pre> <LockIcon />
+            <pre> </pre>
+            Locks{" "}
+            {dateFormat(
+              moment(props.event.date).add(1, "day").format("LLL"),
+              "h TT dddd, mmmm d"
+            )}
+            .
+          </Row>
         </Card.Text>
         {props.isAdministrator ? (
           <>
@@ -84,7 +90,12 @@ const EventCard = (
               <ListGroup.Item
                 as={Link}
                 onClick={() => {
-                  props.deleteEvent(props.event._id);
+                  if (
+                    window.confirm(
+                      "Are you sure you want to delete this event?"
+                    )
+                  )
+                    props.deleteEvent(props.event._id);
                 }}
               >
                 Delete
@@ -364,13 +375,18 @@ class EventList extends PureComponent {
               ) : (
                 <></>
               )}
-              <Row className="p-3 justify-content-center">
+              <br />
+              <Alert variant="info">
+                v3 has dropped! <Link to="/updates">See what's new.</Link>
+              </Alert>
+              <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
               </Row>
 
               {this.renderAdmin()}
               <Row className="p-3 justify-content-center">
-                You've reached the end of our events!
+                You've reached the end of our events! (Old events are
+                automatically deleted.)
               </Row>
             </Container>
           );
@@ -388,13 +404,19 @@ class EventList extends PureComponent {
               ) : (
                 <></>
               )}
-              <Row className="p-3 justify-content-center">
+              <br />
+              <Alert variant="info">
+                v3 has dropped! If you're curious, check out{" "}
+                <Link to="/updates">updates.</Link>
+              </Alert>
+              <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
               </Row>
 
               {this.eventList()}
               <Row className="p-3 justify-content-center">
-                You've reached the end of our events!
+                You've reached the end of our events! (Old events are
+                automatically deleted.)
               </Row>
             </Container>
           );
