@@ -4,12 +4,12 @@
 }
 @font-face {
   font-family: "SF";
-  src: local("SFProDisplay-Regular"),
-    url(./fonts/SFProDisplay-Regular.ttf) format("truetype");
+  src: local("SF-UI-Text-Regular.ttf"),
+    url(./fonts/SF-UI-Text-Regular.ttf) format("truetype");
 }
 body {
   margin: 0;
-  font-family: "DINRoundPro";
+  font-family: "SF";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
