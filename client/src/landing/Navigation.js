@@ -250,7 +250,7 @@ export default function Navigation() {
                   </ListItemIcon>
                   {checkWidth1() ? (
                     <>
-                      <ListItemText primary="Your hours" />
+                      <ListItemText primary="Hours" />
                     </>
                   ) : (
                     <></>
@@ -270,7 +270,7 @@ export default function Navigation() {
                   </ListItemIcon>
                   {checkWidth1() ? (
                     <>
-                      <ListItemText primary="Log out" />
+                      <ListItemText primary="Logout" />
                     </>
                   ) : (
                     <></>

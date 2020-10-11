@@ -7,6 +7,21 @@ import FadeIn from "react-fade-in";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 import moment from "moment";
+import Confetti from "react-dom-confetti";
+
+const config = {
+  angle: 90,
+  spread: 360,
+  startVelocity: 40,
+  elementCount: 70,
+  dragFriction: 0.12,
+  duration: 3000,
+  stagger: 3,
+  width: "10px",
+  height: "10px",
+  perspective: "500px",
+  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+};
 
 const func = (datee) => {
   let previousDate = moment(datee)._d;
@@ -126,6 +141,7 @@ class RegisterForEvent extends Component {
                   borderRadius: "8px 8px 8px 8px",
                 }}
               >
+                <Confetti active={this.state.hasLoggedListen} config={config} />
                 {!func(this.state.date) ? (
                   <h5>
                     Confirm signup for{" "}

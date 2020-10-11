@@ -101,7 +101,7 @@ export default function ViewFollowups() {
               </Container>
             ) : (
               <Container className="p-3 text-center">
-                Not signed up for this event.
+                You are not signed up for this event.
               </Container>
             )}
           </>

@@ -52,13 +52,6 @@ class PostEvent extends Component {
     await axios
       .delete("/api/events/" + this.props.match.params.id)
       .catch((e) => console.log(e));
-    var options = {
-      body: "Hours have been posted for event " + this.state.eventName + "!",
-      icon:
-        "https://aylfus.org/wp-content/uploads/2015/08/AYLUS_Logo_LightBulbRed_124x124.png",
-      dir: "ltr",
-    };
-    new Notification("Event Update!", options);
     window.location = "/";
   };
 
