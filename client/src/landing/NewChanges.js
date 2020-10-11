@@ -54,8 +54,8 @@ export default class NewChanges extends Component {
           </CardDeck>
           <Row className="p-2 justify-content-center">
             <h5>
-              Unless there are new features, v3 is the last of AYLUS Irvine
-              Volunteers's dev lifecycle.
+              v3 is the last of our dev lifecycle unless new features are
+              needed.
             </h5>
           </Row>
           <Row className="p-2 justify-content-center">
