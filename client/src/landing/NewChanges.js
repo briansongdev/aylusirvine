@@ -21,7 +21,9 @@ export default class NewChanges extends Component {
           <CardDeck className="p-3">
             <Card style={{ width: "30%" }}>
               <Card.Body>
-                <Card.Title>Clarity</Card.Title>
+                <Card.Title>
+                  <span style={{ fontWeight: "bold" }}>Clarity</span>
+                </Card.Title>
                 <Card.Text>
                   Clarity is one of our key goals in the development of this
                   site. With v3, revolutionary changes have been made to the
@@ -32,7 +34,11 @@ export default class NewChanges extends Component {
             </Card>
             <Card style={{ width: "30%" }}>
               <Card.Body>
-                <Card.Title>Followups and Emails</Card.Title>
+                <Card.Title>
+                  <span style={{ fontWeight: "bold" }}>
+                    Followups and Emails
+                  </span>
+                </Card.Title>
                 <Card.Text>
                   Followups can now be directly viewed in the events page! This
                   way you do not have to relocate emails, creating a more
@@ -42,12 +48,14 @@ export default class NewChanges extends Component {
             </Card>
             <Card style={{ width: "30%" }}>
               <Card.Body>
-                <Card.Title>UI Improvements</Card.Title>
+                <Card.Title>
+                  <span style={{ fontWeight: "bold" }}>UI Improvements</span>
+                </Card.Title>
                 <Card.Text>
                   You may have noticed a clearer font to our interface, but
-                  that's just a sprinkle of what's really going on. We're also
-                  adding new animations and effects to various parts of the
-                  website. Experience them yourself!
+                  there's much more under the hood. We're also adding new
+                  animations and effects to various parts of the website. Find
+                  them yourself!
                 </Card.Text>
               </Card.Body>
             </Card>
