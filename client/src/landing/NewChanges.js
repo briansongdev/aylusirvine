@@ -8,16 +8,6 @@ export default class NewChanges extends Component {
       <Container className="p-3 text-center">
         <FadeIn>
           <h1>Updates for v3</h1>
-          <h5>
-            If you experience an error or glitch, please{" "}
-            <a
-              href="mailto:brians3476@gmail.com?subject=Question About AYLUS Irvine Volunteers"
-              target="_blank"
-            >
-              email
-            </a>{" "}
-            me right away!
-          </h5>
           <CardDeck className="p-3">
             <Card style={{ width: "30%" }}>
               <Card.Body>
