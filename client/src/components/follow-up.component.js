@@ -51,21 +51,21 @@ class FollowUp extends Component {
       eventName: this.state.title,
       eventDescription: this.state.description,
     };
-    // await emailjs
-    //   .send(
-    //     "gmail",
-    //     "send_followup_email",
-    //     templateParams,
-    //     "user_7ramHducqnduQpv2RNhBj"
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    await emailjs
+      .send(
+        "gmail",
+        "send_followup_email",
+        templateParams,
+        "user_7ramHducqnduQpv2RNhBj"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
     window.location = "/";
   };
   render() {
