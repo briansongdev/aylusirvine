@@ -8,16 +8,6 @@ export default class FAQ extends Component {
       <Container className="p-3 text-center">
         <FadeIn>
           <h1>Frequently Asked Questions</h1>
-          <h5>
-            If you experience an error or glitch, please{" "}
-            <a
-              href="mailto:brians3476@gmail.com?subject=Question About AYLUS Irvine Volunteers"
-              target="_blank"
-            >
-              email
-            </a>{" "}
-            me right away!
-          </h5>
           <Accordion className="p-3" defaultActiveKey="0">
             <Card>
               <Card.Header>

@@ -5,14 +5,14 @@ import App from "./landing/App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./fonts/DINRoundPro.ttf";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import HttpsRedirect from "react-https-redirect";
 
 ReactDOM.render(
   <HttpsRedirect>
-    <BrowserRouter>
+    <MemoryRouter>
       <App />
-    </BrowserRouter>
+    </MemoryRouter>
   </HttpsRedirect>,
   document.getElementById("root")
 );

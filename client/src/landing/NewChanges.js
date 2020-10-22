@@ -44,8 +44,8 @@ export default class NewChanges extends Component {
                 <Card.Text>
                   You may have noticed a clearer font to our interface, but
                   there's much more under the hood. We're also adding new
-                  animations and effects to various parts of the website. Find
-                  them yourself!
+                  animations and effects to various parts of the website. URLs
+                  are much simpler also!
                 </Card.Text>
               </Card.Body>
             </Card>
