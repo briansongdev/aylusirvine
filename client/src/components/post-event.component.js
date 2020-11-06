@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 import { Container, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import UserContext from "../context/UserContext";
@@ -11,6 +12,7 @@ class PostEvent extends Component {
     super(props);
     this.state = {
       ids: [],
+      emails: [],
       eventName: "",
       newHour: "",
     };
@@ -48,6 +50,32 @@ class PostEvent extends Component {
         .post("/api/users/update/" + us.useriid, postReq)
         .catch((e) => console.log(e));
     }
+    await axios
+      .get("/api/events/emailjelly/" + this.props.match.params.id)
+      .then((response) => {
+        this.setState({ emails: response.data });
+      })
+      .catch((err) => console.log(err));
+    const templateParams = {
+      emailName: this.state.emails.join(),
+      eventName: this.state.eventName,
+      eventDuration: this.state.newHour,
+    };
+    await emailjs
+      .send(
+        "gmail",
+        "template_9lyl4wk",
+        templateParams,
+        "user_7ramHducqnduQpv2RNhBj"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
     //delete event here
     await axios
       .delete("/api/events/" + this.props.match.params.id)
