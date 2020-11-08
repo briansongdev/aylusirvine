@@ -376,9 +376,6 @@ class EventList extends PureComponent {
                 <></>
               )}
               <br />
-              <Alert variant="info">
-                v3 has dropped! <Link to="/updates">See what's new.</Link>
-              </Alert>
               <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
               </Row>
@@ -405,9 +402,6 @@ class EventList extends PureComponent {
                 <></>
               )}
               <br />
-              <Alert variant="info">
-                v3 updates accessible <Link to="/updates">here.</Link>
-              </Alert>
               <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
               </Row>
