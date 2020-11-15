@@ -36,11 +36,12 @@ export default class FAQ extends Component {
               </Card.Header>
               <Accordion.Collapse eventKey="5">
                 <Card.Body>
-                  Glad you like our site!\n If you are interested in acquiring a
-                  facsimile for your branch, please contact
-                  aylusirvine@gmail.com! If you have a question regarding this
-                  website or a suggestion for new functions, or spot an issue,
-                  please do the same! Thank you - we value your support!
+                  Glad you like our site!
+                  <br /> If you are interested in acquiring a facsimile for your
+                  branch, please contact aylusirvine@gmail.com! If you have a
+                  question regarding this website or a suggestion for new
+                  functions, or spot an issue, please do the same! Thank you -
+                  we value your support!
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
