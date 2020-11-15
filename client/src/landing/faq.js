@@ -29,35 +29,6 @@ export default class FAQ extends Component {
             </Card>
             <Card>
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="2">
-                  What are some features of this website?
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="2">
-                <Card.Body>
-                  Here are some detailed features of our website and why you
-                  should inquire for a copy for your branch:
-                  <br />
-                  <br />+ This whole website is homemade and 100% original,
-                  meaning your data is private and will never be advertised or
-                  spammed.
-                  <br />+ Functions for volunteers: checking your hours (with
-                  progress bar), checking your events volunteered for, and
-                  signing up for events directly through the website. You will
-                  receive emails every time a new event is pushed and will
-                  receive an email when a leader decides to follow up. <br />+
-                  Functions for branch leaders: the option to create new events
-                  on the platform, check who has signed up, edit, delete, send
-                  followup emails, and "post" an event. Posting an event will
-                  automatically delete the event and add hours for the
-                  volunteers.
-                  <br />
-                  <br /> It's perfect for both parties!
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="5">
                   I'm an interested leader or have a question/suggestion! What
                   do I do?
@@ -65,9 +36,9 @@ export default class FAQ extends Component {
               </Card.Header>
               <Accordion.Collapse eventKey="5">
                 <Card.Body>
-                  If you are interested in acquiring a facsimile for your
-                  branch, please contact my personal email
-                  (brians3476@gmail.com)! If you have a question regarding this
+                  Glad you like our site!\n If you are interested in acquiring a
+                  facsimile for your branch, please contact
+                  aylusirvine@gmail.com! If you have a question regarding this
                   website or a suggestion for new functions, or spot an issue,
                   please do the same! Thank you - we value your support!
                 </Card.Body>
