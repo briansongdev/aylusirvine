@@ -39,7 +39,7 @@ export default function CreateEvent() {
     });
     const templateParams = {
       emailName: emailList.data.join(),
-      eventDuration: duration,
+      eventTitle: title,
     };
     await emailjs
       .send(
