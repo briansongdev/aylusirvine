@@ -3,13 +3,18 @@
   src: local("DINRoundPro"), url(./fonts/DINRoundPro.ttf) format("truetype");
 }
 @font-face {
+  font-family: "Gsans";
+  src: local("GoogleSans-Regular"),
+    url(./fonts/GoogleSans-Regular.ttf) format("truetype");
+}
+@font-face {
   font-family: "SF";
   src: local("SF-UI-Text-Regular.ttf"),
     url(./fonts/SF-UI-Text-Regular.ttf) format("truetype");
 }
 body {
   margin: 0;
-  font-family: "SF";
+  font-family: "Gsans";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
