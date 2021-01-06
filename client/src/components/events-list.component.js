@@ -1,7 +1,8 @@
 import React, { Component, PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { Container, Card, Row, ListGroup, Alert } from "react-bootstrap";
-import { CircularProgress, Button } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
+import { Snackbar, Button } from "@material-ui/core";
 import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
@@ -10,6 +11,7 @@ import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
 import moment from "moment";
 import FadeIn from "react-fade-in";
+import { Segment, Placeholder } from "semantic-ui-react";
 import LockIcon from "@material-ui/icons/Lock";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
@@ -126,6 +128,7 @@ class EventList extends PureComponent {
       events: [],
       hasLoggedListen: false,
       isReady: false,
+      isOpen: true,
     };
   }
   async componentDidMount() {
@@ -148,6 +151,31 @@ class EventList extends PureComponent {
   };
 
   notSignedIn() {
+    let deviceType, city, state, actionModifiedType;
+    if (isMobile) {
+      deviceType = "Mobile";
+    } else {
+      deviceType = "Computer";
+    }
+    axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        city = data.city;
+        state = data.region;
+        actionModifiedType = "Viewed landing screen - " + city + " - " + state;
+        const logRequest = {
+          actionType: actionModifiedType,
+          name: "anon",
+          time: new Date().toString(),
+          deviceType: deviceType,
+        };
+        axios.post("/api/log/post", logRequest);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     return (
       <Container className="p-3 text-center">
         <FadeIn>
@@ -174,12 +202,6 @@ class EventList extends PureComponent {
               initiative of giving back to the community through service in
               multifaceted events for the betterment of society. We strive to
               cultivate a love for volunteering.
-              <br />
-              <br />
-              <span style={{ fontWeight: "bold" }}>
-                This is where you can access our current events (and sign up for
-                them, check your hours, etc.).
-              </span>
               <br />
               <br />
               The projects we do include{" "}
@@ -287,10 +309,23 @@ class EventList extends PureComponent {
               <br /> We ARE active during COVID-19, and{" "}
               <span style={{ fontWeight: "bold" }}>everyone is welcome!</span>
             </p>
+            <br />
+            <br />
+            <span style={{ fontWeight: "bold" }}>
+              Our platform lets you seamlessly check your current hours,
+              register for upcoming events, and much more.
+            </span>
           </Row>
           <Row className="p-3 justify-content-center">
             <h5>
-              To get started, <Link to="/register">register.</Link>
+              If you want to volunteer with us, all you have to do is{" "}
+              <Link to="/register">register</Link>! You'll unlock access to all
+              of our current and upcoming events, and you can sign up
+              immediately.{" "}
+              <span style={{ fontWeight: "bold" }}>
+                We welcome all volunteers from everywhere. Join us through the
+                above link or sidebar!
+              </span>
             </h5>
           </Row>
           <Row className="p-1 justify-content-center">
@@ -308,14 +343,12 @@ class EventList extends PureComponent {
       .reverse()
       .map((currentEvent) => {
         return (
-          <FadeIn>
-            <EventCard
-              event={currentEvent}
-              deleteEvent={this.deleteEvent}
-              key={currentEvent._id}
-              isAdministrator={true}
-            />
-          </FadeIn>
+          <EventCard
+            event={currentEvent}
+            deleteEvent={this.deleteEvent}
+            key={currentEvent._id}
+            isAdministrator={true}
+          />
         );
       });
   }
@@ -345,15 +378,13 @@ class EventList extends PureComponent {
       .reverse()
       .map((currentEvent) => {
         return (
-          <FadeIn>
-            <EventCard
-              event={currentEvent}
-              deleteEvent={this.deleteEvent}
-              key={currentEvent._id}
-              isAdministrator={false}
-              id={userid._id}
-            />
-          </FadeIn>
+          <EventCard
+            event={currentEvent}
+            deleteEvent={this.deleteEvent}
+            key={currentEvent._id}
+            isAdministrator={false}
+            id={userid._id}
+          />
         );
       });
   }
@@ -366,6 +397,25 @@ class EventList extends PureComponent {
         if (user.isAdmin) {
           return (
             <Container>
+              <Snackbar
+                open={this.state.isOpen}
+                onClose={() => this.setState({ isOpen: false })}
+              >
+                <MuiAlert
+                  elevation={6}
+                  variant="filled"
+                  severity="success"
+                  onClose={() => this.setState({ isOpen: false })}
+                >
+                  Keep an eye out for elections! When that time rolls around,
+                  you will also have an opportunity to give feedback on our
+                  website and propose changes.
+                </MuiAlert>
+              </Snackbar>
+              <br />
+              <Row className="p-1 justify-content-center">
+                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+              </Row>
               {isMobile ? (
                 <>
                   <Row className="p-2 justify-content-center">
@@ -375,11 +425,6 @@ class EventList extends PureComponent {
               ) : (
                 <></>
               )}
-              <br />
-              <Row className="p-1 justify-content-center">
-                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-              </Row>
-
               {this.renderAdmin()}
               <Row className="p-3 justify-content-center">
                 You've reached the end of our events! (Old events are
@@ -390,6 +435,25 @@ class EventList extends PureComponent {
         } else {
           return (
             <Container>
+              <Snackbar
+                open={this.state.isOpen}
+                onClose={() => this.setState({ isOpen: false })}
+              >
+                <MuiAlert
+                  elevation={6}
+                  variant="filled"
+                  severity="success"
+                  onClose={() => this.setState({ isOpen: false })}
+                >
+                  Keep an eye out for elections! When that time rolls around,
+                  you will also have an opportunity to give feedback on our
+                  website and propose changes.
+                </MuiAlert>
+              </Snackbar>
+              <br />
+              <Row className="p-1 justify-content-center">
+                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+              </Row>
               {isMobile ? (
                 <>
                   <Row className="p-2 justify-content-center">
@@ -401,11 +465,6 @@ class EventList extends PureComponent {
               ) : (
                 <></>
               )}
-              <br />
-              <Row className="p-1 justify-content-center">
-                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-              </Row>
-
               {this.eventList()}
               <Row className="p-3 justify-content-center">
                 You've reached the end of our events! (Old events are
@@ -417,9 +476,39 @@ class EventList extends PureComponent {
       }
     } else {
       return (
-        <Row className="p-4 justify-content-center">
-          <CircularProgress />
-        </Row>
+        // <Row className="p-3 justify-content-center">
+        //   <CircularProgress />
+        <Container>
+          <Segment style={{ marginTop: "2em" }}>
+            <Placeholder fluid>
+              <Placeholder.Paragraph>
+                <Placeholder.Line length="full" />
+                <Placeholder.Line length="medium" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="long" />
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="full" />
+                <Placeholder.Line length="medium" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="long" />
+                <Placeholder.Line length="short" />
+              </Placeholder.Paragraph>
+            </Placeholder>
+          </Segment>
+          <Segment style={{ marginTop: "1em" }}>
+            <Placeholder fluid>
+              <Placeholder.Paragraph>
+                <Placeholder.Line length="full" />
+                <Placeholder.Line length="medium" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="long" />
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="full" />
+              </Placeholder.Paragraph>
+            </Placeholder>
+          </Segment>
+        </Container>
+        // </Row>
       );
     }
   }
