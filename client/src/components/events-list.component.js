@@ -1,8 +1,8 @@
 import React, { Component, PureComponent } from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, Row, ListGroup, Alert } from "react-bootstrap";
-import MuiAlert from "@material-ui/lab/Alert";
-import { Snackbar, Button } from "@material-ui/core";
+import { Container, Card, Row, ListGroup } from "react-bootstrap";
+import Alert from "@material-ui/lab/Alert";
+import { Snackbar, Button, Paper, CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
@@ -11,7 +11,6 @@ import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
 import moment from "moment";
 import FadeIn from "react-fade-in";
-import { Segment, Placeholder } from "semantic-ui-react";
 import LockIcon from "@material-ui/icons/Lock";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
@@ -398,19 +397,14 @@ class EventList extends PureComponent {
           return (
             <Container>
               <Snackbar
-                open={this.state.isOpen}
-                onClose={() => this.setState({ isOpen: false })}
+                open={true}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
               >
-                <MuiAlert
-                  elevation={6}
-                  variant="filled"
-                  severity="success"
-                  onClose={() => this.setState({ isOpen: false })}
-                >
+                <Alert variant="filled" severity="success">
                   Keep an eye out for elections! When that time rolls around,
                   you will also have an opportunity to give feedback on our
                   website and propose changes.
-                </MuiAlert>
+                </Alert>
               </Snackbar>
               <br />
               <Row className="p-1 justify-content-center">
@@ -437,18 +431,13 @@ class EventList extends PureComponent {
             <Container>
               <Snackbar
                 open={this.state.isOpen}
-                onClose={() => this.setState({ isOpen: false })}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
               >
-                <MuiAlert
-                  elevation={6}
-                  variant="filled"
-                  severity="success"
-                  onClose={() => this.setState({ isOpen: false })}
-                >
+                <Alert variant="filled" severity="success">
                   Keep an eye out for elections! When that time rolls around,
                   you will also have an opportunity to give feedback on our
                   website and propose changes.
-                </MuiAlert>
+                </Alert>
               </Snackbar>
               <br />
               <Row className="p-1 justify-content-center">
@@ -478,35 +467,12 @@ class EventList extends PureComponent {
       return (
         // <Row className="p-3 justify-content-center">
         //   <CircularProgress />
-        <Container>
-          <Segment style={{ marginTop: "2em" }}>
-            <Placeholder fluid>
-              <Placeholder.Paragraph>
-                <Placeholder.Line length="full" />
-                <Placeholder.Line length="medium" />
-                <Placeholder.Line length="very long" />
-                <Placeholder.Line length="long" />
-                <Placeholder.Line length="short" />
-                <Placeholder.Line length="full" />
-                <Placeholder.Line length="medium" />
-                <Placeholder.Line length="very long" />
-                <Placeholder.Line length="long" />
-                <Placeholder.Line length="short" />
-              </Placeholder.Paragraph>
-            </Placeholder>
-          </Segment>
-          <Segment style={{ marginTop: "1em" }}>
-            <Placeholder fluid>
-              <Placeholder.Paragraph>
-                <Placeholder.Line length="full" />
-                <Placeholder.Line length="medium" />
-                <Placeholder.Line length="very long" />
-                <Placeholder.Line length="long" />
-                <Placeholder.Line length="short" />
-                <Placeholder.Line length="full" />
-              </Placeholder.Paragraph>
-            </Placeholder>
-          </Segment>
+        <Container className="text-center">
+          <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
+            <br />
+            <br />
+            <CircularProgress color="inherit" />
+          </Paper>
         </Container>
         // </Row>
       );
