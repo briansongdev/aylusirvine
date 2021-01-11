@@ -7,6 +7,7 @@ import axios from "axios";
 import dateFormat from "dateformat";
 import UserContext from "../context/UserContext";
 import "../landing/App.css";
+
 import { isMobile } from "react-device-detect";
 import Linkify from "react-linkify";
 import moment from "moment";
@@ -471,7 +472,19 @@ class EventList extends PureComponent {
           <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
             <br />
             <br />
-            <CircularProgress color="inherit" />
+            <div className="loading">
+              <div className="loading__letter">L</div>
+              <div className="loading__letter">o</div>{" "}
+              <div className="loading__letter">a</div>{" "}
+              <div className="loading__letter">d</div>{" "}
+              <div className="loading__letter">i</div>
+              <div className="loading__letter">n</div>
+              <div className="loading__letter">g</div>
+              <div className="loading__letter">.</div>
+              <div className="loading__letter">.</div>
+              <div className="loading__letter">.</div>
+            </div>
+            {/* <CircularProgress color="inherit" /> */}
           </Paper>
         </Container>
         // </Row>
