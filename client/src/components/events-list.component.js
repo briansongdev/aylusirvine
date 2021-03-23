@@ -397,16 +397,6 @@ class EventList extends PureComponent {
         if (user.isAdmin) {
           return (
             <Container>
-              <Snackbar
-                open={true}
-                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              >
-                <Alert variant="filled" severity="success">
-                  Keep an eye out for elections! When that time rolls around,
-                  you will also have an opportunity to give feedback on our
-                  website and propose changes.
-                </Alert>
-              </Snackbar>
               <br />
               <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
@@ -430,16 +420,6 @@ class EventList extends PureComponent {
         } else {
           return (
             <Container>
-              <Snackbar
-                open={this.state.isOpen}
-                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              >
-                <Alert variant="filled" severity="success">
-                  Keep an eye out for elections! When that time rolls around,
-                  you will also have an opportunity to give feedback on our
-                  website and propose changes.
-                </Alert>
-              </Snackbar>
               <br />
               <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
