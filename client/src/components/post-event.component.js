@@ -63,7 +63,7 @@ class PostEvent extends Component {
     };
     await emailjs
       .send(
-        "gmail",
+        "service_lgfzi7u",
         "template_9lyl4wk",
         templateParams,
         "user_7ramHducqnduQpv2RNhBj"
