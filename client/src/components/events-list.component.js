@@ -401,8 +401,8 @@ class EventList extends PureComponent {
                 open={true}
                 anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
               >
-                <Alert variant="filled" severity="info">
-                  Want iOS instructions? Visit <a href="https://aylusirvine.github.io/betainstructions/">here</a>.
+                <Alert variant="filled" severity="warning">
+                  Want iOS app instructions? Visit <a href="https://aylusirvine.github.io/betainstructions/" target="_blank">here</a>.
                 </Alert>
               </Snackbar>
               <br />
@@ -432,8 +432,8 @@ class EventList extends PureComponent {
                 open={true}
                 anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
               >
-                <Alert variant="filled" severity="info">
-                  Want iOS instructions? Visit <a href="https://aylusirvine.github.io/betainstructions/">here</a>.
+                <Alert variant="filled" severity="warning">
+                  Want iOS app instructions? Visit <a href="https://aylusirvine.github.io/betainstructions/" target="_blank">here</a>.
                 </Alert>
               </Snackbar>
               <br />
