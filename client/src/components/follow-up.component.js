@@ -53,7 +53,7 @@ class FollowUp extends Component {
     };
     await emailjs
       .send(
-        "gmail",
+        "service_lgfzi7u",
         "send_followup_email",
         templateParams,
         "user_7ramHducqnduQpv2RNhBj"
