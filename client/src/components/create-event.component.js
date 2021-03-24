@@ -43,7 +43,7 @@ export default function CreateEvent() {
     };
     await emailjs
       .send(
-        "gmail",
+        "service_lgfzi7u",
         "template_kg8dq4kR",
         templateParams,
         "user_7ramHducqnduQpv2RNhBj"
