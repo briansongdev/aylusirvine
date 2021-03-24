@@ -397,6 +397,14 @@ class EventList extends PureComponent {
         if (user.isAdmin) {
           return (
             <Container>
+              <Snackbar
+                open={true}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              >
+                <Alert variant="filled" severity="info">
+                  Want iOS instructions? Visit <a href="https://aylusirvine.github.io/betainstructions/">here</a>.
+                </Alert>
+              </Snackbar>
               <br />
               <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
@@ -420,6 +428,14 @@ class EventList extends PureComponent {
         } else {
           return (
             <Container>
+              <Snackbar
+                open={true}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              >
+                <Alert variant="filled" severity="info">
+                  Want iOS instructions? Visit <a href="https://aylusirvine.github.io/betainstructions/">here</a>.
+                </Alert>
+              </Snackbar>
               <br />
               <Row className="p-1 justify-content-center">
                 <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
