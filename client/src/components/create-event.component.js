@@ -56,7 +56,7 @@ export default function CreateEvent() {
           console.log(error.text);
         }
       );
-    window.location = "/";
+//     window.location = "/";
   };
   return (
     <Container>
