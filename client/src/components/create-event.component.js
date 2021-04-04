@@ -27,7 +27,7 @@ export default function CreateEvent() {
       .post("/api/events/add", events)
       .then((res) => console.log(res.data));
     let adminToken = "";
-    if (userData.isAdmin) {
+    if (userData.isAdmin || userData.isPartAdmin) {
       adminToken = "ashdkajsdhaskdhaskdha";
     }
     const headers = {
@@ -60,7 +60,7 @@ export default function CreateEvent() {
   };
   return (
     <Container>
-      {userData.isAdmin ? (
+      {userData.isAdmin || userData.isPartAdmin ? (
         <>
           <Container className="p-3">
             <Form onSubmit={onSubmit}>
@@ -104,6 +104,11 @@ export default function CreateEvent() {
                   selected={date}
                   onChange={(date) => onChangeDate(date)}
                 />
+                <Form.Text className="text-muted">
+                  Leave this alone if you are VP of regular events. For special
+                  events, customize this by choosing the (due date - 1 day) thru
+                  this date picker.
+                </Form.Text>
               </Form.Group>
               <Button variant="success" type="submit">
                 Create Event

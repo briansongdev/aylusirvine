@@ -72,7 +72,7 @@ class FollowUp extends Component {
     let user = this.context.userData;
     return (
       <>
-        {user.isAdmin ? (
+        {user.isAdmin || user.isPartAdmin ? (
           <Container className="p-3">
             <Form onSubmit={this.onSubmit}>
               <Form.Group controlId="followBasicText">

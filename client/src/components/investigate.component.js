@@ -62,6 +62,20 @@ class Investigate extends Component {
       );
     });
   };
+  getUser1 = () => {
+    let counter = -1;
+    return this.state.eventNames.map((hi) => {
+      counter += 1;
+      return (
+        <>
+          <Row className="p-2 justify-content-center">{hi}</Row>
+          <Row className="p-1 justify-content-center">
+            {console.log(this.state.eventIds[counter])}
+          </Row>
+        </>
+      );
+    });
+  };
   render() {
     let user = this.context.userData;
     return (
@@ -70,7 +84,17 @@ class Investigate extends Component {
           <Container className="p-3 text-center">
             <h5>Event: {this.state.eventName}</h5>
             {this.getUser()}
+            <p>End of members!</p>
           </Container>
+        ) : user.isPartAdmin ? (
+          <>
+            {" "}
+            <Container className="p-3 text-center">
+              <h5>Event: {this.state.eventName}</h5>
+              {this.getUser1()}
+              <p>End of members!</p>
+            </Container>
+          </>
         ) : (
           <Container className="p-3 text-center">
             Hi! You've reached this page in error. Click one of the above links

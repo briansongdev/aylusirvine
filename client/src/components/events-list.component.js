@@ -83,6 +83,20 @@ const EventCard = (
             .
           </Row>
         </Card.Text>
+        {props.isPartAdmin ? (
+          <>
+            <ListGroup variant="flush">
+              <ListGroup.Item as={Link} to={"/flup/" + props.event._id}>
+                Send followup
+              </ListGroup.Item>
+              <ListGroup.Item as={Link} to={"/investigate/" + props.event._id}>
+                Participant List
+              </ListGroup.Item>
+            </ListGroup>
+          </>
+        ) : (
+          <></>
+        )}
         {props.isAdministrator ? (
           <>
             <ListGroup variant="flush">
@@ -352,6 +366,21 @@ class EventList extends PureComponent {
         );
       });
   }
+  renderAdmin1() {
+    return this.state.events
+      .slice()
+      .reverse()
+      .map((currentEvent) => {
+        return (
+          <EventCard
+            event={currentEvent}
+            deleteEvent={this.deleteEvent}
+            key={currentEvent._id}
+            isPartAdmin={true}
+          />
+        );
+      });
+  }
   eventList() {
     const name = this.context.userData.user.name;
     let deviceType;
@@ -397,49 +426,92 @@ class EventList extends PureComponent {
         if (user.isAdmin) {
           return (
             <Container>
-              <br />
-              <Row className="p-1 justify-content-center">
-                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-              </Row>
-              {isMobile ? (
-                <>
-                  <Row className="p-2 justify-content-center">
-                    <h6 style={{ color: "red" }}>Best viewed in horizontal.</h6>
-                  </Row>
-                </>
-              ) : (
-                <></>
-              )}
-              {this.renderAdmin()}
-              <Row className="p-3 justify-content-center">
-                You've reached the end of our events! (Old events are
-                automatically deleted.)
-              </Row>
+              <FadeIn>
+                <br />
+                <Row className="p-1 justify-content-center">
+                  <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+                </Row>
+                {isMobile ? (
+                  <>
+                    <Row className="p-2 justify-content-center">
+                      <h6 style={{ color: "red" }}>
+                        Best viewed in horizontal.
+                      </h6>
+                    </Row>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {this.renderAdmin()}
+                <Row className="p-3 justify-content-center">
+                  You've reached the end of our events! (Old events are
+                  automatically deleted.)
+                </Row>
+              </FadeIn>
+            </Container>
+          );
+        } else if (user.isPartAdmin) {
+          return (
+            <Container>
+              <FadeIn>
+                <br />
+                <Row className="p-1 justify-content-center">
+                  <h4 style={{ fontWeight: "bold" }}>VP Dashboard</h4>
+                </Row>
+                <Container className="text-center" fluid>
+                  <Row className="p-3 justify-content-center">
+                    <p>
+                      Congrats, you are a current VP! Below you will find extra
+                      options on events (followups, participant list). Be
+                      careful when posting; you will not be able to edit or
+                      delete your posts. Also, please do not try to access info
+                      outside your position (i.e. events the other VP posted)
+                      because ALL THINGS YOU VIEW ON THIS SITE are recorded in a
+                      log.{" "}
+                      <span style={{ fontWeight: "bold" }}>Good luck!</span>
+                    </p>
+                  </Row>{" "}
+                </Container>
+                {isMobile ? (
+                  <>
+                    <Row className="p-2 justify-content-center">
+                      <h6 style={{ color: "red" }}>
+                        Best viewed in horizontal.
+                      </h6>
+                    </Row>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {this.renderAdmin1()}
+              </FadeIn>
             </Container>
           );
         } else {
           return (
             <Container>
-              <br />
-              <Row className="p-1 justify-content-center">
-                <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-              </Row>
-              {isMobile ? (
-                <>
-                  <Row className="p-2 justify-content-center">
-                    <h6 style={{ color: " red" }}>
-                      Best viewed in horizontal.
-                    </h6>
-                  </Row>
-                </>
-              ) : (
-                <></>
-              )}
-              {this.eventList()}
-              <Row className="p-3 justify-content-center">
-                You've reached the end of our events! (Old events are
-                automatically deleted.)
-              </Row>
+              <FadeIn>
+                <br />
+                <Row className="p-1 justify-content-center">
+                  <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+                </Row>
+                {isMobile ? (
+                  <>
+                    <Row className="p-2 justify-content-center">
+                      <h6 style={{ color: " red" }}>
+                        Best viewed in horizontal.
+                      </h6>
+                    </Row>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {this.eventList()}
+                <Row className="p-3 justify-content-center">
+                  You've reached the end of our events! (Old events are
+                  automatically deleted.)
+                </Row>
+              </FadeIn>
             </Container>
           );
         }

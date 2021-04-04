@@ -30,6 +30,7 @@ function App() {
     token: undefined,
     user: undefined,
     isAdmin: false,
+    isPartAdmin: false,
   });
 
   useEffect(() => {
@@ -51,12 +52,24 @@ function App() {
             token,
             user: userRes.data,
             isAdmin: true,
+            isPartAdmin: false,
+          });
+        } else if (
+          userRes.data.email == "annielee0203@gmail.com" ||
+          userRes.data.email == "annabelxxtiong@gmail.com"
+        ) {
+          setUserData({
+            token,
+            user: userRes.data,
+            isAdmin: false,
+            isPartAdmin: true,
           });
         } else {
           setUserData({
             token,
             user: userRes.data,
             isAdmin: false,
+            isPartAdmin: false,
           });
         }
       }

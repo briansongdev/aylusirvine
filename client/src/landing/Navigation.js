@@ -337,7 +337,7 @@ export default function Navigation() {
             <Divider />
           </>
         )}
-        {userData.isAdmin ? (
+        {userData.isAdmin || userData.isPartAdmin ? (
           <>
             <List>
               <Link
@@ -349,15 +349,19 @@ export default function Navigation() {
                   <ListItemText primary="Create" />
                 </ListItem>
               </Link>
-              <Link
-                to="/eventListenerList"
-                style={{ textDecoration: "none" }}
-                className={classes.link}
-              >
-                <ListItem button>
-                  <ListItemText primary="Log" />
-                </ListItem>
-              </Link>
+              {userData.isAdmin ? (
+                <Link
+                  to="/eventListenerList"
+                  style={{ textDecoration: "none" }}
+                  className={classes.link}
+                >
+                  <ListItem button>
+                    <ListItemText primary="Log" />
+                  </ListItem>
+                </Link>
+              ) : (
+                <></>
+              )}
             </List>
             <Divider />
           </>
