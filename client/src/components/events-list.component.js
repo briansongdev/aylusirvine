@@ -63,7 +63,7 @@ const EventCard = (
             component={Link}
             to={"/followups/" + props.event._id + "/" + props.id}
           >
-            Check followups
+            Registration has ended for this event. Check followups
           </Button>
         )}
         <Card.Text>
