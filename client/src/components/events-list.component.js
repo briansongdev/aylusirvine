@@ -63,9 +63,13 @@ const EventCard = (
             component={Link}
             to={"/followups/" + props.event._id + "/" + props.id}
           >
-            Registration has ended for this event. Check followups
+            Registration has ended for this event. Check followups here
           </Button>
         )}
+        <br />
+        <Card.Text className="text-muted">
+          First time attending one of our events? You'll need to fill out our waiver <a href="https://forms.gle/XKfsXEpXpWPKTUUf9"> here.</a>
+        </Card.Text>
         <Card.Text>
           <br />
           <Row
