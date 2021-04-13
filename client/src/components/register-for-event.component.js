@@ -115,7 +115,7 @@ class RegisterForEvent extends Component {
           } else {
             this.setState({
               isSignedUp:
-                "Not registered yet. Registering is irreversible and if you no-show you MUST email in advance. You agree to adhere to event-specific instructions and will epitomize AYLUS qualities in your work.",
+                "Not registered yet!",
             });
           }
         })
