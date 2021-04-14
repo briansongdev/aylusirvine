@@ -165,7 +165,7 @@ export default function Navigation() {
               </ListItemIcon>
               {checkWidth() ? (
                 <>
-                  <ListItemText primary="FAQ" />
+                  <ListItemText primary="Privacy/Security" />
                 </>
               ) : (
                 <></>
@@ -177,7 +177,7 @@ export default function Navigation() {
         <List>
           {checkWidth() ? (
             <ListItem>
-              <ListItemText secondary={"❤️ AYLUS Irvine. v3"} />
+              <ListItemText secondary={"❤️ AYLUS Irvine. v3.1"} />
             </ListItem>
           ) : (
             <></>
