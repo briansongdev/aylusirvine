@@ -172,6 +172,24 @@ export default function Navigation() {
               )}
             </ListItem>
           </Link>
+          <Link
+            to="https://aylusirvine.github.io/betainstructions"
+            style={{ textDecoration: "none" }}
+            className={classes.link}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <LiveHelpIcon />
+              </ListItemIcon>
+              {checkWidth() ? (
+                <>
+                  <ListItemText primary="iOS App" />
+                </>
+              ) : (
+                <></>
+              )}
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
