@@ -54,17 +54,20 @@ function App() {
             isAdmin: true,
             isPartAdmin: false,
           });
-        } else if (
-          userRes.data.email == "annielee0203@gmail.com" ||
-          userRes.data.email == "annabelxxtiong@gmail.com"
-        ) {
-          setUserData({
-            token,
-            user: userRes.data,
-            isAdmin: false,
-            isPartAdmin: true,
-          });
-        } else {
+        }
+//         else if (
+//           userRes.data.email == "annielee0203@gmail.com" ||
+//           userRes.data.email == "annabelxxtiong@gmail.com"
+//           false
+//         ) {
+//           setUserData({
+//             token,
+//             user: userRes.data,
+//             isAdmin: false,
+//             isPartAdmin: true,
+//           });
+//         }
+        else {
           setUserData({
             token,
             user: userRes.data,
