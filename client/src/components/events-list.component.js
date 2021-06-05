@@ -14,6 +14,7 @@ import moment from "moment";
 import FadeIn from "react-fade-in";
 import LockIcon from "@material-ui/icons/Lock";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import { AlertTitle } from "@material-ui/lab";
 
 const func = (datee) => {
   let previousDate = moment(datee)._d;
@@ -447,6 +448,18 @@ class EventList extends PureComponent {
                 ) : (
                   <></>
                 )}
+                <Alert severity="info">
+                  <AlertTitle>Welcome!</AlertTitle>
+                  To stay updated on current events, install our new Windows
+                  desktop app{" "}
+                  <a
+                    href="https://drive.google.com/file/d/1dVCsXV8UJFLGgNW4_0P0Rq_MFzqWLezC/view?usp=sharing"
+                    target="_blank"
+                  >
+                    here
+                  </a>
+                  !
+                </Alert>
                 {this.renderAdmin()}
                 <Row className="p-3 justify-content-center">
                   You've reached the end of our events! (Old events are
@@ -511,6 +524,18 @@ class EventList extends PureComponent {
                 ) : (
                   <></>
                 )}
+                <Alert severity="info">
+                  <AlertTitle>Welcome!</AlertTitle>
+                  To stay updated on current events, install our new Windows
+                  desktop app{" "}
+                  <a
+                    href="https://drive.google.com/file/d/1dVCsXV8UJFLGgNW4_0P0Rq_MFzqWLezC/view?usp=sharing"
+                    target="_blank"
+                  >
+                    here
+                  </a>
+                  !
+                </Alert>
                 {this.eventList()}
                 <Row className="p-3 justify-content-center">
                   You've reached the end of our events! (Old events are
