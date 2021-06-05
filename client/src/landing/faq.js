@@ -70,7 +70,7 @@ export default class FAQ extends Component {
               make new, engaging events while keeping your info protected. All
               we ask from you is to{" "}
               <span style={{ fontWeight: "bold" }}>
-                not conduct activities you'd be guilting yourself of on here.
+                avoid conducting non-volunteer activities on our site.
               </span>{" "}
               Thank you and{" "}
               <span style={{ color: "#08b8cd" }}>welcome to AYLUS Irvine!</span>
