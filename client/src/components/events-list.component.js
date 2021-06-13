@@ -551,7 +551,7 @@ class EventList extends PureComponent {
         // <Row className="p-3 justify-content-center">
         //   <CircularProgress />
         <Container className="text-center">
-          <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
+          {/* <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
             <br />
             <br />
             <div className="loading">
@@ -565,9 +565,9 @@ class EventList extends PureComponent {
               <div className="loading__letter">.</div>
               <div className="loading__letter">.</div>
               <div className="loading__letter">.</div>
-            </div>
-            {/* <CircularProgress color="inherit" /> */}
-          </Paper>
+            </div> */}
+          <CircularProgress color="secondary" />
+          {/* </Paper> */}
         </Container>
         // </Row>
       );
