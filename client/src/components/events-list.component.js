@@ -427,7 +427,8 @@ class EventList extends PureComponent {
     let user = this.context.userData;
     if (this.state.isReady) {
       if (user.token === undefined) {
-        return <Container>{this.notSignedIn()}</Container>;
+        return <Redirect to="https://aylusirvine.herokuapp.com" />;
+        // return <Container>{this.notSignedIn()}</Container>;
       } else {
         if (user.isAdmin) {
           return (
@@ -511,11 +512,14 @@ class EventList extends PureComponent {
         }
       }
     } else {
-      return (
-        // <Row className="p-3 justify-content-center">
-        //   <CircularProgress />
-        <Container className="text-center">
-          {/* <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
+      if (localStorage.getItem("done") != "yes") {
+        return <Redirect to="https://aylusirvine.herokuapp.com" />;
+      } else {
+        return (
+          // <Row className="p-3 justify-content-center">
+          //   <CircularProgress />
+          <Container className="text-center">
+            {/* <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
             <br />
             <br />
             <div className="loading">
@@ -530,11 +534,12 @@ class EventList extends PureComponent {
               <div className="loading__letter">.</div>
               <div className="loading__letter">.</div>
             </div> */}
-          <CircularProgress color="secondary" />
-          {/* </Paper> */}
-        </Container>
-        // </Row>
-      );
+            <CircularProgress color="secondary" />
+            {/* </Paper> */}
+          </Container>
+          // </Row>
+        );
+      }
     }
   }
 }
