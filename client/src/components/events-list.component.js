@@ -469,7 +469,7 @@ class EventList extends PureComponent {
             </Container>
           );
         } else {
-          <Redirect to="https://aylusirvine.herokuapp.com" />;
+          return <Redirect to="https://aylusirvine.herokuapp.com" />;
           // return (
           //   <Container>
           //     <FadeIn>
