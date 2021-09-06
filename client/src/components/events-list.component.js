@@ -513,7 +513,7 @@ class EventList extends PureComponent {
       }
     } else {
       if (localStorage.getItem("done") != "yes") {
-        return <Redirect to="https://aylusirvine.herokuapp.com" />;
+        return <Redirect to="https://aylusirvine.vercel.app" />;
       } else {
         return (
           // <Row className="p-3 justify-content-center">
