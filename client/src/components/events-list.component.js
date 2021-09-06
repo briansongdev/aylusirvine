@@ -1,5 +1,5 @@
 import React, { Component, PureComponent } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Container, Card, Row, ListGroup } from "react-bootstrap";
 import Alert from "@material-ui/lab/Alert";
 import { Snackbar, Button, Paper, CircularProgress } from "@material-ui/core";
@@ -468,82 +468,46 @@ class EventList extends PureComponent {
               </FadeIn>
             </Container>
           );
-        } else if (user.isPartAdmin) {
-          return (
-            <Container>
-              <FadeIn>
-                <br />
-                <Row className="p-1 justify-content-center">
-                  <h4 style={{ fontWeight: "bold" }}>VP Dashboard</h4>
-                </Row>
-                <Container className="text-center" fluid>
-                  <Row className="p-3 justify-content-center">
-                    <p>
-                      Congrats, you are a current VP! Below you will find extra
-                      options on events (followups, participant list). Be
-                      careful when posting; you will not be able to edit or
-                      delete your posts. Also, please do not try to access info
-                      outside your position (i.e. events the other VP posted)
-                      because ALL THINGS YOU VIEW ON THIS SITE are recorded in a
-                      log.{" "}
-                      <span style={{ fontWeight: "bold" }}>Good luck!</span>
-                    </p>
-                  </Row>{" "}
-                </Container>
-                {isMobile ? (
-                  <>
-                    <Row className="p-2 justify-content-center">
-                      <h6 style={{ color: "red" }}>
-                        Best viewed in horizontal.
-                      </h6>
-                    </Row>
-                  </>
-                ) : (
-                  <></>
-                )}
-                {this.renderAdmin1()}
-              </FadeIn>
-            </Container>
-          );
         } else {
-          return (
-            <Container>
-              <FadeIn>
-                <br />
-                <Row className="p-1 justify-content-center">
-                  <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-                </Row>
-                {isMobile ? (
-                  <>
-                    <Row className="p-2 justify-content-center">
-                      <h6 style={{ color: " red" }}>
-                        Best viewed in horizontal.
-                      </h6>
-                    </Row>
-                  </>
-                ) : (
-                  <></>
-                )}
-                <Alert severity="info">
-                  <AlertTitle>Welcome!</AlertTitle>
-                  To stay updated on current events, install our new Windows
-                  desktop app{" "}
-                  <a
-                    href="https://drive.google.com/file/d/1dVCsXV8UJFLGgNW4_0P0Rq_MFzqWLezC/view?usp=sharing"
-                    target="_blank"
-                  >
-                    here
-                  </a>
-                  !
-                </Alert>
-                {this.eventList()}
-                <Row className="p-3 justify-content-center">
-                  You've reached the end of our events! (Old events are
-                  automatically deleted.)
-                </Row>
-              </FadeIn>
-            </Container>
-          );
+          <Redirect to="https://aylusirvine.herokuapp.com" />;
+          // return (
+          //   <Container>
+          //     <FadeIn>
+          //       <br />
+          //       <Row className="p-1 justify-content-center">
+          //         <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+          //       </Row>
+          //       {isMobile ? (
+          //         <>
+          //           <Row className="p-2 justify-content-center">
+          //             <h6 style={{ color: " red" }}>
+          //               Best viewed in horizontal.
+          //             </h6>
+          //           </Row>
+          //         </>
+          //       ) : (
+          //         <></>
+          //       )}
+          //       <Alert severity="info">
+          //         <AlertTitle>Welcome!</AlertTitle>
+          //         To stay updated on current events, install our new Windows
+          //         desktop app{" "}
+          //         <a
+          //           href="https://drive.google.com/file/d/1dVCsXV8UJFLGgNW4_0P0Rq_MFzqWLezC/view?usp=sharing"
+          //           target="_blank"
+          //         >
+          //           here
+          //         </a>
+          //         !
+          //       </Alert>
+          //       {this.eventList()}
+          //       <Row className="p-3 justify-content-center">
+          //         You've reached the end of our events! (Old events are
+          //         automatically deleted.)
+          //       </Row>
+          //     </FadeIn>
+          //   </Container>
+          // );
         }
       }
     } else {
