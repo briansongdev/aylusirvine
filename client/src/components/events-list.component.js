@@ -427,8 +427,8 @@ class EventList extends PureComponent {
     let user = this.context.userData;
     if (this.state.isReady) {
       if (user.token === undefined) {
-        return <Redirect to="https://aylusirvine.herokuapp.com" />;
-        // return <Container>{this.notSignedIn()}</Container>;
+        // return <Redirect to="https://aylusirvine.herokuapp.com" />;
+        return <Container>{this.notSignedIn()}</Container>;
       } else {
         if (user.isAdmin) {
           return (
@@ -470,49 +470,49 @@ class EventList extends PureComponent {
             </Container>
           );
         } else {
-          return <Redirect to="https://aylusirvine.herokuapp.com" />;
-          // return (
-          //   <Container>
-          //     <FadeIn>
-          //       <br />
-          //       <Row className="p-1 justify-content-center">
-          //         <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
-          //       </Row>
-          //       {isMobile ? (
-          //         <>
-          //           <Row className="p-2 justify-content-center">
-          //             <h6 style={{ color: " red" }}>
-          //               Best viewed in horizontal.
-          //             </h6>
-          //           </Row>
-          //         </>
-          //       ) : (
-          //         <></>
-          //       )}
-          //       <Alert severity="info">
-          //         <AlertTitle>Welcome!</AlertTitle>
-          //         To stay updated on current events, install our new Windows
-          //         desktop app{" "}
-          //         <a
-          //           href="https://drive.google.com/file/d/1dVCsXV8UJFLGgNW4_0P0Rq_MFzqWLezC/view?usp=sharing"
-          //           target="_blank"
-          //         >
-          //           here
-          //         </a>
-          //         !
-          //       </Alert>
-          //       {this.eventList()}
-          //       <Row className="p-3 justify-content-center">
-          //         You've reached the end of our events! (Old events are
-          //         automatically deleted.)
-          //       </Row>
-          //     </FadeIn>
-          //   </Container>
-          // );
+          // return <Redirect to="https://aylusirvine.herokuapp.com" />;
+          return (
+            <Container>
+              <FadeIn>
+                <br />
+                <Row className="p-1 justify-content-center">
+                  <h4 style={{ fontWeight: "bold" }}>Current Events</h4>
+                </Row>
+                {isMobile ? (
+                  <>
+                    <Row className="p-2 justify-content-center">
+                      <h6 style={{ color: " red" }}>
+                        Best viewed in horizontal.
+                      </h6>
+                    </Row>
+                  </>
+                ) : (
+                  <></>
+                )}
+                <Alert severity="info">
+                  <AlertTitle>Welcome!</AlertTitle>
+                  To stay updated on current events, install our new Windows
+                  desktop app{" "}
+                  <a
+                    href="https://drive.google.com/file/d/1dVCsXV8UJFLGgNW4_0P0Rq_MFzqWLezC/view?usp=sharing"
+                    target="_blank"
+                  >
+                    here
+                  </a>
+                  !
+                </Alert>
+                {this.eventList()}
+                <Row className="p-3 justify-content-center">
+                  You've reached the end of our events! (Old events are
+                  automatically deleted.)
+                </Row>
+              </FadeIn>
+            </Container>
+          );
         }
       }
     } else {
-      if (localStorage.getItem("done") != "yes") {
+      if (!(localStorage.getItem("done") != "yes")) {
         window.location.replace("https://aylusirvine.vercel.app");
         return <></>;
       } else {
