@@ -512,7 +512,7 @@ class EventList extends PureComponent {
         }
       }
     } else {
-      if (!(localStorage.getItem("done") != "yes")) {
+      if (!(localStorage.getItem("done") != "yes") && !(user.isAdmin)) {
         window.location.replace("https://aylusirvine.vercel.app");
         return <></>;
       } else {
