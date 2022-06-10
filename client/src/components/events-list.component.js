@@ -511,36 +511,37 @@ class EventList extends PureComponent {
           );
         }
       }
-    } else {
-      if (!(localStorage.getItem("done") != "yes") && !(user.isAdmin)) {
-        window.location.replace("https://aylusirvine.vercel.app");
-        return <></>;
-      } else {
-        return (
-          // <Row className="p-3 justify-content-center">
-          //   <CircularProgress />
-          <Container className="text-center">
-            {/* <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
-            <br />
-            <br />
-            <div className="loading">
-              <div className="loading__letter">L</div>
-              <div className="loading__letter">o</div>{" "}
-              <div className="loading__letter">a</div>{" "}
-              <div className="loading__letter">d</div>{" "}
-              <div className="loading__letter">i</div>
-              <div className="loading__letter">n</div>
-              <div className="loading__letter">g</div>
-              <div className="loading__letter">.</div>
-              <div className="loading__letter">.</div>
-              <div className="loading__letter">.</div>
-            </div> */}
-            <CircularProgress color="secondary" />
-            {/* </Paper> */}
-          </Container>
-          // </Row>
-        );
-      }
+}
+//     } else {
+//       if (!(localStorage.getItem("done") != "yes") && !(user.isAdmin)) {
+//         window.location.replace("https://aylusirvine.vercel.app");
+//         return <></>;
+//       } else {
+//         return (
+//           // <Row className="p-3 justify-content-center">
+//           //   <CircularProgress />
+//           <Container className="text-center">
+//             {/* <Paper elevation={0} style={{ marginTop: "2em", height: "500px" }}>
+//             <br />
+//             <br />
+//             <div className="loading">
+//               <div className="loading__letter">L</div>
+//               <div className="loading__letter">o</div>{" "}
+//               <div className="loading__letter">a</div>{" "}
+//               <div className="loading__letter">d</div>{" "}
+//               <div className="loading__letter">i</div>
+//               <div className="loading__letter">n</div>
+//               <div className="loading__letter">g</div>
+//               <div className="loading__letter">.</div>
+//               <div className="loading__letter">.</div>
+//               <div className="loading__letter">.</div>
+//             </div> */}
+//             <CircularProgress color="secondary" />
+//             {/* </Paper> */}
+//           </Container>
+//           // </Row>
+//         );
+//       }
     }
   }
 }
