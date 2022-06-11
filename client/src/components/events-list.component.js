@@ -389,6 +389,12 @@ class EventList extends PureComponent {
   }
   eventList() {
     const name = this.context.userData.user.name;
+    const hours = this.context.userData.user.hours.$numberDecimal;
+    const message = JSON.stringify({
+      name: name,
+      hours: hours,
+    });
+    window.parent.postMessage(message, "*");
     let deviceType;
     if (isMobile) {
       deviceType = "Mobile";
