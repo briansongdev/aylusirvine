@@ -155,8 +155,15 @@ class EventList extends PureComponent {
     await axios
       .get("/api/events/")
       .then((response) => {
-        setTimeout(() => this.setState({ isReady: true }), 250);
+        setTimeout(() => this.setState({ isReady: true }), 750);
         this.setState({ events: response.data });
+        const name = this.context.userData.user.name;
+        const hours = this.context.userData.user.hours.$numberDecimal;
+        const message = JSON.stringify({
+          name: name,
+          hours: hours,
+        });
+        window.parent.postMessage(message, "*");
       })
       .catch((error) => {
         // empty catch
@@ -389,12 +396,7 @@ class EventList extends PureComponent {
   }
   eventList() {
     const name = this.context.userData.user.name;
-    const hours = this.context.userData.user.hours.$numberDecimal;
-    const message = JSON.stringify({
-      name: name,
-      hours: hours,
-    });
-    window.parent.postMessage(message, "*");
+
     let deviceType;
     if (isMobile) {
       deviceType = "Mobile";
