@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Container, Row } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import Axios from "axios";
 
@@ -121,7 +126,7 @@ function App() {
       </div>
     );
   } else {
-    location.replace("https://aylusirvine.com");
+    return <Redirect to="https://aylusirvine.com" />;
   }
 }
 
