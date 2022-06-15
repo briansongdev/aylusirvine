@@ -84,7 +84,7 @@ function App() {
     };
     checkLoggedIn();
   }, []);
-  if (!window.frameElement) {
+  if (window.self == window.top) {
     return (
       <div
         style={{
