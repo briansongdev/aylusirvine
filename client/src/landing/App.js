@@ -126,7 +126,7 @@ function App() {
       </div>
     );
   } else {
-    return <Redirect to="https://aylusirvine.com" />;
+    return <>{(window.location.href = "https://aylusirvine.com")}</>;
   }
 }
 
