@@ -55,18 +55,18 @@ function App() {
             isPartAdmin: false,
           });
         }
-//         else if (
-//           userRes.data.email == "annielee0203@gmail.com" ||
-//           userRes.data.email == "annabelxxtiong@gmail.com"
-//           false
-//         ) {
-//           setUserData({
-//             token,
-//             user: userRes.data,
-//             isAdmin: false,
-//             isPartAdmin: true,
-//           });
-//         }
+        //         else if (
+        //           userRes.data.email == "annielee0203@gmail.com" ||
+        //           userRes.data.email == "annabelxxtiong@gmail.com"
+        //           false
+        //         ) {
+        //           setUserData({
+        //             token,
+        //             user: userRes.data,
+        //             isAdmin: false,
+        //             isPartAdmin: true,
+        //           });
+        //         }
         else {
           setUserData({
             token,
@@ -79,40 +79,50 @@ function App() {
     };
     checkLoggedIn();
   }, []);
-
-  return (
-    <div
-      style={{ backgroundColor: "#EFEFEF", minHeight: "100vh", width: "100vw" }}
-    >
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <Container>
-          <Navigation />
-          <Container style={{ maxWidth: "70vw" }}>
-            <Switch>
-              <Route path="/" exact component={EventsList} />
-              <Route path="/edit/:id" component={EditEvent} />
-              <Route path="/flup/:id" component={FollowUp} />
-              <Route path="/create" component={CreateEvent} />
-              <Route path="/register" component={Register} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="/hours" component={HourCheck} />
-              <Route
-                path="/processSignup/:id/:userId"
-                component={RegisterForEvent}
-              />
-              <Route path="/followups/:id/:userId" component={ViewFollowups} />
-              <Route path="/investigate/:id" component={Investigate} />
-              <Route path="/post/:id" component={PostEvent} />
-              <Route path="/faq" component={FAQ} />
-              <Route path="/eventListenerList" component={GetLog} />
-              <Route path="/updates" component={NewChanges} />
-              <Route component={ErrorPage} />
-            </Switch>
+  if (!window.frameElement) {
+    return (
+      <div
+        style={{
+          backgroundColor: "#EFEFEF",
+          minHeight: "100vh",
+          width: "100vw",
+        }}
+      >
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <Container>
+            <Navigation />
+            <Container style={{ maxWidth: "70vw" }}>
+              <Switch>
+                <Route path="/" exact component={EventsList} />
+                <Route path="/edit/:id" component={EditEvent} />
+                <Route path="/flup/:id" component={FollowUp} />
+                <Route path="/create" component={CreateEvent} />
+                <Route path="/register" component={Register} />
+                <Route path="/signin" component={SignIn} />
+                <Route path="/hours" component={HourCheck} />
+                <Route
+                  path="/processSignup/:id/:userId"
+                  component={RegisterForEvent}
+                />
+                <Route
+                  path="/followups/:id/:userId"
+                  component={ViewFollowups}
+                />
+                <Route path="/investigate/:id" component={Investigate} />
+                <Route path="/post/:id" component={PostEvent} />
+                <Route path="/faq" component={FAQ} />
+                <Route path="/eventListenerList" component={GetLog} />
+                <Route path="/updates" component={NewChanges} />
+                <Route component={ErrorPage} />
+              </Switch>
+            </Container>
           </Container>
-        </Container>
-      </UserContext.Provider>
-    </div>
-  );
+        </UserContext.Provider>
+      </div>
+    );
+  } else {
+    location.replace("https://aylusirvine.com");
+  }
 }
 
 export default App;

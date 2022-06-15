@@ -9,12 +9,11 @@ import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import HttpsRedirect from "react-https-redirect";
 
 ReactDOM.render(
-  {window.frameElement  ? 
   <HttpsRedirect>
     <MemoryRouter>
       <App />
     </MemoryRouter>
-  </HttpsRedirect> : <>{location.replace("aylusirvine.com")}</>},
+  </HttpsRedirect>,
   document.getElementById("root")
 );
 
