@@ -389,33 +389,6 @@ export default function Navigation() {
           </ListItem>
         </List>
       </Drawer>
-      <Navbar
-        id="imagio"
-        variant="dark"
-        className="justify-content-center text-center center-cropped"
-      >
-        <Navbar.Brand>
-          {!isMobile ? (
-            <>
-              <h1 className="display-5" style={{ cursor: "default" }}>
-                AYLUS Irvine Volunteers
-              </h1>
-            </>
-          ) : (
-            <>
-              <h1
-                className="display-5 text-center"
-                style={{
-                  fontSize: "17px",
-                  fontWeight: "bold",
-                }}
-              >
-                AYLUS Irvine Volunteers
-              </h1>
-            </>
-          )}
-        </Navbar.Brand>
-      </Navbar>
     </Container>
   );
 }
